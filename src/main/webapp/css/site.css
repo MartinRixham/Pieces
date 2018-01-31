@@ -1,0 +1,25 @@
+.masthead.segment
+{
+    padding: 20%;
+    text-align: center;
+}
+
+.masthead.segment h1
+{
+    font-size: 4em;
+}
+
+.masthead.segment h2 .subtitle
+{
+    display: inline-block;
+}
+
+
+@media only screen and (max-width: 767px)
+{
+    .masthead.segment h2
+    {
+        font-size: 18px;
+        font-weight: 700;
+    }
+}
