@@ -8,7 +8,7 @@ requirejs.config({
 	paths: {
 
 		jquery: "../webjars/jquery/3.1.1/jquery.min",
-		semantic: "../webjars/Semantic-UI/2.2.2/semantic.min"
+		semantic: "../webjars/Semantic-UI/2.2.10/semantic.min"
 	}
 });
 

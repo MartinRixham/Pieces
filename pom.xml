@@ -4,7 +4,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>MartinRixham</groupId>
+  <groupId>Pieces</groupId>
   <artifactId>Pieces</artifactId>
   <packaging>war</packaging>
   <version>1.0</version>
@@ -13,10 +13,9 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>7.0</version>
-      <scope>provided</scope>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.json</groupId>
@@ -49,6 +48,11 @@
       <artifactId>Datum</artifactId>
       <version>0.11.0</version>
     </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-webapp</artifactId>
+      <version>RELEASE</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>${project.artifactId}</finalName>
@@ -61,6 +65,18 @@
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.simplericity.jettyconsole</groupId>
+        <artifactId>jetty-console-maven-plugin</artifactId>
+        <version>1.60</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>createconsole</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -117,22 +133,6 @@
             <phase>generate-resources</phase>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.4.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <phase>install</phase>
-          </execution>
-        </executions>
-        <configuration>
-          <executable>deploy.sh</executable>
-        </configuration>
       </plugin>
     </plugins>
   </build>
