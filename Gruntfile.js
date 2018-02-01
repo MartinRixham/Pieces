@@ -22,7 +22,11 @@ module.exports = function(grunt) {
 		},
 		qunit: {
 
-			src: "src/test/webapp/html/*"
+			src: "src/test/webapp/html/*",
+			options: {
+
+				timeout: 10000
+			}
 		}
 	});
 
