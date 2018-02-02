@@ -1,14 +1,14 @@
 requirejs.config({
 
 	baseUrl: "js",
+	paths: {
+
+		jquery: "../node_modules/jquery/dist/jquery.min",
+		semantic: "../node_modules/semantic-ui-css/semantic.min"
+	},
 	shim: {
 
 		"semantic": { "deps": ["jquery"] }
-	},
-	paths: {
-
-		jquery: "../webjars/jquery/3.1.1/jquery.min",
-		semantic: "../webjars/Semantic-UI/2.2.10/semantic.min"
 	}
 });
 

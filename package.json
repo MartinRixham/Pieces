@@ -1,5 +1,5 @@
 {
-  "name": "Pieces",
+  "name": "pieces",
   "version": "0.0.0",
   "license": "AGPL-3.0",
   "devDependencies": {
@@ -7,14 +7,16 @@
     "grunt-cli": "1.2.0",
     "grunt-contrib-jshint": "1.0.0",
     "grunt-contrib-qunit": "2.0.0",
-    "grunt-jscs": "3.0.1"
+    "grunt-jscs": "3.0.1",
+    "node": "9.4.0",
+    "npm": "5.6.0",
+    "qunit": "2.5.0"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/martinrixham/tabularasa.git"
+    "url": "git://github.com/martinrixham/pieces.git"
   },
-  "dependencies": {
-    "node": "^9.4.0",
-    "npm": "^5.6.0"
+  "scripts": {
+    "preinstall": "npm install --prefix src/main/webapp"
   }
 }

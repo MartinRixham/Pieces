@@ -22,13 +22,9 @@ module.exports = function(grunt) {
 		},
 		qunit: {
 
-			src: "src/test/webapp/html/*",
-			options: {
-
-				timeout: 10000
-			}
+			src: "src/test/webapp/index.html"
 		}
 	});
 
-	grunt.registerTask("default", ["jshint", "jscs"]);
+	grunt.registerTask("default", ["jshint", "jscs", "qunit"]);
 };

@@ -1,4 +1,9 @@
-QUnit.test("Test the truth", function(assert) {
+require(["qunit"], function(QUnit) {
 
-	assert.ok(true);
+	QUnit.start();
+
+	QUnit.test("Test the truth", function (assert) {
+
+		assert.ok(true);
+	});
 });
