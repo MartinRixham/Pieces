@@ -4,6 +4,8 @@ define([], function NavPiece() {
 
 		var currentIndex = new Datum(-1);
 
+		this.currentPage = pages[0].page;
+
 		this.onBind = function(element) {
 
 			var pageElement = document.createElement("DIV");
@@ -12,7 +14,6 @@ define([], function NavPiece() {
 			element.appendChild(pageElement);
 		};
 
-		this.currentPage = null;
 
 		this.showPage = function(index) {
 

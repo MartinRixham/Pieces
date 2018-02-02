@@ -1,9 +1,13 @@
-require(["qunit"], function(QUnit) {
+require(["qunit", "pieces/NavPiece"], function(QUnit, NavPiece) {
 
-	QUnit.test("Test the truth", function(assert) {
+	QUnit.start();
 
-		assert.ok(true);
+	QUnit.test("Nav with one page", function(assert) {
+
+		var page = {};
+		var nav = new NavPiece([{ route: "route", page: page }]);
+
+		assert.strictEqual(nav.currentPage, page);
 	});
 });
-
 
