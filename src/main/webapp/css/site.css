@@ -38,3 +38,8 @@
         font-weight: 500;
     }
 }
+
+.sticky.nav.segment
+{
+    margin-bottom: 5%;
+}

@@ -22,16 +22,17 @@
         </h2>
       </div>
     </div>
-    <div class="ui sticky inverted vertical segment" data-bind="menu">
+    <div class="ui sticky inverted vertical nav segment" data-bind="menu">
       <div class="ui container">
         <div class="ui four item menu">
-          <a class="item">One</a>
-          <a class="item">Two</a>
+          <a class="item" data-bind="one">One</a>
+          <a class="item" data-bind="two">Two</a>
           <a class="item">Three</a>
           <a class="item">Four</a>
         </div>
       </div>
     </div>
-    <div id="content" class="ui container" style="height: 2000px"></div>
+    <div id="content" class="ui text container" data-bind="content">
+    </div>
   </body>
 </html>

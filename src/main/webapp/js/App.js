@@ -1,15 +1,25 @@
-define(["jquery"], function($) {
+define([
+	"pieces/NavPiece",
+	"pieces/NavButton",
+	"One",
+	"Two"
+], function(
+	NavPiece,
+	NavButton,
+	One,
+	Two) {
 
 	function App() {
 
-		this.menu =
-			new Init(function(element) {
+		this.content =
+			new NavPiece([
 
-				$(element).sticky({
+				{ route: "one", page: new One() },
+				{ route: "two", page: new Two() }
+			]);
 
-					context: "#content"
-				});
-			});
+		this.one = new NavButton(0, this.content);
+		this.two = new NavButton(1, this.content);
 	}
 
 	return App;
