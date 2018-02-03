@@ -9,6 +9,11 @@ require([
 
 	QUnit.start();
 
+	QUnit.testStart(function() {
+
+		location.hash = "";
+	});
+
 	QUnit.test("Nav with one page", function(assert) {
 
 		var page = {};
@@ -54,6 +59,7 @@ require([
 		assert.strictEqual(nav.currentPage, pageTwo);
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 1);
+		assert.strictEqual(location.hash, "#go");
 	});
 
 	QUnit.test("Show second page", function(assert) {
@@ -72,6 +78,7 @@ require([
 
 		assert.strictEqual(nav.currentPage, pageTwo);
 		assert.strictEqual(nav.getCurrentIndex(), 1);
+		assert.strictEqual(location.hash, "#go");
 	});
 
 	QUnit.test("Show unknown page", function(assert) {
@@ -94,6 +101,42 @@ require([
 
 		assert.strictEqual(nav.currentPage, pageOne);
 		assert.strictEqual(nav.getCurrentIndex(), 0);
+	});
+
+	QUnit.test("Route page from hash", function(assert) {
+
+		var pageOne = {};
+		var pageTwo = {};
+
+		location.hash = "go";
+
+		var nav =
+			new NavPiece(
+				[
+					{ route: "come", page: pageOne },
+					{ route: "go", page: pageTwo }
+				]);
+
+		assert.strictEqual(nav.currentPage, pageTwo);
+		assert.strictEqual(nav.getCurrentIndex(), -1);
+	});
+
+	QUnit.test("Route page from unknown hash", function(assert) {
+
+		var pageOne = {};
+		var pageTwo = {};
+
+		location.hash = "gone";
+
+		var nav =
+			new NavPiece(
+				[
+					{ route: "come", page: pageOne },
+					{ route: "go", page: pageTwo }
+				]);
+
+		assert.strictEqual(nav.currentPage, pageOne);
+		assert.strictEqual(nav.getCurrentIndex(), -1);
 	});
 });
 

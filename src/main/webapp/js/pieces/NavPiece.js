@@ -6,6 +6,17 @@ define([], function NavPiece() {
 
 		this.currentPage = pages[0].page;
 
+		(function routePage(self) {
+
+			for (var i = 0; i < pages.length; i++) {
+
+				if ("#" + pages[i].route == location.hash) {
+
+					self.currentPage = pages[i].page;
+				}
+			}
+		})(this);
+
 		this.onBind = function(element) {
 
 			var pageElement = document.createElement("DIV");
@@ -24,6 +35,8 @@ define([], function NavPiece() {
 			currentIndex(index);
 
 			this.currentPage = pages[index].page;
+
+			location.hash = pages[index].route;
 		};
 
 		this.getCurrentIndex = function() {
