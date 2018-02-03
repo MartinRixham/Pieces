@@ -14,8 +14,12 @@ define([], function NavPiece() {
 			element.appendChild(pageElement);
 		};
 
-
 		this.showPage = function(index) {
+
+			if (!pages[index]) {
+
+				return;
+			}
 
 			currentIndex(index);
 
