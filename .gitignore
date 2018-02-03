@@ -18,3 +18,5 @@ target/
 node
 deploy.sh
 node_modules
+
+src/main/webapp/main-production.js

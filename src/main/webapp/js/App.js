@@ -1,8 +1,8 @@
 define([
-	"pieces/NavPiece",
-	"pieces/NavButton",
-	"One",
-	"Two"
+	"js/pieces/NavPiece",
+	"js/pieces/NavButton",
+	"js/One",
+	"js/Two"
 ], function(
 	NavPiece,
 	NavButton,
