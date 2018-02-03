@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-jscs");
 	grunt.loadNpmTasks("grunt-contrib-qunit");
 	grunt.loadNpmTasks("grunt-contrib-requirejs");
+	grunt.loadNpmTasks("grunt-concat-define");
 
 	grunt.initConfig({
 
@@ -38,8 +39,16 @@ module.exports = function(grunt) {
 					out: "src/main/webapp/main-production.js"
 				}
 			}
+		},
+		"concat-define": {
+
+			options: {
+
+				sourceRootDirectory: "src/main/webapp/js/pieces",
+				outputFile: "target/pieces.js",
+			}
 		}
 	});
 
-	grunt.registerTask("default", ["jshint", "jscs", "qunit", "requirejs"]);
+	grunt.registerTask("default", ["jshint", "jscs", "qunit", "requirejs", "concat-define"]);
 };

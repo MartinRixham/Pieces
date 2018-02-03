@@ -1,4 +1,4 @@
-define([], function() {
+define([], function NavButton() {
 
 	function NavButton(index, nav) {
 
