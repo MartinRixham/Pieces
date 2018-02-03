@@ -12,7 +12,7 @@ requirejs.config({
 	}
 });
 
-require(["App", "semantic"], function(App) {
+require(["jquery", "App", "semantic"], function($, App) {
 
-	new BindingRoot(app = new App());
+	$(function() { new BindingRoot(app = new App()); });
 });
