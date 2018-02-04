@@ -7,13 +7,11 @@
     <meta name="theme-color" content="#1b1c1d" />
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="images/icons/icon-72x72.png" />
-    <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-css/components/reset.min.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-css/components/container.min.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-css/components/segment.min.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-css/components/menu.min.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-css/components/header.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-css/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="css/site.css">
     <script src="node_modules/Datum/target/Datum.min.js"></script>
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
     <script src="node_modules/requirejs/require.js"></script>
     <script src="main.js"></script>
     <!-- <script src="node_modules/sw-toolbox/companion.js" data-service-worker="service-worker.js"></script> -->
@@ -28,7 +26,7 @@
         </h2>
       </div>
     </div>
-    <div class="ui sticky inverted vertical nav segment" data-bind="menu">
+    <div class="ui sticky inverted vertical nav segment">
       <div class="ui container">
         <div class="ui four item menu">
           <a class="item" data-bind="one">One</a>
@@ -36,6 +34,7 @@
           <a class="item">Three</a>
           <a class="item">Four</a>
         </div>
+        <i class="code icon" data-bind="navCode"></i>
       </div>
     </div>
     <div id="content" class="ui text container" data-bind="content">

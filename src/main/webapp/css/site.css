@@ -43,3 +43,36 @@
 {
     margin-bottom: 5%;
 }
+
+pre {
+    margin: 0;
+    tab-size: 4;
+    -moz-tab-size: 4;
+}
+
+.code.icon
+{
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 0 7px;
+}
+
+@media only screen and (max-width: 767px)
+{
+    .code.icon
+    {
+        display: none
+    }
+}
+
+.nav .container
+{
+    position: relative;
+}
+
+.nav .code.icon
+{
+    position: absolute;
+    right: -4%;
+    top: 0.5em;
+}

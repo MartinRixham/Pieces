@@ -2,12 +2,14 @@ define([
 	"js/pieces/NavPiece",
 	"js/pieces/NavButton",
 	"js/One",
-	"js/Two"
+	"js/Two",
+	"js/NavCode"
 ], function(
 	NavPiece,
 	NavButton,
 	One,
-	Two) {
+	Two,
+	NavCode) {
 
 	function App() {
 
@@ -20,6 +22,8 @@ define([
 
 		this.one = new NavButton(0, this.content);
 		this.two = new NavButton(1, this.content);
+
+		this.navCode = new NavCode();
 	}
 
 	return App;
