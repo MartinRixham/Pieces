@@ -39,6 +39,11 @@
     }
 }
 
+.datum
+{
+    color: #cccccc;
+}
+
 .sticky.nav.segment
 {
     margin-bottom: 5%;

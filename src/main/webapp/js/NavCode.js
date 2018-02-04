@@ -2,15 +2,20 @@ define(["jquery", "hljs"], function($, hljs) {
 
 	function NavCodeDialog() {
 
+		var dialog = null;
+
 		this.onBind = function(element) {
 
-			$(element).load("html/navCode.html");
+			$(element).load("html/navCode.html", function() {
+
+				dialog = element.firstChild;
+			});
 		};
 
 		this.navCode =
-			new Click(function(element) {
+			new Click(function() {
 
-				$(element.firstChild).modal("show");
+				$(dialog).modal("show");
 			});
 
 		this.code =
