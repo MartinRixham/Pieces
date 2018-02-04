@@ -4,7 +4,7 @@ requirejs.config({
 
 		jquery: "node_modules/jquery/dist/jquery.min",
 		semantic: "node_modules/semantic-ui-css/semantic.min",
-		hljs: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min"
+		hljs: "node_modules/highlight.js-postbuild/index"
 	},
 	shim: {
 
