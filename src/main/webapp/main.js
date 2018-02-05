@@ -3,7 +3,7 @@ requirejs.config({
 	paths: {
 
 		jquery: "node_modules/jquery/dist/jquery.min",
-		semantic: "node_modules/semantic-ui-css/semantic.min",
+		semantic: "node_modules/semantic-ui-offline/semantic.min",
 		hljs: "node_modules/highlight.js-postbuild/index"
 	},
 	shim: {
