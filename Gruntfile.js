@@ -11,11 +11,11 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON("package.json"),
 		jshint: {
 
-			src: "src/main/webapp/js/*"
+			src: "src/main/webapp/js/**/*.js"
 		},
 		jscs: {
 
-			src: "src/main/webapp/js/*",
+			src: "src/main/webapp/js/**/*.js",
 			options: {
 
 				config: ".jscsrc",
