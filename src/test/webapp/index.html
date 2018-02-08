@@ -21,12 +21,19 @@
 				"semantic": { "deps": ["jquery"] }
 			}
 		});
+
+		require([
+			"qunit",
+            "./js/NavPieceTest.js",
+            "./js/SlideNavPieceTest.js"
+        ], function(QUnit) {
+
+			QUnit.start();
+		})
     </script>
-    <script src="js/NavPieceTest.js"></script>
-    <script src="js/SlideNavPieceTest.js"></script>
-	</head>
-	<body>
-		<div id="qunit"></div>
-		<div id="qunit-fixture"></div>
-	</body>
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+  </body>
 </html>

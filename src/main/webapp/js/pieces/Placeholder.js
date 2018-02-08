@@ -4,9 +4,9 @@ define([], function() {
 
 		this.onBind = function(element) {
 
-			for (var i = element.children.length - 1; i >= 0; i--) {
+			while (element.firstChild) {
 
-				element.removeChild(element.children[i]);
+				element.removeChild(element.firstChild);
 			}
 
 			for (var j = 0; j < page.length; j++) {

@@ -32,6 +32,11 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 
 		this.onBind = function(element) {
 
+			while (element.firstChild) {
+
+				element.removeChild(element.firstChild);
+			}
+
 			element.style.overflow = "hidden";
 
 			container = document.createElement("DIV");

@@ -1,4 +1,4 @@
-require([
+define([
 	"qunit",
 	"js/pieces/NavPiece",
 	"js/pieces/NavButton"
@@ -6,8 +6,6 @@ require([
 	QUnit,
 	NavPiece,
 	NavButton) {
-
-	QUnit.start();
 
 	QUnit.testStart(function() {
 
@@ -137,6 +135,26 @@ require([
 
 		assert.strictEqual(nav.currentPage, pageOne);
 		assert.strictEqual(nav.getCurrentIndex(), -1);
+	});
+
+	QUnit.test("Remove old elements", function(assert) {
+
+		var pageOne = {};
+
+		var container = document.createElement("DIV");
+		var child = document.createElement("DIV");
+
+		container.appendChild(child);
+
+		var nav =
+			new NavPiece(
+				[
+					{ route: "clear", page: pageOne }
+				]);
+
+		nav.onBind(container);
+
+		assert.strictEqual(container.children.length, 1);
 	});
 });
 

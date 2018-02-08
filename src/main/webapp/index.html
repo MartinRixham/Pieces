@@ -8,12 +8,12 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="images/icons/icon-72x72.png" />
     <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-offline/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/highlight.js-postbuild/styles/default.css">
     <link rel="stylesheet" type="text/css" href="css/site.css">
     <script src="node_modules/Datum/target/Datum.min.js"></script>
-    <link rel="stylesheet" href="node_modules/highlight.js-postbuild/styles/default.css">
     <script src="node_modules/requirejs/require.js"></script>
     <script src="main.js"></script>
-    <!-- <script src="node_modules/sw-toolbox/companion.js" data-service-worker="service-worker.js"></script> -->
+    <!-- <script>navigator.serviceWorker.register("service-worker.js");</script> -->
   </head>
   <body>
     <div class="ui inverted vertical masthead segment">
@@ -23,7 +23,7 @@
           <span class="subtitle">A collection of reusable UI elements</span>
           <span class="subtitle">
             built with the
-            <a class="datum" href="http://datumjs.com" target="_blank">Datum</a>
+            <a class="datum" href="http://datumjs.com" target="_blank" rel="noopener">Datum</a>
             data binding library.
           </span>
         </h2>

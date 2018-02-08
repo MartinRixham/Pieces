@@ -1,4 +1,4 @@
-require([
+define([
 	"qunit",
 	"js/pieces/SlideNavPiece",
 	"js/pieces/NavButton"
@@ -186,6 +186,26 @@ require([
 		assert.strictEqual(nav.secondPage, null);
 		assert.strictEqual(container.firstChild.style.left, "0px");
 		assert.strictEqual(nav.getCurrentIndex(), -1);
+	});
+
+	QUnit.test("Remove old elements", function(assert) {
+
+		var pageOne = {};
+
+		var container = document.createElement("DIV");
+		var child = document.createElement("DIV");
+
+		container.appendChild(child);
+
+		var nav =
+			new SlideNavPiece(
+				[
+					{ route: "clear", page: pageOne }
+				]);
+
+		nav.onBind(container);
+
+		assert.strictEqual(container.children.length, 1);
 	});
 });
 

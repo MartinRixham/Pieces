@@ -19,6 +19,11 @@ define([], function NavPiece() {
 
 		this.onBind = function(element) {
 
+			while (element.firstChild) {
+
+				element.removeChild(element.firstChild);
+			}
+
 			var pageElement = document.createElement("DIV");
 			pageElement.dataset.bind = "currentPage";
 
