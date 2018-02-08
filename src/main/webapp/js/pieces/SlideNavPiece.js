@@ -2,11 +2,11 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 
 	function SlideNavPiece(pages) {
 
-		var self = this;
-
 		var currentIndex = new Datum(0);
 
 		var activeIndex = new Datum(-1);
+
+		var changedHash = false;
 
 		var container = null;
 
@@ -18,17 +18,50 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 
 		this.secondPage = null;
 
-		(function routePage(self) {
+		var routePage = (function(self) {
 
-			for (var i = 0; i < pages.length; i++) {
+			return function() {
 
-				if ("#" + pages[i].route == location.hash) {
+				if (changedHash) {
 
-					self.firstPage = pages[i].page;
-					currentIndex(i);
+					changedHash = false;
+
+					return;
+				}
+
+				for (var i = 0; i < pages.length; i++) {
+
+					if ("#" + pages[i].route == location.hash) {
+
+						showPage(i);
+						activeIndex(i);
+
+						return;
+					}
+				}
+
+				showPage(0);
+				activeIndex(-1);
+			};
+
+			function showPage(index) {
+
+				right = true;
+
+				self.firstPage = pages[index].page;
+				currentIndex(index);
+
+				if (container) {
+
+					container.style.removeProperty("transition");
+					container.style.left = "0";
 				}
 			}
 		})(this);
+
+		routePage();
+
+		window.onhashchange = routePage;
 
 		this.onBind = function(element) {
 
@@ -63,14 +96,20 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 
 		this.showPage = function(index) {
 
-			var ref = {};
-
-			slideRef = ref;
-
 			if (!pages[index]) {
 
 				return;
 			}
+
+			activeIndex(index);
+
+			if ("#" + pages[index].route == location.hash) {
+
+				return;
+			}
+
+			var ref = {};
+			slideRef = ref;
 
 			var oldPage;
 
@@ -136,9 +175,10 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 			}
 
 			currentIndex(index);
-			activeIndex(index);
 
 			location.hash = pages[index].route;
+
+			changedHash = true;
 		};
 
 		function getOldPage(index) {

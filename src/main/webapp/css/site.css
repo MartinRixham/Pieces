@@ -9,6 +9,16 @@
     font-size: 4em;
 }
 
+.masthead.segment h1 a
+{
+    color: #ffffff;
+}
+
+.masthead.segment h1 a:hover
+{
+    color: #ffffff;
+}
+
 .masthead.segment h2
 {
     margin-bottom: 12%;

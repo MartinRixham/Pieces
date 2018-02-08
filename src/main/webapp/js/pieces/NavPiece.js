@@ -2,20 +2,40 @@ define([], function NavPiece() {
 
 	function NavPiece(pages) {
 
-		var currentIndex = new Datum(-1);
+		var activeIndex = new Datum(-1);
 
-		this.currentPage = pages[0].page;
+		var changedHash = false;
 
-		(function routePage(self) {
+		var routePage = (function(self) {
 
-			for (var i = 0; i < pages.length; i++) {
+			return function() {
 
-				if ("#" + pages[i].route == location.hash) {
+				if (changedHash) {
 
-					self.currentPage = pages[i].page;
+					changedHash = false;
+
+					return;
 				}
-			}
+
+				for (var i = 0; i < pages.length; i++) {
+
+					if ("#" + pages[i].route == location.hash) {
+
+						self.currentPage = pages[i].page;
+						activeIndex(i);
+
+						return;
+					}
+				}
+
+				self.currentPage = pages[0].page;
+				activeIndex(-1);
+			};
 		})(this);
+
+		routePage();
+
+		window.onhashchange = routePage;
 
 		this.onBind = function(element) {
 
@@ -37,16 +57,21 @@ define([], function NavPiece() {
 				return;
 			}
 
-			currentIndex(index);
+			activeIndex(index);
+
+			if ("#" + pages[index].route == location.hash) {
+
+				return;
+			}
 
 			this.currentPage = pages[index].page;
-
 			location.hash = pages[index].route;
+			changedHash = true;
 		};
 
 		this.getCurrentIndex = function() {
 
-			return currentIndex();
+			return activeIndex();
 		};
 	}
 

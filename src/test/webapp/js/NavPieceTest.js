@@ -7,6 +7,8 @@ define([
 	NavPiece,
 	NavButton) {
 
+	QUnit.module("Nav Piece");
+
 	QUnit.testStart(function() {
 
 		location.hash = "";
@@ -116,7 +118,7 @@ define([
 				]);
 
 		assert.strictEqual(nav.currentPage, pageTwo);
-		assert.strictEqual(nav.getCurrentIndex(), -1);
+		assert.strictEqual(nav.getCurrentIndex(), 1);
 	});
 
 	QUnit.test("Route page from unknown hash", function(assert) {
@@ -155,6 +157,31 @@ define([
 		nav.onBind(container);
 
 		assert.strictEqual(container.children.length, 1);
+	});
+
+	QUnit.test("Detect hash change", function(assert) {
+
+		var done = assert.async();
+
+		var pageOne = {};
+		var pageTwo = {};
+
+		var nav =
+			new NavPiece(
+				[
+					{ route: "come", page: pageOne },
+					{ route: "go", page: pageTwo }
+				]);
+
+		location.hash = "go";
+
+		setTimeout(function() {
+
+			assert.strictEqual(nav.currentPage, pageTwo);
+			assert.strictEqual(nav.getCurrentIndex(), 1);
+
+			done();
+		}, 100);
 	});
 });
 

@@ -7,6 +7,8 @@ define([
 	SlideNavPiece,
 	NavButton) {
 
+	QUnit.module("Slide Nav Piece");
+
 	QUnit.testStart(function() {
 
 		location.hash = "";
@@ -48,8 +50,6 @@ define([
 
 	QUnit.test("Click on second button", function(assert) {
 
-		var done = assert.async();
-
 		var pageOne = {};
 		var pageTwo = {};
 		var container = document.createElement("DIV");
@@ -73,19 +73,9 @@ define([
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 		assert.strictEqual(location.hash, "#go");
-
-		setTimeout(function() {
-
-			assert.strictEqual(container.firstChild.style.left, "-100%");
-			assert.strictEqual(nav.firstPage, null);
-
-			done();
-		}, 1000)
 	});
 
 	QUnit.test("Show second page", function(assert) {
-
-		var done = assert.async();
 
 		var pageOne = {};
 		var pageTwo = {};
@@ -105,14 +95,6 @@ define([
 		assert.strictEqual(nav.secondPage, pageTwo);
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 		assert.strictEqual(location.hash, "#go");
-
-		setTimeout(function() {
-
-			assert.strictEqual(container.firstChild.style.left, "-100%");
-			assert.strictEqual(nav.firstPage, null);
-
-			done();
-		}, 1000)
 	});
 
 	QUnit.test("Show unknown page", function(assert) {
@@ -162,7 +144,7 @@ define([
 		assert.strictEqual(nav.firstPage, pageTwo);
 		assert.strictEqual(nav.secondPage, null);
 		assert.strictEqual(container.firstChild.style.left, "0px");
-		assert.strictEqual(nav.getCurrentIndex(), -1);
+		assert.strictEqual(nav.getCurrentIndex(), 1);
 	});
 
 	QUnit.test("Route page from unknown hash", function(assert) {
@@ -206,6 +188,36 @@ define([
 		nav.onBind(container);
 
 		assert.strictEqual(container.children.length, 1);
+	});
+
+	QUnit.test("Detect hash change", function(assert) {
+
+		var done = assert.async();
+
+		var pageOne = {};
+		var pageTwo = {};
+		var container = document.createElement("DIV");
+
+		var nav =
+			new SlideNavPiece(
+				[
+					{ route: "come", page: pageOne },
+					{ route: "go", page: pageTwo }
+				]);
+
+		nav.onBind(container);
+
+		location.hash = "go";
+
+		setTimeout(function() {
+
+			assert.strictEqual(nav.firstPage, pageTwo);
+			assert.strictEqual(nav.secondPage, null);
+			assert.strictEqual(container.firstChild.style.left, "0px");
+			assert.strictEqual(nav.getCurrentIndex(), 1);
+
+			done();
+		}, 100);
 	});
 });
 
