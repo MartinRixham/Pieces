@@ -1,12 +1,12 @@
 define([
-	"js/pieces/HorizontalNavPiece",
+	"js/pieces/SlideNavPiece",
 	"js/pieces/NavButton",
 	"js/One",
 	"js/Two",
 	"js/Three",
 	"js/NavCode"
 ], function(
-	HorizontalNavPiece,
+	SlideNavPiece,
 	NavButton,
 	One,
 	Two,
@@ -17,7 +17,7 @@ define([
 
 		// Create navigation container with pages and routes.
 		this.content =
-			new HorizontalNavPiece([
+			new SlideNavPiece([
 
 				{ route: "one", page: new One() },
 				{ route: "two", page: new Two() },

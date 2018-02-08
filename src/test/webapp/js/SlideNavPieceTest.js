@@ -1,10 +1,10 @@
 require([
 	"qunit",
-	"js/pieces/HorizontalNavPiece",
+	"js/pieces/SlideNavPiece",
 	"js/pieces/NavButton"
 ], function(
 	QUnit,
-	HorizontalNavPiece,
+	SlideNavPiece,
 	NavButton) {
 
 	QUnit.testStart(function() {
@@ -16,7 +16,7 @@ require([
 
 		var page = {};
 		var container = document.createElement("DIV");
-		var nav = new HorizontalNavPiece([{ route: "route", page: page }]);
+		var nav = new SlideNavPiece([{ route: "route", page: page }]);
 
 		nav.onBind(container);
 
@@ -30,7 +30,7 @@ require([
 
 		var page = {};
 		var container = document.createElement("DIV");
-		var nav = new HorizontalNavPiece([{ route: "route", page: page }]);
+		var nav = new SlideNavPiece([{ route: "route", page: page }]);
 		var button = new NavButton(0, nav)();
 
 		nav.onBind(container);
@@ -55,7 +55,7 @@ require([
 		var container = document.createElement("DIV");
 
 		var nav =
-			new HorizontalNavPiece(
+			new SlideNavPiece(
 				[
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
@@ -92,7 +92,7 @@ require([
 		var container = document.createElement("DIV");
 
 		var nav =
-			new HorizontalNavPiece(
+			new SlideNavPiece(
 				[
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
@@ -122,7 +122,7 @@ require([
 		var container = document.createElement("DIV");
 
 		var nav =
-			new HorizontalNavPiece(
+			new SlideNavPiece(
 				[
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
@@ -151,7 +151,7 @@ require([
 		location.hash = "go";
 
 		var nav =
-			new HorizontalNavPiece(
+			new SlideNavPiece(
 				[
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
@@ -174,7 +174,7 @@ require([
 		location.hash = "gone";
 
 		var nav =
-			new HorizontalNavPiece(
+			new SlideNavPiece(
 				[
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }

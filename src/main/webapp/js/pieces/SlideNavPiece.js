@@ -1,6 +1,6 @@
-define(["./Placeholder"], function NavPiece(Placeholder) {
+define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 
-	function NavPiece(pages) {
+	function SlideNavPiece(pages) {
 
 		var self = this;
 
@@ -156,5 +156,5 @@ define(["./Placeholder"], function NavPiece(Placeholder) {
 		};
 	}
 
-	return NavPiece;
+	return SlideNavPiece;
 });
