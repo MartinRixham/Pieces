@@ -4,14 +4,14 @@ define([
 	"js/Router",
 	"js/Two",
 	"js/Three",
-	"js/NavCode"
+	"js/Code"
 ], function(
 	SlideNavPiece,
 	NavButton,
 	Router,
 	Two,
 	Three,
-	NavCode) {
+	Code) {
 
 	function App() {
 
@@ -30,7 +30,7 @@ define([
 		this.three = new NavButton(2, this.content);
 
 		// Modal dialog for showing this code (whoa meta!).
-		this.navCode = new NavCode();
+		this.code = new Code("App.js");
 	}
 
 	return App;

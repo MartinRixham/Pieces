@@ -1,6 +1,6 @@
-define(["jquery"], function($) {
+define(["jquery", "js/Code"], function($, Code) {
 
-	function One() {
+	function Router() {
 
 		var animal = new Datum("");
 
@@ -16,7 +16,9 @@ define(["jquery"], function($) {
 
 				element.src = "images/animals/" + animal() + ".jpg";
 			});
+
+		this.code = new Code("Router.js");
 	}
 
-	return One;
+	return Router;
 });

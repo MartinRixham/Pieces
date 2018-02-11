@@ -91,3 +91,27 @@ pre {
     right: -4%;
     top: 0.5em;
 }
+
+.text.container
+{
+    min-height: 625px;
+}
+
+.title
+{
+    position: relative;
+}
+
+.title i
+{
+    position: absolute;
+    top: 0;
+    right: 5px;
+}
+
+.image
+{
+    display: flex;
+    justify-content: center;
+    padding: 2%;
+}

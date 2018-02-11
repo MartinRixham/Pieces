@@ -1,27 +1,30 @@
 define(["jquery", "hljs"], function($, hljs) {
 
-	function NavCode() {
+	function NavCode(file) {
 
 		var dialog = null;
 
 		this.onBind = function(element) {
 
-			$(element).load("html/navCode.html", function() {
+			$(element).load("html/code.html", function() {
 
 				dialog = element.firstChild;
 			});
 		};
 
-		this.navCode =
+		this.title =
+			new Text( function() { return file; });
+
+		this.code =
 			new Click(function() {
 
 				$(dialog).modal("show");
 			});
 
-		this.code =
+		this.text =
 			new Init(function(element) {
 
-				$(element).load("js/App.js", function() {
+				$(element).load("js/" + file, function() {
 
 					hljs.highlightBlock(element);
 				});
