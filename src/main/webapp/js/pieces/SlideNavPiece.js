@@ -2,6 +2,8 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 
 	function SlideNavPiece(pages) {
 
+		var self = this;
+
 		var currentIndex = new Datum(0);
 
 		var activeIndex = new Datum(-1);
@@ -18,46 +20,43 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 
 		this.secondPage = null;
 
-		var routePage = (function(self) {
+		function routePage() {
 
-			return function() {
+			if (changedHash) {
 
-				if (changedHash) {
+				changedHash = false;
 
-					changedHash = false;
+				return;
+			}
+
+			for (var i = 0; i < pages.length; i++) {
+
+				if ("#" + pages[i].route == location.hash) {
+
+					showPage(i);
+					activeIndex(i);
 
 					return;
 				}
-
-				for (var i = 0; i < pages.length; i++) {
-
-					if ("#" + pages[i].route == location.hash) {
-
-						showPage(i);
-						activeIndex(i);
-
-						return;
-					}
-				}
-
-				showPage(0);
-				activeIndex(-1);
-			};
-
-			function showPage(index) {
-
-				right = true;
-
-				self.firstPage = pages[index].page;
-				currentIndex(index);
-
-				if (container) {
-
-					container.style.removeProperty("transition");
-					container.style.left = "0";
-				}
 			}
-		})(this);
+
+			showPage(0);
+			activeIndex(-1);
+		}
+
+		function showPage(index) {
+
+			right = true;
+
+			self.firstPage = pages[index].page;
+			currentIndex(index);
+
+			if (container) {
+
+				container.style.removeProperty("transition");
+				container.style.left = "0";
+			}
+		}
 
 		routePage();
 
@@ -82,6 +81,7 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 			firstElement.dataset.bind = "firstPage";
 			firstElement.style.display = "inline-block";
 			firstElement.style.width = "50%";
+			firstElement.style.verticalAlign = "top";
 
 			var secondElement = document.createElement("DIV");
 			secondElement.dataset.bind = "secondPage";
