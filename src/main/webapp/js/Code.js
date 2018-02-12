@@ -13,7 +13,7 @@ define(["jquery", "hljs"], function($, hljs) {
 		};
 
 		this.title =
-			new Text( function() { return file; });
+			new Text(function() { return file; });
 
 		this.code =
 			new Click(function() {

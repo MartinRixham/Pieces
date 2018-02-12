@@ -1,17 +1,21 @@
-define(["jquery", "js/Code", "js/pieces/RouterPiece"], function($, Code, RouterPiece) {
+define([
+	"jquery",
+	"js/Code",
+	"js/pieces/RouterPiece"
+], function(
+	$,
+	Code,
+	RouterPiece) {
 
 	function Router() {
 
 		var animal = new Datum("");
 
+		this.route = animal;
+
 		this.onBind = function(element) {
 
 			$(element).load("html/router.html");
-		};
-
-		this.setRoute = function(route) {
-
-			animal(route);
 		};
 
 		this.animal = new Value(animal);

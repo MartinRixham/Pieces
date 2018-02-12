@@ -14,35 +14,24 @@ define([
 
 	QUnit.test("Show router page", function(assert) {
 
-		var page = {
+		var page = { route: new Datum() };
+		var router = new RouterPiece(page);
 
-			setRoute: function() {}
-		};
-		var nav = new RouterPiece(page);
-
-		assert.strictEqual(nav.page, page);
+		assert.strictEqual(router.page, page);
 	});
 
 	QUnit.test("Set route on hash change", function(assert) {
 
 		var done = assert.async();
 
-		var page = {
-
-			route: "",
-			setRoute: function(route) {
-
-				this.route = route;
-			}
-		};
-
+		var page = { route: new Datum() };
 		new RouterPiece(page);
 
 		location.hash = "giraffe";
 
 		setTimeout(function() {
 
-			assert.strictEqual(page.route, "giraffe");
+			assert.strictEqual(page.route(), "giraffe");
 
 			done();
 		});
@@ -52,19 +41,25 @@ define([
 
 		location.hash = "goat";
 
-		var page = {
-
-			route: "",
-			setRoute: function(route) {
-
-				this.route = route;
-			}
-		};
-
+		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
 
 		router.onBind(document.createElement("DIV"));
 
-		assert.strictEqual(page.route, "goat");
+		assert.strictEqual(page.route(), "goat");
+	});
+
+	QUnit.test("Update hash", function(assert) {
+
+		var page = { route: new Datum() };
+		var router = new RouterPiece(page);
+
+		router.onBind(document.createElement("DIV"));
+
+		page.route("tiger");
+
+		router.route().update();
+
+		assert.strictEqual(location.hash, "#tiger");
 	});
 });
