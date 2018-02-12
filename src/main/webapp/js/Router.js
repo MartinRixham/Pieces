@@ -1,4 +1,4 @@
-define(["jquery", "js/Code"], function($, Code) {
+define(["jquery", "js/Code", "js/pieces/RouterPiece"], function($, Code, RouterPiece) {
 
 	function Router() {
 
@@ -7,6 +7,11 @@ define(["jquery", "js/Code"], function($, Code) {
 		this.onBind = function(element) {
 
 			$(element).load("html/router.html");
+		};
+
+		this.setRoute = function(route) {
+
+			animal(route);
 		};
 
 		this.animal = new Value(animal);
@@ -18,6 +23,8 @@ define(["jquery", "js/Code"], function($, Code) {
 			});
 
 		this.code = new Code("Router.js");
+
+		return new RouterPiece(this);
 	}
 
 	return Router;

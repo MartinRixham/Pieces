@@ -1,6 +1,6 @@
 define(["jquery", "hljs"], function($, hljs) {
 
-	function NavCode(file) {
+	function Code(file) {
 
 		var dialog = null;
 
@@ -31,5 +31,5 @@ define(["jquery", "hljs"], function($, hljs) {
 			});
 	}
 
-	return NavCode;
+	return Code;
 });

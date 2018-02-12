@@ -2,40 +2,39 @@ define([], function NavPiece() {
 
 	function NavPiece(pages) {
 
+		var self = this;
+
 		var activeIndex = new Datum(-1);
 
 		var changedHash = false;
 
-		var routePage = (function(self) {
+		function routePage() {
 
-			return function() {
+			if (changedHash) {
 
-				if (changedHash) {
+				changedHash = false;
 
-					changedHash = false;
+				return;
+			}
+
+			for (var i = 0; i < pages.length; i++) {
+
+				if ("#" + pages[i].route == location.hash) {
+
+					self.currentPage = pages[i].page;
+					activeIndex(i);
 
 					return;
 				}
+			}
 
-				for (var i = 0; i < pages.length; i++) {
-
-					if ("#" + pages[i].route == location.hash) {
-
-						self.currentPage = pages[i].page;
-						activeIndex(i);
-
-						return;
-					}
-				}
-
-				self.currentPage = pages[0].page;
-				activeIndex(-1);
-			};
-		})(this);
+			self.currentPage = pages[0].page;
+			activeIndex(-1);
+		}
 
 		routePage();
 
-		window.onhashchange = routePage;
+		window.addEventListener("hashchange", routePage);
 
 		this.onBind = function(element) {
 

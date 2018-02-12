@@ -60,7 +60,7 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 
 		routePage();
 
-		window.onhashchange = routePage;
+		window.addEventListener("hashchange", routePage);
 
 		this.onBind = function(element) {
 
