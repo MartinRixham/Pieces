@@ -1,15 +1,18 @@
 define([
 	"qunit",
-	"js/pieces/RouterPiece"
+	"js/pieces/RouterPiece",
+	"js/pieces/Route"
 ], function(
 	QUnit,
-	RouterPiece) {
+	RouterPiece,
+	Route) {
 
 	QUnit.module("Router Piece");
 
 	QUnit.testStart(function() {
 
 		location.hash = "";
+		new Route().reset();
 	});
 
 	QUnit.test("Show router page", function(assert) {
@@ -25,7 +28,9 @@ define([
 		var done = assert.async();
 
 		var page = { route: new Datum() };
-		new RouterPiece(page);
+		var router = new RouterPiece(page);
+
+		router.onBind(document.createElement("DIV"));
 
 		location.hash = "giraffe";
 
@@ -90,5 +95,22 @@ define([
 
 			done();
 		});
+	});
+
+	QUnit.test("Nested routers", function(assert) {
+
+		location.hash = "start/end";
+
+		var parent = { route: new Datum() };
+		var parentRouter = new RouterPiece(parent);
+
+		var child = { route: new Datum() };
+		var childRouter = new RouterPiece(child);
+
+		parentRouter.onBind(document.createElement("DIV"));
+		childRouter.onBind(document.createElement("DIV"));
+
+		assert.strictEqual(parent.route(), "start");
+		assert.strictEqual(child.route(), "end");
 	});
 });
