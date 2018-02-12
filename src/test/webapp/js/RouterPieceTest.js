@@ -62,4 +62,33 @@ define([
 
 		assert.strictEqual(location.hash, "#tiger");
 	});
+
+	QUnit.test("Route is string property", function(assert) {
+
+		var done = assert.async();
+
+		location.hash = "goat";
+
+		var page = { route: "" };
+		var router = new RouterPiece(page);
+
+		router.onBind(document.createElement("DIV"));
+
+		assert.strictEqual(page.route, "goat");
+
+		page.route = "tiger";
+
+		router.route().update();
+
+		assert.strictEqual(location.hash, "#tiger");
+
+		location.hash = "giraffe";
+
+		setTimeout(function() {
+
+			assert.strictEqual(page.route, "giraffe");
+
+			done();
+		});
+	});
 });

@@ -16,18 +16,45 @@ define([], function RouterPiece() {
 			element.appendChild(route);
 			element.appendChild(container);
 
-			page.route(location.hash.substring(1));
+			if (typeof page.route == "function") {
+
+				page.route(location.hash.substring(1));
+			}
+			else {
+
+				page.route = location.hash.substring(1);
+			}
 		};
 
-		this.route = Update(function() {
+		if (typeof page.route == "function") {
 
-			location.hash = page.route();
-		});
+			this.route = Update(function() {
 
-		window.addEventListener("hashchange", function() {
+				location.hash = page.route();
+			});
+		}
+		else {
 
-			page.route(location.hash.substring(1));
-		});
+			this.route = Update(function() {
+
+				location.hash = page.route;
+			});
+		}
+
+		if (typeof page.route == "function") {
+
+			window.addEventListener("hashchange", function() {
+
+				page.route(location.hash.substring(1));
+			});
+		}
+		else {
+
+			window.addEventListener("hashchange", function() {
+
+				page.route = location.hash.substring(1);
+			});
+		}
 	}
 
 	return RouterPiece;
