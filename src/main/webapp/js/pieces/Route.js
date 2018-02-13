@@ -2,7 +2,16 @@ define([], function() {
 
 	var routes = [];
 
+	var changedHash = false;
+
 	window.addEventListener("hashchange", function() {
+
+		if (changedHash) {
+
+			changedHash = false;
+
+			return;
+		}
 
 		var words = location.hash.substring(1).split("/");
 
@@ -26,18 +35,43 @@ define([], function() {
 			var words = location.hash.substring(1).split("/");
 
 			route.set(words[index]);
+
+			return index;
 		};
 
-		this.update = function() {
+		this.update = function(index) {
 
-			var route = new Array(routes.length);
+			var words = location.hash.substring(1).split("/");
+			var route = routes[index].get();
 
-			for (var i = 0; i < routes.length; i++) {
+			words.splice(index, words.length - index, route);
 
-				route[i] = routes[i].get();
+			var oldHash = location.hash;
+
+			location.hash = words.join("/");
+
+			if (oldHash != location.hash) {
+
+				changedHash = true;
 			}
+		};
 
-			location.hash = route.join("/");
+		this.remove = function(index) {
+
+			routes.splice(index);
+
+			var words = location.hash.substring(1).split("/");
+
+			words.splice(index);
+
+			var oldHash = location.hash;
+
+			location.hash = words.join("/");
+
+			if (oldHash != location.hash) {
+
+				changedHash = true;
+			}
 		};
 
 		this.reset = function() {

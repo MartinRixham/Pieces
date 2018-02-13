@@ -1,4 +1,6 @@
-define(["./Placeholder"], function SlideNavPiece(Placeholder) {
+define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) {
+
+	var route = new Route();
 
 	function SlideNavPiece(pages) {
 
@@ -8,59 +10,17 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 
 		var activeIndex = new Datum(-1);
 
-		var changedHash = false;
-
 		var container = null;
 
 		var right = true;
 
 		var slideRef = {};
 
+		var routeIndex = -1;
+
 		this.firstPage = pages[0].page;
 
 		this.secondPage = null;
-
-		function routePage() {
-
-			if (changedHash) {
-
-				changedHash = false;
-
-				return;
-			}
-
-			for (var i = 0; i < pages.length; i++) {
-
-				if ("#" + pages[i].route == location.hash) {
-
-					showPage(i);
-					activeIndex(i);
-
-					return;
-				}
-			}
-
-			showPage(0);
-			activeIndex(-1);
-		}
-
-		function showPage(index) {
-
-			right = true;
-
-			self.firstPage = pages[index].page;
-			currentIndex(index);
-
-			if (container) {
-
-				container.style.removeProperty("transition");
-				container.style.left = "0";
-			}
-		}
-
-		routePage();
-
-		window.addEventListener("hashchange", routePage);
 
 		this.onBind = function(element) {
 
@@ -92,7 +52,51 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 			container.appendChild(secondElement);
 
 			element.appendChild(container);
+
+			routeIndex =
+				route.addRoute({
+
+					set: function(route) {
+
+						routePage(route);
+					},
+					get: function() {
+
+						return pages[currentIndex()].route;
+					}
+				});
 		};
+
+		function routePage(hash) {
+
+			for (var i = 0; i < pages.length; i++) {
+
+				if (pages[i].route == hash) {
+
+					showPage(i);
+					activeIndex(i);
+
+					return;
+				}
+			}
+
+			showPage(0);
+			activeIndex(-1);
+		}
+
+		function showPage(index) {
+
+			right = true;
+
+			self.firstPage = pages[index].page;
+			currentIndex(index);
+
+			if (container) {
+
+				container.style.removeProperty("transition");
+				container.style.left = "0";
+			}
+		}
 
 		this.showPage = function(index) {
 
@@ -176,9 +180,7 @@ define(["./Placeholder"], function SlideNavPiece(Placeholder) {
 
 			currentIndex(index);
 
-			location.hash = pages[index].route;
-
-			changedHash = true;
+			route.update(routeIndex);
 		};
 
 		function getOldPage(index) {

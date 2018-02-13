@@ -1,17 +1,20 @@
 define([
 	"qunit",
 	"js/pieces/SlideNavPiece",
-	"js/pieces/NavButton"
+	"js/pieces/NavButton",
+	"js/pieces/Route"
 ], function(
 	QUnit,
 	SlideNavPiece,
-	NavButton) {
+	NavButton,
+	Route) {
 
 	QUnit.module("Slide Nav Piece");
 
 	QUnit.testStart(function() {
 
 		location.hash = "";
+		new Route().reset();
 	});
 
 	QUnit.test("Horizontal nav with one page", function(assert) {

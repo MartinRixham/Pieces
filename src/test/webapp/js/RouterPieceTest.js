@@ -30,7 +30,7 @@ define([
 		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
 
-		router.onBind(document.createElement("DIV"));
+		router.route().init();
 
 		location.hash = "giraffe";
 
@@ -42,24 +42,24 @@ define([
 		});
 	});
 
-	QUnit.test("Set route on bind", function(assert) {
+	QUnit.test("Route page from hash", function(assert) {
 
 		location.hash = "goat";
 
 		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
 
-		router.onBind(document.createElement("DIV"));
+		router.route().init();
 
 		assert.strictEqual(page.route(), "goat");
 	});
 
-	QUnit.test("Update hash", function(assert) {
+	QUnit.test("Detect hash change", function(assert) {
 
 		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
 
-		router.onBind(document.createElement("DIV"));
+		router.route().init();
 
 		page.route("tiger");
 
@@ -77,7 +77,7 @@ define([
 		var page = { route: "" };
 		var router = new RouterPiece(page);
 
-		router.onBind(document.createElement("DIV"));
+		router.route().init();
 
 		assert.strictEqual(page.route, "goat");
 
@@ -107,8 +107,8 @@ define([
 		var child = { route: new Datum() };
 		var childRouter = new RouterPiece(child);
 
-		parentRouter.onBind(document.createElement("DIV"));
-		childRouter.onBind(document.createElement("DIV"));
+		parentRouter.route().init();
+		childRouter.route().init();
 
 		assert.strictEqual(parent.route(), "start");
 		assert.strictEqual(child.route(), "end");
