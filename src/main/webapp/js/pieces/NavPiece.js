@@ -1,4 +1,6 @@
-define([], function NavPiece() {
+define(["./Route"], function NavPiece(Route) {
+
+	var route = new Route();
 
 	function NavPiece(pages) {
 
@@ -8,7 +10,50 @@ define([], function NavPiece() {
 
 		var changedHash = false;
 
-		function routePage() {
+		var routeIndex = -1;
+
+		this.onBind = function(element) {
+
+			while (element.firstChild) {
+
+				element.removeChild(element.firstChild);
+			}
+
+			var page = document.createElement("DIV");
+			page.dataset.bind = "currentPage";
+
+			var hidden = document.createElement("DIV");
+			hidden.dataset.bind = "route";
+			hidden.style.display = "none";
+
+			element.appendChild(hidden);
+			element.appendChild(page);
+		};
+
+		this.route = new Binding({
+
+			init: function() {
+
+				routeIndex =
+					route.addRoute({
+
+						set: function(route) {
+
+							routePage(route);
+						},
+						get: function() {
+
+							return pages[activeIndex()].route;
+						}
+					});
+			},
+			destroy: function() {
+
+				route.remove(routeIndex);
+			}
+		});
+
+		function routePage(hash) {
 
 			if (changedHash) {
 
@@ -19,7 +64,7 @@ define([], function NavPiece() {
 
 			for (var i = 0; i < pages.length; i++) {
 
-				if ("#" + pages[i].route == location.hash) {
+				if (pages[i].route == hash) {
 
 					self.currentPage = pages[i].page;
 					activeIndex(i);
@@ -32,22 +77,7 @@ define([], function NavPiece() {
 			activeIndex(-1);
 		}
 
-		routePage();
-
-		window.addEventListener("hashchange", routePage);
-
-		this.onBind = function(element) {
-
-			while (element.firstChild) {
-
-				element.removeChild(element.firstChild);
-			}
-
-			var pageElement = document.createElement("DIV");
-			pageElement.dataset.bind = "currentPage";
-
-			element.appendChild(pageElement);
-		};
+		this.currentPage = pages[0].page;
 
 		this.showPage = function(index) {
 

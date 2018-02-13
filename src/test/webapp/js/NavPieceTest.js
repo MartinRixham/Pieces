@@ -19,6 +19,8 @@ define([
 		var page = {};
 		var nav = new NavPiece([{ route: "route", page: page }]);
 
+		nav.route().init();
+
 		assert.strictEqual(nav.currentPage, page);
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 	});
@@ -28,6 +30,8 @@ define([
 		var page = {};
 		var nav = new NavPiece([{ route: "route", page: page }]);
 		var button = new NavButton(0, nav)();
+
+		nav.route().init();
 
 		assert.ok(!button.classes.active());
 
@@ -52,6 +56,8 @@ define([
 
 		var button = new NavButton(1, nav)();
 
+		nav.route().init();
+
 		assert.ok(!button.classes.active());
 
 		button.click();
@@ -74,6 +80,8 @@ define([
 					{ route: "go", page: pageTwo }
 				]);
 
+		nav.route().init();
+
 		nav.showPage(1);
 
 		assert.strictEqual(nav.currentPage, pageTwo);
@@ -94,6 +102,8 @@ define([
 				]);
 
 		var button = new NavButton(0, nav)();
+
+		nav.route().init();
 
 		button.click();
 
@@ -117,6 +127,8 @@ define([
 					{ route: "go", page: pageTwo }
 				]);
 
+		nav.route().init();
+
 		assert.strictEqual(nav.currentPage, pageTwo);
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 	});
@@ -134,6 +146,8 @@ define([
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
 				]);
+
+		nav.route().init();
 
 		assert.strictEqual(nav.currentPage, pageOne);
 		assert.strictEqual(nav.getCurrentIndex(), -1);
@@ -155,8 +169,9 @@ define([
 				]);
 
 		nav.onBind(container);
+		nav.route().init();
 
-		assert.strictEqual(container.children.length, 1);
+		assert.strictEqual(container.children.length, 2);
 	});
 
 	QUnit.test("Detect hash change", function(assert) {
@@ -172,6 +187,8 @@ define([
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
 				]);
+
+		nav.route().init();
 
 		location.hash = "go";
 

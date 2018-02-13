@@ -57,16 +57,16 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 		this.route = new Binding({
 
-			init: function () {
+			init: function() {
 
 				routeIndex =
 					route.addRoute({
 
-						set: function (route) {
+						set: function(route) {
 
 							routePage(route);
 						},
-						get: function () {
+						get: function() {
 
 							return pages[currentIndex()].route;
 						}

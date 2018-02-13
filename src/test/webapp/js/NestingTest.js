@@ -1,11 +1,13 @@
 define([
 	"qunit",
 	"js/pieces/RouterPiece",
+	"js/pieces/NavPiece",
 	"js/pieces/SlideNavPiece",
 	"js/pieces/Route"
 ], function(
 	QUnit,
 	RouterPiece,
+	NavPiece,
 	SlideNavPiece,
 	Route) {
 
@@ -58,5 +60,48 @@ define([
 
 		assert.strictEqual(parent.route(), "start");
 		assert.strictEqual(childRouter.firstPage, child);
+	});
+
+	QUnit.test("Router piece in nav piece", function(assert) {
+
+		location.hash = "start/end";
+
+		var parent = {};
+
+		var parentRouter =
+			new NavPiece([
+				{ route: "end", page: {} },
+				{ route: "start", page: parent }
+			]);
+
+		var child = { route: new Datum() };
+		var childRouter = new RouterPiece(child);
+
+		parentRouter.route().init();
+		childRouter.route().init();
+
+		assert.strictEqual(parentRouter.currentPage, parent);
+		assert.strictEqual(child.route(), "end");
+	});
+
+	QUnit.test("Slide nav piece in router piece", function(assert) {
+
+		location.hash = "start/end";
+
+		var parent = { route: new Datum() };
+		var parentRouter = new RouterPiece(parent);
+
+		var child = {};
+		var childRouter =
+			new NavPiece([
+				{ route: "start", page: {} },
+				{ route: "end", page: child }
+			]);
+
+		parentRouter.route().init();
+		childRouter.route().init();
+
+		assert.strictEqual(parent.route(), "start");
+		assert.strictEqual(childRouter.currentPage, child);
 	});
 });
