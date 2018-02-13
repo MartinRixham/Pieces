@@ -24,10 +24,11 @@ define([
 		var nav = new SlideNavPiece([{ route: "route", page: page }]);
 
 		nav.onBind(container);
+		nav.route().init();
 
 		assert.strictEqual(nav.firstPage, page);
 		assert.strictEqual(nav.secondPage, null);
-		assert.strictEqual(container.firstChild.style.left, "0px");
+		assert.strictEqual(container.lastChild.style.left, "0px");
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 	});
 
@@ -39,6 +40,7 @@ define([
 		var button = new NavButton(0, nav)();
 
 		nav.onBind(container);
+		nav.route().init();
 
 		assert.ok(!button.classes.active());
 
@@ -46,7 +48,7 @@ define([
 
 		assert.strictEqual(nav.firstPage, page);
 		assert.strictEqual(nav.secondPage, null);
-		assert.strictEqual(container.firstChild.style.left, "0px");
+		assert.strictEqual(container.lastChild.style.left, "0px");
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 0);
 	});
@@ -67,6 +69,7 @@ define([
 		var button = new NavButton(1, nav)();
 
 		nav.onBind(container);
+		nav.route().init();
 
 		assert.ok(!button.classes.active());
 
@@ -92,6 +95,7 @@ define([
 				]);
 
 		nav.onBind(container);
+		nav.route().init();
 
 		nav.showPage(1);
 
@@ -114,6 +118,7 @@ define([
 				]);
 
 		nav.onBind(container);
+		nav.route().init();
 
 		var button = new NavButton(0, nav)();
 
@@ -123,7 +128,7 @@ define([
 
 		assert.strictEqual(nav.firstPage, pageOne);
 		assert.strictEqual(nav.secondPage, null);
-		assert.strictEqual(container.firstChild.style.left, "0px");
+		assert.strictEqual(container.lastChild.style.left, "0px");
 		assert.strictEqual(nav.getCurrentIndex(), 0);
 	});
 
@@ -143,10 +148,11 @@ define([
 				]);
 
 		nav.onBind(container);
+		nav.route().init();
 
 		assert.strictEqual(nav.firstPage, pageTwo);
 		assert.strictEqual(nav.secondPage, null);
-		assert.strictEqual(container.firstChild.style.left, "0px");
+		assert.strictEqual(container.lastChild.style.left, "0px");
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 	});
 
@@ -166,10 +172,11 @@ define([
 				]);
 
 		nav.onBind(container);
+		nav.route().init();
 
 		assert.strictEqual(nav.firstPage, pageOne);
 		assert.strictEqual(nav.secondPage, null);
-		assert.strictEqual(container.firstChild.style.left, "0px");
+		assert.strictEqual(container.lastChild.style.left, "0px");
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 	});
 
@@ -189,8 +196,9 @@ define([
 				]);
 
 		nav.onBind(container);
+		nav.route().init();
 
-		assert.strictEqual(container.children.length, 1);
+		assert.strictEqual(container.children.length, 2);
 	});
 
 	QUnit.test("Detect hash change", function(assert) {
@@ -209,6 +217,7 @@ define([
 				]);
 
 		nav.onBind(container);
+		nav.route().init();
 
 		location.hash = "go";
 
@@ -216,7 +225,7 @@ define([
 
 			assert.strictEqual(nav.firstPage, pageTwo);
 			assert.strictEqual(nav.secondPage, null);
-			assert.strictEqual(container.firstChild.style.left, "0px");
+			assert.strictEqual(container.lastChild.style.left, "0px");
 			assert.strictEqual(nav.getCurrentIndex(), 1);
 
 			done();

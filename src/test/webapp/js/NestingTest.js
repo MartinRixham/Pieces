@@ -32,7 +32,7 @@ define([
 		var child = { route: new Datum() };
 		var childRouter = new RouterPiece(child);
 
-		parentRouter.onBind(document.createElement("DIV"));
+		parentRouter.route().init();
 		childRouter.route().init();
 
 		assert.strictEqual(parentRouter.firstPage, parent);
@@ -54,7 +54,7 @@ define([
 			]);
 
 		parentRouter.route().init();
-		childRouter.onBind(document.createElement("DIV"));
+		childRouter.route().init();
 
 		assert.strictEqual(parent.route(), "start");
 		assert.strictEqual(childRouter.firstPage, child);

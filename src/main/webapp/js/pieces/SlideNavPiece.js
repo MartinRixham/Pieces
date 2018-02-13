@@ -18,10 +18,6 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 		var routeIndex = -1;
 
-		this.firstPage = pages[0].page;
-
-		this.secondPage = null;
-
 		this.onBind = function(element) {
 
 			while (element.firstChild) {
@@ -51,21 +47,36 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 			container.appendChild(firstElement);
 			container.appendChild(secondElement);
 
+			var hidden = document.createElement("DIV");
+			hidden.dataset.bind = "route";
+			hidden.style.display = "none";
+
+			element.appendChild(hidden);
 			element.appendChild(container);
-
-			routeIndex =
-				route.addRoute({
-
-					set: function(route) {
-
-						routePage(route);
-					},
-					get: function() {
-
-						return pages[currentIndex()].route;
-					}
-				});
 		};
+
+		this.route = new Binding({
+
+			init: function () {
+
+				routeIndex =
+					route.addRoute({
+
+						set: function (route) {
+
+							routePage(route);
+						},
+						get: function () {
+
+							return pages[currentIndex()].route;
+						}
+					});
+			},
+			destroy: function() {
+
+				route.remove(routeIndex);
+			}
+		});
 
 		function routePage(hash) {
 
@@ -196,6 +207,10 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 			return oldPage;
 		}
+
+		this.firstPage = pages[0].page;
+
+		this.secondPage = null;
 
 		this.getCurrentIndex = function() {
 
