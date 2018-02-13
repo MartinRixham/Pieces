@@ -17,12 +17,17 @@ define([
 		new Route().reset();
 	});
 
-	QUnit.test("Nested routers", function(assert) {
+	QUnit.test("Router piece in slide nav piece", function(assert) {
 
 		location.hash = "start/end";
 
 		var parent = {};
-		var parentRouter = new SlideNavPiece([{ route: "start", page: parent }]);
+
+		var parentRouter =
+			new SlideNavPiece([
+				{ route: "end", page: {} },
+				{ route: "start", page: parent }
+			]);
 
 		var child = { route: new Datum() };
 		var childRouter = new RouterPiece(child);
@@ -32,5 +37,26 @@ define([
 
 		assert.strictEqual(parentRouter.firstPage, parent);
 		assert.strictEqual(child.route(), "end");
+	});
+
+	QUnit.test("Slide nav piece in router piece", function(assert) {
+
+		location.hash = "start/end";
+
+		var parent = { route: new Datum() };
+		var parentRouter = new RouterPiece(parent);
+
+		var child = {};
+		var childRouter =
+			new SlideNavPiece([
+				{ route: "start", page: {} },
+				{ route: "end", page: child }
+			]);
+
+		parentRouter.route().init();
+		childRouter.onBind(document.createElement("DIV"));
+
+		assert.strictEqual(parent.route(), "start");
+		assert.strictEqual(childRouter.firstPage, child);
 	});
 });
