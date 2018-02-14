@@ -53,11 +53,11 @@ define(["./Route"], function RouterPiece(Route) {
 
 					set: function(route) {
 
-						page.route(route);
+						page.route(route && decodeURIComponent(route));
 					},
 					get: function() {
 
-						return page.route();
+						return encodeURIComponent(page.route());
 					}
 				};
 			}
@@ -67,11 +67,11 @@ define(["./Route"], function RouterPiece(Route) {
 
 					set: function(route) {
 
-						page.route = route;
+						page.route = route && decodeURIComponent(route);
 					},
 					get: function() {
 
-						return page.route;
+						return encodeURIComponent(page.route);
 					}
 				};
 			}

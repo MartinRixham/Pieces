@@ -116,4 +116,32 @@ define([
 		assert.strictEqual(parent.route(), "start");
 		assert.strictEqual(child.route(), "end");
 	});
+
+	QUnit.test("URL encode", function(assert) {
+
+		var page = { route: new Datum() };
+		var router = new RouterPiece(page);
+
+		router.route().init();
+		router.route().update();
+
+		page.route("tiger/");
+
+		router.route().update();
+
+		assert.strictEqual(location.hash, "#tiger%2F");
+	});
+
+	QUnit.test("URL decode", function(assert) {
+
+		location.hash = "goat%2F";
+
+		var page = { route: new Datum() };
+		var router = new RouterPiece(page);
+
+		router.route().init();
+		router.route().update();
+
+		assert.strictEqual(page.route(), "goat/");
+	});
 });

@@ -7,6 +7,6 @@
     <input placeholder="Name an animal..." type="text" data-bind="animal" />
   </div>
   <div class="image">
-    <img src="" data-bind="image" />
+    <img src="" data-bind="image" onerror="this.style.visibility='hidden'" onload="this.style.visibility='visible'" />
   </div>
 </div>
