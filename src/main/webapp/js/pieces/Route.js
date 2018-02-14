@@ -46,14 +46,7 @@ define([], function() {
 
 			words.splice(index, words.length - index, route);
 
-			var oldHash = location.hash;
-
-			location.hash = words.join("/");
-
-			if (oldHash != location.hash) {
-
-				changedHash = true;
-			}
+			updateHash(words);
 		};
 
 		this.remove = function(index) {
@@ -64,15 +57,24 @@ define([], function() {
 
 			words.splice(index);
 
-			var oldHash = location.hash;
+			updateHash(words);
+		};
 
-			location.hash = words.join("/");
+		function updateHash(words) {
+
+			var oldHash = location.hash;
+			var hash = words.join("/");
+
+			// remove trailing slashes.
+			hash = hash.replace(/\/+$/, "");
+
+			location.hash = hash;
 
 			if (oldHash != location.hash) {
 
 				changedHash = true;
 			}
-		};
+		}
 
 		this.reset = function() {
 
