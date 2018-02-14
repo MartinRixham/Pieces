@@ -50,6 +50,7 @@ define([
 		var router = new RouterPiece(page);
 
 		router.route().init();
+		router.route().update();
 
 		assert.strictEqual(page.route(), "goat");
 	});
@@ -60,6 +61,7 @@ define([
 		var router = new RouterPiece(page);
 
 		router.route().init();
+		router.route().update();
 
 		page.route("tiger");
 
@@ -78,6 +80,7 @@ define([
 		var router = new RouterPiece(page);
 
 		router.route().init();
+		router.route().update();
 
 		assert.strictEqual(page.route, "goat");
 

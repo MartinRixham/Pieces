@@ -6,6 +6,8 @@ define(["./Route"], function NavPiece(Route) {
 
 		var self = this;
 
+		var currentIndex = new Datum(0);
+
 		var activeIndex = new Datum(-1);
 
 		var routeIndex = -1;
@@ -43,7 +45,7 @@ define(["./Route"], function NavPiece(Route) {
 						},
 						get: function() {
 
-							return pages[activeIndex()].route;
+							return pages[currentIndex()].route;
 						}
 					});
 			},
@@ -60,6 +62,7 @@ define(["./Route"], function NavPiece(Route) {
 				if (pages[i].route == hash) {
 
 					self.currentPage = pages[i].page;
+					currentIndex(i);
 					activeIndex(i);
 
 					return;
@@ -67,6 +70,7 @@ define(["./Route"], function NavPiece(Route) {
 			}
 
 			self.currentPage = pages[0].page;
+			currentIndex(0);
 			activeIndex(-1);
 		}
 
@@ -87,6 +91,10 @@ define(["./Route"], function NavPiece(Route) {
 			}
 
 			this.currentPage = pages[index].page;
+
+			currentIndex(index);
+
+			route.update(routeIndex);
 		};
 
 		this.getCurrentIndex = function() {
