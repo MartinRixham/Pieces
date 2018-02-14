@@ -26,6 +26,8 @@ define(["./Route"], function RouterPiece(Route) {
 
 			element.appendChild(hidden);
 			element.appendChild(container);
+
+			updating = -1;
 		};
 
 		this.route =

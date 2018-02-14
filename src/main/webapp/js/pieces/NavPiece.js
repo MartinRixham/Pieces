@@ -8,7 +8,7 @@ define(["./Route"], function NavPiece(Route) {
 
 		var activeIndex = new Datum(-1);
 
-		var changedHash = false;
+		var updating = false;
 
 		var routeIndex = -1;
 
@@ -55,9 +55,9 @@ define(["./Route"], function NavPiece(Route) {
 
 		function routePage(hash) {
 
-			if (changedHash) {
+			if (updating) {
 
-				changedHash = false;
+				updating = false;
 
 				return;
 			}
@@ -94,8 +94,10 @@ define(["./Route"], function NavPiece(Route) {
 			}
 
 			this.currentPage = pages[index].page;
-			location.hash = pages[index].route;
-			changedHash = true;
+
+			updating = true;
+
+			route.update(routeIndex);
 		};
 
 		this.getCurrentIndex = function() {
