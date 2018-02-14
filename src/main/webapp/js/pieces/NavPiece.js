@@ -8,8 +8,6 @@ define(["./Route"], function NavPiece(Route) {
 
 		var activeIndex = new Datum(-1);
 
-		var updating = false;
-
 		var routeIndex = -1;
 
 		this.onBind = function(element) {
@@ -37,9 +35,11 @@ define(["./Route"], function NavPiece(Route) {
 				routeIndex =
 					route.addRoute({
 
-						set: function(route) {
+						set: function(word, routeIndex) {
 
-							routePage(route);
+							routePage(word);
+
+							route.update(routeIndex);
 						},
 						get: function() {
 
@@ -54,13 +54,6 @@ define(["./Route"], function NavPiece(Route) {
 		});
 
 		function routePage(hash) {
-
-			if (updating) {
-
-				updating = false;
-
-				return;
-			}
 
 			for (var i = 0; i < pages.length; i++) {
 
@@ -94,10 +87,6 @@ define(["./Route"], function NavPiece(Route) {
 			}
 
 			this.currentPage = pages[index].page;
-
-			updating = true;
-
-			route.update(routeIndex);
 		};
 
 		this.getCurrentIndex = function() {

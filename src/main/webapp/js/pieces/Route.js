@@ -4,6 +4,8 @@ define([], function() {
 
 	var changedHash = false;
 
+	var updating = 0;
+
 	window.addEventListener("hashchange", function() {
 
 		if (changedHash) {
@@ -19,22 +21,28 @@ define([], function() {
 
 			if (routes[i]) {
 
-				routes[i].set(words[i]);
+				updating++;
+
+				routes[i].set(words[i], i);
 			}
 		}
+
+
 	});
 
 	function Route() {
 
-		this.addRoute = function(route) {
+		this.addRoute = function(word) {
 
 			var index = routes.length;
 
-			routes.push(route);
+			routes.push(word);
 
 			var words = location.hash.substring(1).split("/");
 
-			route.set(words[index]);
+			updating++;
+
+			word.set(words[index], index);
 
 			return index;
 		};
@@ -61,6 +69,13 @@ define([], function() {
 		};
 
 		function updateHash(words) {
+
+			if (updating > 0) {
+
+				updating--;
+
+				return;
+			}
 
 			var oldHash = location.hash;
 			var hash = words.join("/");

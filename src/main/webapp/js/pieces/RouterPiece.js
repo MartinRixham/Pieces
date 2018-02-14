@@ -8,8 +8,6 @@ define(["./Route"], function RouterPiece(Route) {
 
 		var routeIndex = -1;
 
-		var updating = -1;
-
 		this.onBind = function(element) {
 
 			while (element.firstChild) {
@@ -26,8 +24,6 @@ define(["./Route"], function RouterPiece(Route) {
 
 			element.appendChild(hidden);
 			element.appendChild(container);
-
-			updating = -1;
 		};
 
 		this.route =
@@ -38,13 +34,6 @@ define(["./Route"], function RouterPiece(Route) {
 					routeIndex = registerRoute();
 				},
 				update: function() {
-
-					if (updating > 0) {
-
-						updating--;
-
-						return;
-					}
 
 					route.update(routeIndex);
 				},
@@ -64,8 +53,6 @@ define(["./Route"], function RouterPiece(Route) {
 
 					set: function(route) {
 
-						updating++;
-
 						page.route(route);
 					},
 					get: function() {
@@ -79,8 +66,6 @@ define(["./Route"], function RouterPiece(Route) {
 				word = {
 
 					set: function(route) {
-
-						updating++;
 
 						page.route = route;
 					},

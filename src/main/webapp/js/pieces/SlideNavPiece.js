@@ -18,8 +18,6 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 		var routeIndex = -1;
 
-		var updating = false;
-
 		this.onBind = function(element) {
 
 			while (element.firstChild) {
@@ -64,9 +62,11 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 				routeIndex =
 					route.addRoute({
 
-						set: function(route) {
+						set: function(word, routeIndex) {
 
-							routePage(route);
+							routePage(word);
+
+							route.update(routeIndex);
 						},
 						get: function() {
 
@@ -81,13 +81,6 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 		});
 
 		function routePage(hash) {
-
-			if (updating) {
-
-				updating = false;
-
-				return;
-			}
 
 			for (var i = 0; i < pages.length; i++) {
 
@@ -199,8 +192,6 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 			}
 
 			currentIndex(index);
-
-			updating = true;
 
 			route.update(routeIndex);
 		};
