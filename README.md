@@ -1,2 +1,2 @@
 # Pieces
-A collection of reusable UI elements build with the Datum data binding library.
+A collection of reusable UI elements built with the Datum data binding library.

@@ -26,8 +26,6 @@ define([], function() {
 				routes[i].set(words[i], i);
 			}
 		}
-
-
 	});
 
 	function Route() {
@@ -94,6 +92,8 @@ define([], function() {
 		this.reset = function() {
 
 			routes = [];
+			changedHash = false;
+			updating = 0;
 		};
 	}
 
