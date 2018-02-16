@@ -115,3 +115,8 @@ pre {
     justify-content: center;
     padding: 2%;
 }
+
+.number
+{
+    min-height: 500px;
+}
