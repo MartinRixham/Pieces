@@ -12,6 +12,8 @@ define(["./Route"], function NavPiece(Route) {
 
 		var routeIndex = -1;
 
+		this.currentPage = pages[0].page;
+
 		this.onBind = function(element) {
 
 			while (element.firstChild) {
@@ -28,27 +30,25 @@ define(["./Route"], function NavPiece(Route) {
 
 			element.appendChild(hidden);
 			element.appendChild(page);
+
+			routeIndex =
+				route.addRoute({
+
+					set: function(word, routeIndex) {
+
+						routePage(word);
+
+						route.update(routeIndex);
+					},
+					get: function() {
+
+						return pages[currentIndex()].route;
+					}
+				});
 		};
 
 		this.route = new Binding({
 
-			init: function() {
-
-				routeIndex =
-					route.addRoute({
-
-						set: function(word, routeIndex) {
-
-							routePage(word);
-
-							route.update(routeIndex);
-						},
-						get: function() {
-
-							return pages[currentIndex()].route;
-						}
-					});
-			},
 			destroy: function() {
 
 				route.remove(routeIndex);
@@ -73,8 +73,6 @@ define(["./Route"], function NavPiece(Route) {
 			currentIndex(0);
 			activeIndex(-1);
 		}
-
-		this.currentPage = pages[0].page;
 
 		this.showPage = function(index) {
 

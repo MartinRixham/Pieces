@@ -24,7 +24,6 @@ define([
 		var nav = new SlideNavPiece([{ route: "route", page: page }]);
 
 		nav.onBind(container);
-		nav.route().init();
 
 		assert.strictEqual(nav.firstPage, page);
 		assert.strictEqual(nav.secondPage, null);
@@ -40,7 +39,6 @@ define([
 		var button = new NavButton(0, nav)();
 
 		nav.onBind(container);
-		nav.route().init();
 
 		assert.ok(!button.classes.active());
 
@@ -69,7 +67,6 @@ define([
 		var button = new NavButton(1, nav)();
 
 		nav.onBind(container);
-		nav.route().init();
 
 		assert.ok(!button.classes.active());
 
@@ -95,7 +92,6 @@ define([
 				]);
 
 		nav.onBind(container);
-		nav.route().init();
 
 		nav.showPage(1);
 
@@ -118,7 +114,6 @@ define([
 				]);
 
 		nav.onBind(container);
-		nav.route().init();
 
 		var button = new NavButton(0, nav)();
 
@@ -148,7 +143,6 @@ define([
 				]);
 
 		nav.onBind(container);
-		nav.route().init();
 
 		assert.strictEqual(nav.firstPage, pageTwo);
 		assert.strictEqual(nav.secondPage, null);
@@ -172,7 +166,6 @@ define([
 				]);
 
 		nav.onBind(container);
-		nav.route().init();
 
 		assert.strictEqual(nav.firstPage, pageOne);
 		assert.strictEqual(nav.secondPage, null);
@@ -196,7 +189,6 @@ define([
 				]);
 
 		nav.onBind(container);
-		nav.route().init();
 
 		assert.strictEqual(container.children.length, 2);
 	});
@@ -217,7 +209,6 @@ define([
 				]);
 
 		nav.onBind(container);
-		nav.route().init();
 
 		location.hash = "go";
 

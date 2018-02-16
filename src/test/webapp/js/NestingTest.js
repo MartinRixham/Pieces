@@ -34,8 +34,8 @@ define([
 		var child = { route: new Datum() };
 		var childRouter = new RouterPiece(child);
 
-		parentRouter.route().init();
-		childRouter.route().init();
+		parentRouter.onBind(document.createElement("DIV"));
+		childRouter.onBind(document.createElement("DIV"));
 
 		assert.strictEqual(parentRouter.firstPage, parent);
 		assert.strictEqual(child.route(), "end");
@@ -55,8 +55,8 @@ define([
 				{ route: "end", page: child }
 			]);
 
-		parentRouter.route().init();
-		childRouter.route().init();
+		parentRouter.onBind(document.createElement("DIV"));
+		childRouter.onBind(document.createElement("DIV"));
 
 		assert.strictEqual(parent.route(), "start");
 		assert.strictEqual(childRouter.firstPage, child);
@@ -77,8 +77,8 @@ define([
 		var child = { route: new Datum() };
 		var childRouter = new RouterPiece(child);
 
-		parentRouter.route().init();
-		childRouter.route().init();
+		parentRouter.onBind(document.createElement("DIV"));
+		childRouter.onBind(document.createElement("DIV"));
 
 		assert.strictEqual(parentRouter.currentPage, parent);
 		assert.strictEqual(child.route(), "end");
@@ -98,8 +98,8 @@ define([
 				{ route: "end", page: child }
 			]);
 
-		parentRouter.route().init();
-		childRouter.route().init();
+		parentRouter.onBind(document.createElement("DIV"));
+		childRouter.onBind(document.createElement("DIV"));
 
 		assert.strictEqual(parent.route(), "start");
 		assert.strictEqual(childRouter.currentPage, child);

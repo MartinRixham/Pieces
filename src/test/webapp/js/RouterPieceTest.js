@@ -30,7 +30,7 @@ define([
 		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
 
-		router.route().init();
+		router.onBind(document.createElement("DIV"));
 
 		location.hash = "giraffe";
 
@@ -49,7 +49,7 @@ define([
 		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
 
-		router.route().init();
+		router.onBind(document.createElement("DIV"));
 		router.route().update();
 
 		assert.strictEqual(page.route(), "goat");
@@ -60,7 +60,7 @@ define([
 		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
 
-		router.route().init();
+		router.onBind(document.createElement("DIV"));
 		router.route().update();
 
 		page.route("tiger");
@@ -79,7 +79,7 @@ define([
 		var page = { route: "" };
 		var router = new RouterPiece(page);
 
-		router.route().init();
+		router.onBind(document.createElement("DIV"));
 		router.route().update();
 
 		assert.strictEqual(page.route, "goat");
@@ -110,8 +110,8 @@ define([
 		var child = { route: new Datum() };
 		var childRouter = new RouterPiece(child);
 
-		parentRouter.route().init();
-		childRouter.route().init();
+		parentRouter.onBind(document.createElement("DIV"));
+		childRouter.onBind(document.createElement("DIV"));
 
 		assert.strictEqual(parent.route(), "start");
 		assert.strictEqual(child.route(), "end");
@@ -122,7 +122,7 @@ define([
 		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
 
-		router.route().init();
+		router.onBind(document.createElement("DIV"));
 		router.route().update();
 
 		page.route("tiger/");
@@ -139,7 +139,7 @@ define([
 		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
 
-		router.route().init();
+		router.onBind(document.createElement("DIV"));
 		router.route().update();
 
 		assert.strictEqual(page.route(), "goat/");

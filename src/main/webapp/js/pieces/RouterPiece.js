@@ -24,15 +24,13 @@ define(["./Route"], function RouterPiece(Route) {
 
 			element.appendChild(hidden);
 			element.appendChild(container);
+
+			routeIndex = registerRoute();
 		};
 
 		this.route =
 			new Binding({
 
-				init: function() {
-
-					routeIndex = registerRoute();
-				},
 				update: function() {
 
 					route.update(routeIndex);

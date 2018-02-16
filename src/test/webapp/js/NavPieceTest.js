@@ -22,7 +22,7 @@ define([
 		var page = {};
 		var nav = new NavPiece([{ route: "route", page: page }]);
 
-		nav.route().init();
+		nav.onBind(document.createElement("DIV"));
 
 		assert.strictEqual(nav.currentPage, page);
 		assert.strictEqual(nav.getCurrentIndex(), -1);
@@ -34,7 +34,7 @@ define([
 		var nav = new NavPiece([{ route: "route", page: page }]);
 		var button = new NavButton(0, nav)();
 
-		nav.route().init();
+		nav.onBind(document.createElement("DIV"));
 
 		assert.ok(!button.classes.active());
 
@@ -59,7 +59,7 @@ define([
 
 		var button = new NavButton(1, nav)();
 
-		nav.route().init();
+		nav.onBind(document.createElement("DIV"));
 
 		assert.ok(!button.classes.active());
 
@@ -83,7 +83,7 @@ define([
 					{ route: "go", page: pageTwo }
 				]);
 
-		nav.route().init();
+		nav.onBind(document.createElement("DIV"));
 
 		nav.showPage(1);
 
@@ -106,7 +106,7 @@ define([
 
 		var button = new NavButton(0, nav)();
 
-		nav.route().init();
+		nav.onBind(document.createElement("DIV"));
 
 		button.click();
 
@@ -130,7 +130,7 @@ define([
 					{ route: "go", page: pageTwo }
 				]);
 
-		nav.route().init();
+		nav.onBind(document.createElement("DIV"));
 
 		assert.strictEqual(nav.currentPage, pageTwo);
 		assert.strictEqual(nav.getCurrentIndex(), 1);
@@ -150,7 +150,7 @@ define([
 					{ route: "go", page: pageTwo }
 				]);
 
-		nav.route().init();
+		nav.onBind(document.createElement("DIV"));
 
 		assert.strictEqual(nav.currentPage, pageOne);
 		assert.strictEqual(nav.getCurrentIndex(), -1);
@@ -172,7 +172,6 @@ define([
 				]);
 
 		nav.onBind(container);
-		nav.route().init();
 
 		assert.strictEqual(container.children.length, 2);
 	});
@@ -191,7 +190,7 @@ define([
 					{ route: "go", page: pageTwo }
 				]);
 
-		nav.route().init();
+		nav.onBind(document.createElement("DIV"));
 
 		location.hash = "go";
 
