@@ -1,11 +1,11 @@
 define([
 	"qunit",
-	"js/pieces/NavPiece",
+	"js/pieces/ScrollNavPiece",
 	"js/pieces/NavButton",
 	"js/pieces/Route"
 ], function(
 	QUnit,
-	NavPiece,
+	ScrollNavPiece,
 	NavButton,
 	Route) {
 
@@ -20,11 +20,9 @@ define([
 	QUnit.test("Nav with one page", function(assert) {
 
 		var page = {};
-		var nav = new NavPiece([{ route: "route", page: page }]);
+		var nav = new ScrollNavPiece([{ route: "route", page: page }]);
 
-		nav.route().init();
-
-		assert.strictEqual(nav.currentPage, page);
+		assert.strictEqual(nav.pages[0], page);
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 	});
 });
