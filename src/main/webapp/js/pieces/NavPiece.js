@@ -47,13 +47,11 @@ define(["./Route"], function NavPiece(Route) {
 				});
 		};
 
-		this.route = new Binding({
-
-			destroy: function() {
+		this.route =
+			new Destroy(function() {
 
 				route.remove(routeIndex);
-			}
-		});
+			});
 
 		function routePage(hash) {
 

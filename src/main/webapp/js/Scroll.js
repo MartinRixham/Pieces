@@ -24,16 +24,25 @@ define([
 			$(element).load("html/scroll.html");
 		};
 
-		this.scroll =
+		// Create scroll navigation container.
+		this.container =
 			new ScrollNavPiece([
 				{ route: "one", page: new One() },
 				{ route: "two", page: new Two() },
 				{ route: "three", page: new Three() },
 				{ route: "four", page: new Four() }]);
 
+		// Menu buttons.
+		this.one = new NavButton(0, this.container);
+		this.two = new NavButton(1, this.container);
+		this.three = new NavButton(2, this.container);
+		this.four = new NavButton(3, this.container);
+
+		// The init binding is called to set up an element.
 		this.menu =
 			new Init(function(element) {
 
+				// Use semantic UI to make the menu sticky.
 				$(element).sticky();
 			});
 

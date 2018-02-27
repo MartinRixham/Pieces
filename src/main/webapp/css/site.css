@@ -124,8 +124,18 @@ pre {
 .scroll .steps
 {
     width: 150px;
-    margin-top: 1rem !important;
+    margin-top: 1.5rem !important;
     left: auto !important;
+}
+
+.scroll .steps .step
+{
+    cursor: pointer;
+}
+
+.scroll .vertical.segment
+{
+    padding-top: 0;
 }
 
 .scroll .pages
@@ -136,4 +146,5 @@ pre {
 .number
 {
     min-height: 500px;
+    padding-top: 2rem;
 }
