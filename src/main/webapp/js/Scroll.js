@@ -5,7 +5,8 @@ define([
 	"js/One",
 	"js/Two",
 	"js/Three",
-	"js/Four"
+	"js/Four",
+	"js/Code"
 ], function(
 	$,
 	ScrollNavPiece,
@@ -13,7 +14,8 @@ define([
 	One,
 	Two,
 	Three,
-	Four) {
+	Four,
+	Code) {
 
 	function Scroll() {
 
@@ -28,6 +30,14 @@ define([
 				{ route: "two", page: new Two() },
 				{ route: "three", page: new Three() },
 				{ route: "four", page: new Four() }]);
+
+		this.menu =
+			new Init(function(element) {
+
+				$(element).sticky();
+			});
+
+		this.code = new Code("Scroll.js");
 	}
 
 	return Scroll;

@@ -1,4 +1,33 @@
-<div class="ui text container">
-  <h1 class="ui dividing header">Scroll</h1>
-  <div data-bind="scroll"></div>
+<div class="ui text scroll container">
+  <div class="title">
+    <h1 class="ui dividing header">Scroll</h1>
+    <i class="code icon" data-bind="code"></i>
+  </div>
+  <div class="ui vertical segment">
+    <div class="ui left rail">
+      <div class="ui sticky vertical steps" data-bind="menu">
+        <div class="active step">
+          <div class="content">
+            <div class="title">One</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="content">
+            <div class="title">Two</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="content">
+            <div class="title">Three</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="content">
+            <div class="title">Four</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pages" data-bind="scroll"></div>
+  </div>
 </div>
