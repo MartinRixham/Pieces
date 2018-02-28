@@ -17,14 +17,11 @@ define([], function() {
 
 		var words = location.hash.substring(1).split("/");
 
-		for (var i = 0; i < words.length; i++) {
+		for (var i = 0; i < routes.length; i++) {
 
-			if (routes[i]) {
+			updating++;
 
-				updating++;
-
-				routes[i].set(words[i], i);
-			}
+			routes[i].set(words[i], i);
 		}
 	});
 

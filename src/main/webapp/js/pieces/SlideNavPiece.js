@@ -63,7 +63,11 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 					set: function(word, routeIndex) {
 
-						routePage(word);
+						if (word) {
+
+							routePage(word);
+						}
+
 						route.update(routeIndex);
 					},
 					get: function() {

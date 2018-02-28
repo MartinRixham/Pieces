@@ -36,7 +36,10 @@ define(["./Route"], function NavPiece(Route) {
 
 					set: function(word, routeIndex) {
 
-						routePage(word);
+						if (word) {
+
+							routePage(word);
+						}
 
 						route.update(routeIndex);
 					},
