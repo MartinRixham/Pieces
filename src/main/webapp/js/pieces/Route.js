@@ -2,6 +2,8 @@ define([], function() {
 
 	var routes = [];
 
+	var words = location.hash.substring(1).split("/");
+
 	var changedHash = false;
 
 	var updating = 0;
@@ -15,14 +17,25 @@ define([], function() {
 			return;
 		}
 
-		var words = location.hash.substring(1).split("/");
+		var newWords = location.hash.substring(1).split("/");
+		var update = false;
 
 		for (var i = 0; i < routes.length; i++) {
 
-			updating++;
+			if (words[i] != newWords[i]) {
 
-			routes[i].set(words[i], i);
+				update = true;
+			}
+
+			if (update) {
+
+				updating++;
+
+				routes[i].set(newWords[i], i);
+			}
 		}
+
+		words = newWords;
 	});
 
 	function Route() {
@@ -33,8 +46,6 @@ define([], function() {
 
 			routes.push(word);
 
-			var words = location.hash.substring(1).split("/");
-
 			updating++;
 
 			word.set(words[index], index);
@@ -44,26 +55,7 @@ define([], function() {
 
 		this.update = function(index) {
 
-			var words = location.hash.substring(1).split("/");
 			var route = routes[index].get();
-
-			words.splice(index, words.length - index, route);
-
-			updateHash(words);
-		};
-
-		this.remove = function(index) {
-
-			routes.splice(index);
-
-			var words = location.hash.substring(1).split("/");
-
-			words.splice(index);
-
-			updateHash(words);
-		};
-
-		function updateHash(words) {
 
 			if (updating > 0) {
 
@@ -71,6 +63,9 @@ define([], function() {
 
 				return;
 			}
+
+			routes.splice(index + 1);
+			words.splice(index, words.length - index, route);
 
 			var oldHash = location.hash;
 			var hash = words.join("/");
@@ -84,11 +79,12 @@ define([], function() {
 
 				changedHash = true;
 			}
-		}
+		};
 
 		this.reset = function() {
 
 			routes = [];
+			words = location.hash.substring(1).split("/");
 			changedHash = false;
 			updating = 0;
 		};

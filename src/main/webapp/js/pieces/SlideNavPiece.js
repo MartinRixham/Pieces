@@ -34,7 +34,6 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 			container = document.createElement("DIV");
 			container.style.width = "200%";
 			container.style.position = "relative";
-			container.style.transition = "left 0.5s linear";
 			container.style.left = "0";
 
 			var firstElement = document.createElement("DIV");
@@ -51,11 +50,6 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 			container.appendChild(firstElement);
 			container.appendChild(secondElement);
 
-			var hidden = document.createElement("DIV");
-			hidden.dataset.bind = "route";
-			hidden.style.display = "none";
-
-			element.appendChild(hidden);
 			element.appendChild(container);
 
 			routeIndex =
@@ -63,11 +57,7 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 					set: function(word, routeIndex) {
 
-						if (word) {
-
-							routePage(word);
-						}
-
+						routePage(word);
 						route.update(routeIndex);
 					},
 					get: function() {
@@ -76,12 +66,6 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 					}
 				});
 		};
-
-		this.route =
-			new Destroy(function() {
-
-				route.remove(routeIndex);
-			});
 
 		function routePage(hash) {
 
@@ -124,17 +108,23 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 			activeIndex(index);
 
-			if ("#" + pages[index].route == location.hash) {
+			/*if ("#" + pages[index].route == location.hash) {
 
 				return;
-			}
+			}*/
+
+			var oldIndex = currentIndex();
+
+			currentIndex(index);
+
+			route.update(routeIndex);
 
 			var ref = {};
 			slideRef = ref;
 
 			var oldPage;
 
-			if (index > currentIndex()) {
+			if (index > oldIndex) {
 
 				container.style.removeProperty("transition");
 				container.style.left = "0";
@@ -164,7 +154,7 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 					}, 500);
 				});
 			}
-			else if (index < currentIndex()) {
+			else if (index < oldIndex) {
 
 				container.style.removeProperty("transition");
 				container.style.left = "-100%";
@@ -194,10 +184,6 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 					}, 500);
 				});
 			}
-
-			currentIndex(index);
-
-			route.update(routeIndex);
 		};
 
 		function getOldPage(index) {

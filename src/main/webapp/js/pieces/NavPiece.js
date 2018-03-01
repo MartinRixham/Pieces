@@ -24,11 +24,6 @@ define(["./Route"], function NavPiece(Route) {
 			var page = document.createElement("DIV");
 			page.dataset.bind = "currentPage";
 
-			var hidden = document.createElement("DIV");
-			hidden.dataset.bind = "route";
-			hidden.style.display = "none";
-
-			element.appendChild(hidden);
 			element.appendChild(page);
 
 			routeIndex =
@@ -49,12 +44,6 @@ define(["./Route"], function NavPiece(Route) {
 					}
 				});
 		};
-
-		this.route =
-			new Destroy(function() {
-
-				route.remove(routeIndex);
-			});
 
 		function routePage(hash) {
 

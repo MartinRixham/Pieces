@@ -173,7 +173,7 @@ define([
 
 		nav.onBind(container);
 
-		assert.strictEqual(container.children.length, 2);
+		assert.strictEqual(container.children.length, 1);
 	});
 
 	QUnit.test("Detect hash change", function(assert) {

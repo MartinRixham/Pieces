@@ -34,10 +34,6 @@ define(["./Route"], function RouterPiece(Route) {
 				update: function() {
 
 					route.update(routeIndex);
-				},
-				destroy: function() {
-
-					route.remove(routeIndex);
 				}
 			});
 

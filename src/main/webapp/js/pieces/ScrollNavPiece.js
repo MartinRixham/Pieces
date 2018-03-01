@@ -19,17 +19,17 @@ define(["./Route"], function(Route) {
 
 		this.onBind = function(element) {
 
+			while (element.firstChild) {
+
+				element.removeChild(element.firstChild);
+			}
+
 			var page = document.createElement("DIV");
 
 			container = document.createElement("DIV");
 			container.dataset.bind = "pages";
 			container.appendChild(page);
 
-			var hidden = document.createElement("DIV");
-			hidden.dataset.bind = "route";
-			hidden.style.display = "none";
-
-			element.appendChild(hidden);
 			element.appendChild(container);
 
 			routeIndex =
@@ -37,8 +37,8 @@ define(["./Route"], function(Route) {
 
 					set: function(word, routeIndex) {
 
-						routePage(word);
 						route.update(routeIndex);
+						routePage(word);
 					},
 					get: function() {
 
@@ -47,19 +47,19 @@ define(["./Route"], function(Route) {
 				});
 		};
 
-		this.route =
-			new Destroy(function() {
-
-				route.remove(routeIndex);
-			});
-
 		function routePage(hash) {
 
 			for (var i = 0; i < pages.length; i++) {
 
 				if (pages[i].route == hash) {
 
-					container.children[i].scrollIntoView();
+					var child = container.children[i];
+
+					if (child) {
+
+						child.scrollIntoView();
+					}
+
 					activeIndex(i);
 
 					return;
