@@ -122,6 +122,7 @@ define([
 		var pageTwo = {};
 
 		location.hash = "go";
+		new Route().reset();
 
 		var nav =
 			new NavPiece(

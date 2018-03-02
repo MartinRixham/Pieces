@@ -108,11 +108,6 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 			activeIndex(index);
 
-			/*if ("#" + pages[index].route == location.hash) {
-
-				return;
-			}*/
-
 			var oldIndex = currentIndex();
 
 			currentIndex(index);
@@ -142,7 +137,7 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 				setTimeout(function() {
 
-					container.style.transition = "left 0.5s linear";
+					container.style.transition = "left 0.5s ease-in-out";
 					container.style.left = "-100%";
 
 					setTimeout(function() {
@@ -172,7 +167,7 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 				setTimeout(function() {
 
-					container.style.transition = "left 0.5s linear";
+					container.style.transition = "left 0.5s ease-in-out";
 					container.style.left = "0";
 
 					setTimeout(function() {

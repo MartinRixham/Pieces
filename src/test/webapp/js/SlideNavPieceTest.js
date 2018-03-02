@@ -134,6 +134,7 @@ define([
 		var container = document.createElement("DIV");
 
 		location.hash = "go";
+		new Route().reset();
 
 		var nav =
 			new SlideNavPiece(
@@ -157,6 +158,7 @@ define([
 		var container = document.createElement("DIV");
 
 		location.hash = "gone";
+		new Route().reset();
 
 		var nav =
 			new SlideNavPiece(

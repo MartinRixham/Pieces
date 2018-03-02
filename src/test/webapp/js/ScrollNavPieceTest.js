@@ -56,6 +56,7 @@ define([
 	QUnit.test("Click on second button", function(assert) {
 
 		var secondPage = {};
+		var container = document.createElement("DIV");
 
 		var nav =
 			new ScrollNavPiece([
@@ -64,7 +65,7 @@ define([
 
 		var button = new NavButton(1, nav)();
 
-		var root = new BindingRoot(nav);
+		nav.onBind(container);
 
 		assert.ok(!button.classes.active());
 
@@ -74,8 +75,6 @@ define([
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 		assert.strictEqual(location.hash, "#go");
-
-		root.disconnect();
 	});
 });
 

@@ -71,7 +71,13 @@ define(["./Route"], function(Route) {
 
 		this.showPage = function(index) {
 
-			container.children[index].scrollIntoView();
+			var child = container.children[i];
+
+			if (child) {
+
+				container.children[index].scrollIntoView();
+			}
+
 			activeIndex(index);
 			route.update(routeIndex);
 		};
