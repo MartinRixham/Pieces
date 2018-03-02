@@ -1,11 +1,11 @@
 {
-  "name": "pieces",
+  "name": "Datum-pieces",
   "version": "0.0.0",
   "license": "AGPL-3.0",
   "devDependencies": {
     "almond": "0.3.3",
     "grunt": "1.0.1",
-    "grunt-cli": "1.2.0",
+    "grunt-concat-define": "0.7.0",
     "grunt-contrib-jshint": "1.0.0",
     "grunt-contrib-qunit": "2.0.0",
     "grunt-contrib-requirejs": "1.0.0",
@@ -22,9 +22,5 @@
   "scripts": {
     "preinstall": "npm install --prefix src/main/webapp",
     "start": "http-server src/main/webapp"
-  },
-  "dependencies": {
-    "grunt-concat-define": "^0.7.0",
-    "highlight.js": "^9.12.0"
   }
 }
