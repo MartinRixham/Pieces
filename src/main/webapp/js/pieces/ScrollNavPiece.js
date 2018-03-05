@@ -37,8 +37,8 @@ define(["./Route"], function(Route) {
 
 					set: function(word, routeIndex) {
 
-						route.update(routeIndex);
 						routePage(word);
+						route.update(routeIndex);
 					},
 					get: function() {
 

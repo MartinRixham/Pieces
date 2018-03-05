@@ -29,12 +29,9 @@ define(["./Route"], function RouterPiece(Route) {
 		};
 
 		this.route =
-			new Binding({
+			new Update(function() {
 
-				update: function() {
-
-					route.update(routeIndex);
-				}
+				route.update(routeIndex);
 			});
 
 		function registerRoute() {

@@ -110,6 +110,11 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 			var oldIndex = currentIndex();
 
+			if (oldIndex != index) {
+
+				route.changePage(routeIndex);
+			}
+
 			currentIndex(index);
 
 			route.update(routeIndex);

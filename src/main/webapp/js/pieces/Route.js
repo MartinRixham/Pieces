@@ -64,21 +64,21 @@ define([], function() {
 				return;
 			}
 
-			routes.splice(index + 1);
 			words.splice(index, words.length - index, route);
 
 			var oldHash = location.hash;
-			var hash = words.join("/");
 
-			// remove trailing slashes.
-			hash = hash.replace(/\/+$/, "");
-
-			location.hash = hash;
+			location.hash = words.join("/");
 
 			if (oldHash != location.hash) {
 
 				changedHash = true;
 			}
+		};
+
+		this.changePage = function(index) {
+
+			routes.splice(index + 1);
 		};
 
 		this.reset = function() {

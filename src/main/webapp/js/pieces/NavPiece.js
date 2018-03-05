@@ -73,11 +73,18 @@ define(["./Route"], function NavPiece(Route) {
 
 			activeIndex(index);
 
-			this.currentPage = pages[index].page;
+			var oldIndex = currentIndex();
+
+			if (oldIndex != index) {
+
+				route.changePage(routeIndex);
+			}
 
 			currentIndex(index);
 
 			route.update(routeIndex);
+
+			this.currentPage = pages[index].page;
 		};
 
 		this.getCurrentIndex = function() {
