@@ -9,9 +9,9 @@ define([], function() {
 				element.removeChild(element.firstChild);
 			}
 
-			for (var j = 0; j < page.length; j++) {
+			for (var i = 0; i < page.length; i++) {
 
-				element.appendChild(page[j]);
+				element.appendChild(page[i]);
 			}
 		};
 	}

@@ -31,7 +31,7 @@ define([], function() {
 
 				updating++;
 
-				routes[i].set(newWords[i], i);
+				routes[i].set(newWords[i] || "", i);
 			}
 		}
 

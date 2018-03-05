@@ -73,11 +73,6 @@ define(["./Route"], function NavPiece(Route) {
 
 			activeIndex(index);
 
-			if ("#" + pages[index].route == location.hash) {
-
-				return;
-			}
-
 			this.currentPage = pages[index].page;
 
 			currentIndex(index);
