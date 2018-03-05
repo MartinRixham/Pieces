@@ -10,11 +10,58 @@ define(["./Route"], function(Route) {
 
 		var routeIndex = -1;
 
+		var scrolling = false;
+
+		var moved = false;
+
+		var scrollRef = {};
+
 		this.pages = new Array(pages.length);
 
 		for (var i = 0; i < pages.length; i++) {
 
 			this.pages[i] = pages[i].page;
+		}
+
+		function scroll() {
+
+			if (moved) {
+
+				moved = false;
+
+				return;
+			}
+
+			if (scrolling) {
+
+				return;
+			}
+
+			var children = container.children;
+
+			var index = 0;
+			var bestTop = Number.MIN_SAFE_INTEGER;
+			var found = false;
+
+			for (var i = 0; i < children.length; i++) {
+
+				var child = children[i];
+				var top = child.getBoundingClientRect().top - 1;
+
+				if (top <= 0 && top >= bestTop) {
+
+					bestTop = top;
+					index = i;
+					found = true;
+				}
+			}
+
+			activeIndex(index);
+
+			if (found) {
+
+				route.update(routeIndex);
+			}
 		}
 
 		this.onBind = function(element) {
@@ -30,7 +77,12 @@ define(["./Route"], function(Route) {
 			container.dataset.bind = "pages";
 			container.appendChild(page);
 
+			var hidden = document.createElement("DIV");
+			hidden.dataset.bind = "hidden";
+			hidden.style.display = "none";
+
 			element.appendChild(container);
+			element.appendChild(hidden);
 
 			routeIndex =
 				route.addRoute({
@@ -57,6 +109,8 @@ define(["./Route"], function(Route) {
 
 					if (child) {
 
+						moved = true;
+
 						child.scrollIntoView();
 					}
 
@@ -69,6 +123,19 @@ define(["./Route"], function(Route) {
 			activeIndex(0);
 		}
 
+		this.hidden =
+			new Binding({
+
+				init: function() {
+
+					window.addEventListener("scroll", scroll);
+				},
+				destroy: function() {
+
+					window.removeEventListener("scroll", scroll);
+				}
+			});
+
 		this.showPage = function(index) {
 
 			var child = container.children[index];
@@ -76,6 +143,21 @@ define(["./Route"], function(Route) {
 			if (child) {
 
 				child.scrollIntoView({ behavior: "smooth", block: "start" });
+
+				scrolling = true;
+
+				var ref = {};
+				scrollRef = ref;
+
+				setTimeout(function() {
+
+					if (ref == scrollRef) {
+
+						scrolling = false;
+						scroll();
+					}
+				},
+				1000);
 			}
 
 			activeIndex(index);
