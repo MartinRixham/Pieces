@@ -75,7 +75,7 @@ define(["./Route"], function(Route) {
 
 			if (child) {
 
-				child.scrollIntoView();
+				child.scrollIntoView({ behavior: "smooth", block: "start" });
 			}
 
 			activeIndex(index);

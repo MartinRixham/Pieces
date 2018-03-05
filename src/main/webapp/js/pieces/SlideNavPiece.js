@@ -142,7 +142,7 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 				setTimeout(function() {
 
-					container.style.transition = "left 0.5s ease-in-out";
+					container.style.transition = "left 0.5s ease-out";
 					container.style.left = "-100%";
 
 					setTimeout(function() {
@@ -172,7 +172,7 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 
 				setTimeout(function() {
 
-					container.style.transition = "left 0.5s ease-in-out";
+					container.style.transition = "left 0.5s ease-out";
 					container.style.left = "0";
 
 					setTimeout(function() {
