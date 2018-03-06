@@ -67,8 +67,12 @@ define([], function() {
 			words.splice(index, words.length - index, route);
 
 			var oldHash = location.hash;
+			var hash = words.join("/");
 
-			location.hash = words.join("/");
+			// remove trailing slashes.
+			hash = hash.replace(/\/+$/, "");
+
+			location.hash = hash;
 
 			if (oldHash != location.hash) {
 

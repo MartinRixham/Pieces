@@ -6,15 +6,15 @@ define(["./Route"], function(Route) {
 
 		var activeIndex = new Datum(0);
 
+		var currentIndex = new Datum(-1);
+
 		var container = null;
 
 		var routeIndex = -1;
 
-		var scrolling = false;
-
 		var moved = false;
 
-		var scrollRef = {};
+		var loaded = false;
 
 		this.pages = new Array(pages.length);
 
@@ -32,11 +32,6 @@ define(["./Route"], function(Route) {
 				return;
 			}
 
-			if (scrolling) {
-
-				return;
-			}
-
 			var children = container.children;
 
 			var index = 0;
@@ -46,7 +41,7 @@ define(["./Route"], function(Route) {
 			for (var i = 0; i < children.length; i++) {
 
 				var child = children[i];
-				var top = child.getBoundingClientRect().top - 1;
+				var top = child.getBoundingClientRect().top - 50;
 
 				if (top <= 0 && top >= bestTop) {
 
@@ -56,12 +51,17 @@ define(["./Route"], function(Route) {
 				}
 			}
 
-			activeIndex(index);
-
 			if (found) {
 
-				route.update(routeIndex);
+				currentIndex(index);
 			}
+			else {
+
+				currentIndex(-1);
+			}
+
+			activeIndex(index);
+			route.update(routeIndex);
 		}
 
 		this.onBind = function(element) {
@@ -89,15 +89,58 @@ define(["./Route"], function(Route) {
 
 					set: function(word, routeIndex) {
 
-						routePage(word);
-						route.update(routeIndex);
+						if (loaded) {
+
+							routePage(word);
+							route.update(routeIndex);
+						}
+						else {
+
+							for (var i = 0; i < pages.length; i++) {
+
+								if (pages[i].route == word) {
+
+									currentIndex(i);
+									route.update(routeIndex);
+									deferredLoad(i, 1);
+								}
+							}
+						}
 					},
 					get: function() {
 
-						return pages[activeIndex()].route;
+						if (currentIndex() >= 0) {
+
+							return pages[currentIndex()].route;
+						}
+						else {
+
+							return "";
+						}
 					}
 				});
 		};
+
+		function deferredLoad(index, wait) {
+
+			var child = container.children[index];
+
+			if (child && child.firstChild) {
+
+				child.scrollIntoView();
+				activeIndex(index);
+
+				loaded = true;
+				moved = true;
+
+				return;
+			}
+
+			setTimeout(function() {
+
+				deferredLoad(index, wait * 2);
+			}, wait);
+		}
 
 		function routePage(hash) {
 
@@ -115,12 +158,17 @@ define(["./Route"], function(Route) {
 					}
 
 					activeIndex(i);
+					currentIndex(i);
 
 					return;
 				}
 			}
 
+			moved = true;
+
+			window.scrollTo(0, 0);
 			activeIndex(0);
+			currentIndex(0);
 		}
 
 		this.hidden =
@@ -143,25 +191,7 @@ define(["./Route"], function(Route) {
 			if (child) {
 
 				child.scrollIntoView({ behavior: "smooth", block: "start" });
-
-				scrolling = true;
-
-				var ref = {};
-				scrollRef = ref;
-
-				setTimeout(function() {
-
-					if (ref == scrollRef) {
-
-						scrolling = false;
-						scroll();
-					}
-				},
-				1000);
 			}
-
-			activeIndex(index);
-			route.update(routeIndex);
 		};
 
 		this.getCurrentIndex = function() {
