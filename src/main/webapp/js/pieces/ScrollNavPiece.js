@@ -51,6 +51,8 @@ define(["./Route"], function(Route) {
 				}
 			}
 
+			var oldIndex = currentIndex();
+
 			if (found) {
 
 				currentIndex(index);
@@ -61,7 +63,11 @@ define(["./Route"], function(Route) {
 			}
 
 			activeIndex(index);
-			route.update(routeIndex);
+
+			if (oldIndex != currentIndex()) {
+
+				route.update(routeIndex);
+			}
 		}
 
 		this.onBind = function(element) {
@@ -127,6 +133,7 @@ define(["./Route"], function(Route) {
 				}
 			}
 
+			loaded = true;
 			currentIndex(0);
 			route.update(routeIndex);
 		}
@@ -142,14 +149,14 @@ define(["./Route"], function(Route) {
 
 				loaded = true;
 				moved = true;
-
-				return;
 			}
+			else {
 
-			setTimeout(function() {
+				setTimeout(function() {
 
-				deferredLoad(index, wait * 2);
-			}, wait);
+					deferredLoad(index, wait * 2);
+				}, wait);
+			}
 		}
 
 		function routePage(hash) {
@@ -178,7 +185,7 @@ define(["./Route"], function(Route) {
 
 			window.scrollTo(0, 0);
 			activeIndex(0);
-			currentIndex(0);
+			currentIndex(-1);
 		}
 
 		this.hidden =

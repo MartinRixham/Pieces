@@ -18,17 +18,14 @@ define([], function() {
 		}
 
 		var newWords = location.hash.substring(1).split("/");
-		var update = false;
 
 		for (var i = 0; i < routes.length; i++) {
 
 			if (words[i] != newWords[i]) {
 
-				update = true;
 				routes.splice(i + 1);
 
 				updating++;
-
 				routes[i].set(newWords[i] || "", i);
 
 				words = newWords;
@@ -64,7 +61,14 @@ define([], function() {
 				return;
 			}
 
-			words.splice(index, words.length - index, route);
+			words.splice(index);
+
+			for (var i = words.length; i < index; i++) {
+
+				words[i] = "";
+			}
+
+			words[index] = route;
 
 			var oldHash = location.hash;
 			var hash = words.join("/");
