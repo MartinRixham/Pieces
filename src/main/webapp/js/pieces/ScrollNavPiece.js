@@ -96,15 +96,7 @@ define(["./Route"], function(Route) {
 						}
 						else {
 
-							for (var i = 0; i < pages.length; i++) {
-
-								if (pages[i].route == word) {
-
-									currentIndex(i);
-									route.update(routeIndex);
-									deferredLoad(i, 1);
-								}
-							}
+							setUpPage(word, routeIndex);
 						}
 					},
 					get: function() {
@@ -120,6 +112,24 @@ define(["./Route"], function(Route) {
 					}
 				});
 		};
+
+		function setUpPage(word, routeIndex) {
+
+			for (var i = 0; i < pages.length; i++) {
+
+				if (pages[i].route == word) {
+
+					currentIndex(i);
+					route.update(routeIndex);
+					deferredLoad(i, 1);
+
+					return;
+				}
+			}
+
+			currentIndex(0);
+			route.update(routeIndex);
+		}
 
 		function deferredLoad(index, wait) {
 

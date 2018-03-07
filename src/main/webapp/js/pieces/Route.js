@@ -25,17 +25,17 @@ define([], function() {
 			if (words[i] != newWords[i]) {
 
 				update = true;
-			}
-
-			if (update) {
+				routes.splice(i + 1);
 
 				updating++;
 
 				routes[i].set(newWords[i] || "", i);
+
+				words = newWords;
+
+				return;
 			}
 		}
-
-		words = newWords;
 	});
 
 	function Route() {
