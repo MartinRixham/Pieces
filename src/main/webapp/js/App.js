@@ -3,7 +3,7 @@ define([
 	"js/pieces/NavButton",
 	"js/Router",
 	"js/Two",
-	"js/Three",
+	"js/Fade",
 	"js/Scroll",
 	"js/Code"
 ], function(
@@ -11,7 +11,7 @@ define([
 	NavButton,
 	Router,
 	Two,
-	Three,
+	Fade,
 	Scroll,
 	Code) {
 
@@ -23,7 +23,7 @@ define([
 
 				{ route: "router", page: new Router() },
 				{ route: "two", page: new Two() },
-				{ route: "three", page: new Three() },
+				{ route: "fade", page: new Fade() },
 				{ route: "scroll", page: new Scroll() }
 			]);
 

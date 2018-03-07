@@ -183,7 +183,11 @@ define(["./Route"], function(Route) {
 
 			moved = true;
 
-			window.scrollTo(0, 0);
+			if (container.getBoundingClientRect().top < 50) {
+
+				window.scrollTo(0, 0);
+			}
+
 			activeIndex(0);
 			currentIndex(-1);
 		}
