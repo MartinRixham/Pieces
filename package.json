@@ -1,7 +1,14 @@
 {
-  "name": "Datum-pieces",
-  "version": "0.0.0",
-  "license": "AGPL-3.0",
+  "name": "@datumjs/pieces",
+  "version": "0.1.0",
+  "author": {
+    "name": "Martin Rixham",
+    "email": "martin.rixham@gmail.com"
+  },
+  "license": "LGPL-3.0",
+  "homepage": "https://piecesofdata.com",
+  "main": "target/pieces.js",
+  "dependencies": {},
   "devDependencies": {
     "almond": "0.3.3",
     "grunt": "1.0.1",
@@ -10,7 +17,7 @@
     "grunt-contrib-qunit": "2.0.0",
     "grunt-contrib-requirejs": "1.0.0",
     "grunt-jscs": "3.0.1",
-    "http-server": "^0.11.1",
+    "http-server": "0.11.1",
     "node": "9.4.0",
     "npm": "5.6.0",
     "qunit": "2.5.0"
