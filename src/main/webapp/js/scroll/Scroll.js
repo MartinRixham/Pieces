@@ -2,10 +2,10 @@ define([
 	"jquery",
 	"js/pieces/ScrollNavPiece",
 	"js/pieces/NavButton",
-	"js/One",
-	"js/Two",
-	"js/Three",
-	"js/Four",
+	"js/scroll/One",
+	"js/scroll/Two",
+	"js/scroll/Three",
+	"js/scroll/Four",
 	"js/Code"
 ], function(
 	$,
@@ -21,7 +21,7 @@ define([
 
 		this.onBind = function(element) {
 
-			$(element).load("html/scroll.html");
+			$(element).load("html/scroll/scroll.html");
 		};
 
 		// Create scroll navigation container.
@@ -46,7 +46,7 @@ define([
 				$(element).sticky();
 			});
 
-		this.code = new Code("Scroll.js");
+		this.code = new Code("scroll/Scroll.js");
 	}
 
 	return Scroll;

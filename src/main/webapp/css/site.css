@@ -160,6 +160,23 @@ pre {
     min-height: 1500px;
 }
 
+.fade .options
+{
+    display: flex;
+    justify-content: center;
+}
+
+.fade .text
+{
+    margin: 5% 20%;
+    font-size: x-large;
+}
+
+.fade .back
+{
+    margin-left: 2%;
+}
+
 .number
 {
     min-height: 500px;

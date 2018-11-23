@@ -4,7 +4,7 @@ define(["jquery"], function($) {
 
 		this.onBind = function(element) {
 
-			$(element).load("html/one.html");
+			$(element).load("html/scroll/one.html");
 		};
 	}
 

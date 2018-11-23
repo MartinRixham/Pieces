@@ -3,8 +3,8 @@ define([
 	"js/pieces/NavButton",
 	"js/Router",
 	"js/Two",
-	"js/Fade",
-	"js/Scroll",
+	"js/fade/Fade",
+	"js/scroll/Scroll",
 	"js/Code"
 ], function(
 	SlideNavPiece,
