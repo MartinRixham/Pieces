@@ -11,16 +11,17 @@
   "dependencies": {},
   "devDependencies": {
     "almond": "0.3.3",
-    "grunt": "1.0.1",
+    "grunt": "^1.0.3",
     "grunt-concat-define": "0.7.0",
     "grunt-contrib-jshint": "1.0.0",
     "grunt-contrib-qunit": "2.0.0",
     "grunt-contrib-requirejs": "1.0.0",
     "grunt-jscs": "3.0.1",
+    "grunt-mkdir": "^1.0.0",
     "http-server": "0.11.1",
     "node": "9.4.0",
-    "npm": "5.6.0",
-    "qunit": "2.5.0"
+    "npm": "^6.4.1",
+    "qunit": "^2.8.0"
   },
   "repository": {
     "type": "git",

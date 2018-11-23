@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-jscs");
 	grunt.loadNpmTasks("grunt-contrib-qunit");
 	grunt.loadNpmTasks("grunt-contrib-requirejs");
+	grunt.loadNpmTasks("grunt-mkdir");
 	grunt.loadNpmTasks("grunt-concat-define");
 
 	grunt.initConfig({
@@ -40,6 +41,13 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		mkdir: {
+			all: {
+				options: {
+					create: ["target"]
+				},
+			},
+		},
 		"concat-define": {
 
 			options: {
@@ -50,5 +58,5 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask("default", ["jshint", "jscs", "qunit", "requirejs", "concat-define"]);
+	grunt.registerTask("default", ["jshint", "jscs", "qunit", "requirejs", "mkdir", "concat-define"]);
 };
