@@ -162,8 +162,14 @@ pre {
 
 .fade .options
 {
-    display: flex;
-    justify-content: center;
+    width: 384px;
+    margin: auto;
+}
+
+.fade .options button
+{
+    width: 170px;
+    margin: 10px;
 }
 
 .fade .text
@@ -175,6 +181,14 @@ pre {
 .fade .back
 {
     margin-left: 2%;
+}
+
+.fade .blue
+{
+    background: blue;
+    width: 100%;
+    height: 30em;
+    margin-bottom: 10px;
 }
 
 .number

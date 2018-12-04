@@ -21,6 +21,11 @@ define(["jquery"], function($) {
 
 			showPage(3);
 		});
+
+		this.blue = new Click(function() {
+
+			showPage(4);
+		});
 	}
 
 	return Options;
