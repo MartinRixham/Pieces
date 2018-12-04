@@ -178,6 +178,24 @@ pre {
     font-size: x-large;
 }
 
+@media only screen and (max-width: 414px)
+{
+    .fade .options
+    {
+        width: 192px;
+    }
+
+    .fade .options button
+    {
+        display: block;
+    }
+
+    .fade .text
+    {
+        margin: 5% 10px
+    }
+}
+
 .fade .back
 {
     margin-left: 2%;

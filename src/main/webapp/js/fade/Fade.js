@@ -1,6 +1,6 @@
 define([
 	"jquery",
-	"js/pieces/NavPiece",
+	"js/pieces/FadeNavPiece",
 	"js/fade/Options",
 	"js/fade/Routing",
 	"js/fade/Modular",
@@ -9,7 +9,7 @@ define([
 	"js/Code"],
 function(
 	$,
-	NavPiece,
+	FadeNavPiece,
 	Options,
 	Routing,
 	Modular,
@@ -37,7 +37,7 @@ function(
 		}
 
 		this.content =
-			new NavPiece([
+			new FadeNavPiece([
 
 				{ route: "", page: new Options(showPage) },
 				{ route: "routing", page: new Routing(back) },
