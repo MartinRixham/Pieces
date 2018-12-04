@@ -65,7 +65,7 @@ define([
 
 		button.click();
 
-		//assert.strictEqual(nav.currentPage, pageTwo);
+		assert.strictEqual(nav.currentPage, pageTwo);
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 		assert.strictEqual(location.hash, "#go");
@@ -87,7 +87,7 @@ define([
 
 		nav.showPage(1);
 
-		// assert.strictEqual(nav.currentPage, pageTwo);
+		assert.strictEqual(nav.currentPage, pageTwo);
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 		assert.strictEqual(location.hash, "#go");
 	});
@@ -174,7 +174,7 @@ define([
 
 		nav.onBind(container);
 
-		assert.strictEqual(container.children.length, 1);
+		assert.strictEqual(container.children.length, 2);
 	});
 
 	QUnit.test("Detect hash change", function(assert) {

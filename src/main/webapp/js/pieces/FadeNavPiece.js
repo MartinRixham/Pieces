@@ -1,4 +1,4 @@
-define(["./Route"], function NavPiece(Route) {
+define(["./Route", "./Placeholder"], function NavPiece(Route, Placeholder) {
 
 	var route = new Route();
 
@@ -12,9 +12,13 @@ define(["./Route"], function NavPiece(Route) {
 
 		var routeIndex = -1;
 
-		var container = null;
+		var currentElement = null;
+
+		var oldElement = null;
 
 		this.currentPage = pages[0].page;
+
+		this.oldPage = null;
 
 		this.onBind = function(element) {
 
@@ -23,11 +27,17 @@ define(["./Route"], function NavPiece(Route) {
 				element.removeChild(element.firstChild);
 			}
 
-			container = document.createElement("DIV");
-			container.dataset.bind = "currentPage";
-			container.style.transition = "opacity 0.5s";
+			currentElement = document.createElement("DIV");
+			currentElement.dataset.bind = "currentPage";
 
-			element.appendChild(container);
+			oldElement = document.createElement("DIV");
+			oldElement.dataset.bind = "oldPage";
+			oldElement.style.position = "absolute";
+
+			element.appendChild(oldElement);
+			element.appendChild(currentElement);
+			element.style.position = "relative";
+			element.style.paddingTop = "1px";
 
 			routeIndex =
 				route.addRoute({
@@ -83,14 +93,48 @@ define(["./Route"], function NavPiece(Route) {
 
 			route.update(routeIndex);
 
-			container.style.opacity = "0";
+			oldElement.style.opacity = "1";
+			oldElement.style.removeProperty("transition");
+
+			oldElement.style.width =
+				oldElement.parentElement.offsetWidth + "px";
+
+			currentElement.style.opacity = "0";
+			currentElement.style.removeProperty("transition");
+
+			var oldPage = getOldPage(currentElement);
+
+			this.oldPage = new Placeholder(oldPage);
+			this.currentPage = pages[index].page;
 
 			setTimeout(function() {
 
-				self.currentPage = pages[index].page;
-				container.style.opacity = "1";
-			}, 500);
+				oldElement.style.opacity = "0";
+				oldElement.style.transition = "opacity 0.5s";
+
+				currentElement.style.opacity = "1";
+				currentElement.style.transition = "opacity 0.5s";
+
+				setTimeout(function() {
+
+					self.oldPage = null;
+				}, 500);
+			});
 		};
+
+		function getOldPage(element) {
+
+			var children = element.children;
+			var oldPage = new Array(children.length);
+
+			for(var i = children.length - 1; i >= 0; i--) {
+
+				oldPage[i] = children[i];
+				element.removeChild(children[i]);
+			}
+
+			return oldPage;
+		}
 
 		this.getCurrentIndex = function() {
 
