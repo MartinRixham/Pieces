@@ -30,6 +30,7 @@ define(["./Placeholder", "./Route"], function SlideNavPiece(Placeholder, Route) 
 			}
 
 			element.style.overflow = "hidden";
+			element.style.paddingTop = "1px";
 
 			container = document.createElement("DIV");
 			container.style.width = "200%";

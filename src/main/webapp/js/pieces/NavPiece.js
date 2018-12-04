@@ -21,6 +21,8 @@ define(["./Route"], function NavPiece(Route) {
 				element.removeChild(element.firstChild);
 			}
 
+			element.style.paddingTop = "1px";
+
 			var page = document.createElement("DIV");
 			page.dataset.bind = "currentPage";
 

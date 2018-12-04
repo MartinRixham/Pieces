@@ -77,6 +77,8 @@ define(["./Route"], function(Route) {
 				element.removeChild(element.firstChild);
 			}
 
+			element.style.paddingTop = "1px";
+
 			var page = document.createElement("DIV");
 
 			container = document.createElement("DIV");
