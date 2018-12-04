@@ -1,8 +1,8 @@
-define(["./Route", "./Placeholder"], function NavPiece(Route, Placeholder) {
+define(["./Route", "./Placeholder"], function FadeNavPiece(Route, Placeholder) {
 
 	var route = new Route();
 
-	function NavPiece(pages) {
+	function FadeNavPiece(pages) {
 
 		var self = this;
 
@@ -142,5 +142,5 @@ define(["./Route", "./Placeholder"], function NavPiece(Route, Placeholder) {
 		};
 	}
 
-	return NavPiece;
+	return FadeNavPiece;
 });

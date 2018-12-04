@@ -45,15 +45,15 @@ module.exports = function(grunt) {
 			all: {
 				options: {
 					create: ["target"]
-				},
-			},
+				}
+			}
 		},
 		"concat-define": {
 
 			options: {
 
 				sourceRootDirectory: "src/main/webapp/js/pieces",
-				outputFile: "target/pieces.js",
+				outputFile: "target/pieces.js"
 			}
 		}
 	});
