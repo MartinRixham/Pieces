@@ -6,6 +6,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-contrib-requirejs");
 	grunt.loadNpmTasks("grunt-mkdir");
 	grunt.loadNpmTasks("grunt-concat-define");
+	grunt.loadNpmTasks("grunt-contrib-uglify");
 
 	grunt.initConfig({
 
@@ -55,8 +56,21 @@ module.exports = function(grunt) {
 				sourceRootDirectory: "src/main/webapp/js/pieces",
 				outputFile: "target/pieces.js"
 			}
+		},
+		uglify: {
+
+			my_target: {
+
+				files: {
+
+					"target/pieces.min.js": [
+
+						"target/pieces.js"
+					]
+				}
+			}
 		}
 	});
 
-	grunt.registerTask("default", ["jshint", "jscs", "qunit", "requirejs", "mkdir", "concat-define"]);
+	grunt.registerTask("default", ["jshint", "jscs", "qunit", "requirejs", "mkdir", "concat-define", "uglify"]);
 };
