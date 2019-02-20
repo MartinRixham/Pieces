@@ -1,12 +1,12 @@
 define(["jquery"], function($) {
 
-	function Two() {
+	function Links() {
 
 		this.onBind = function(element) {
 
-			$(element).load("html/two.html");
+			$(element).load("html/links.html");
 		};
 	}
 
-	return Two;
+	return Links;
 });

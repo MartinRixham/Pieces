@@ -74,7 +74,7 @@ pre {
     -moz-tab-size: 4;
 }
 
-.code.icon
+.modal.code.icon
 {
     font-size: 1.5em;
     cursor: pointer;
@@ -83,7 +83,7 @@ pre {
 
 @media only screen and (max-width: 767px)
 {
-    .code.icon
+    .modal.code.icon
     {
         display: none
     }
@@ -160,6 +160,12 @@ pre {
     min-height: 1500px;
 }
 
+.scroll .number
+{
+    min-height: 500px;
+    padding-top: 2rem;
+}
+
 .fade .options
 {
     width: 384px;
@@ -209,8 +215,14 @@ pre {
     margin-bottom: 10px;
 }
 
-.number
+.links .icons
 {
-    min-height: 500px;
-    padding-top: 2rem;
+    padding-top: 5%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.links .icons a
+{
+    color: rgba(0,0,0,.87);
 }

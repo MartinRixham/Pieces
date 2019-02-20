@@ -13,4 +13,4 @@ From the checked out directory just run `grunt` to produce the files *target/pie
 
 ### Run the demo
 
-Once you have checked out the repository and build it with grunt you can run the development server with `npm start` which will listen on *http://localhost:8080*.
+Run the development server with `npm start` which will listen on *http://localhost:8080*.
