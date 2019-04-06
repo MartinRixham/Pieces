@@ -195,7 +195,7 @@ define(["./Route"], function(Route) {
 		}
 
 		this.hidden =
-			new Binding({
+			new Datum.Binding({
 
 				init: function() {
 

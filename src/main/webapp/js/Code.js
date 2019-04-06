@@ -13,16 +13,16 @@ define(["jquery", "hljs"], function($, hljs) {
 		};
 
 		this.title =
-			new Text(function() { return file; });
+			new Datum.Text(function() { return file; });
 
 		this.code =
-			new Click(function() {
+			new Datum.Click(function() {
 
 				$(dialog).modal("show");
 			});
 
 		this.text =
-			new Init(function(element) {
+			new Datum.Init(function(element) {
 
 				$(element).load("js/" + file, function() {
 

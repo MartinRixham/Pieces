@@ -23,11 +23,11 @@ define([
 		};
 
 		// Property that binds to the animal input.
-		this.animal = new Value(animal);
+		this.animal = new Datum.Value(animal);
 
 		// The update callback is called whenever the animal is updated.
 		this.image =
-			new Update(function(element) {
+			new Datum.Update(function(element) {
 
 				// Display the image.
 				element.src = "images/animals/" + animal() + ".jpg";

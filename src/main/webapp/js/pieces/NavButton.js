@@ -2,7 +2,7 @@ define([], function NavButton() {
 
 	function NavButton(index, nav) {
 
-		return new Binding({
+		return new Datum.Binding({
 
 			click: function() {
 

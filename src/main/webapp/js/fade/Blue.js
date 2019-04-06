@@ -7,7 +7,7 @@ define([], function() {
 			$(element).load("html/fade/blue.html");
 		};
 
-		this.back = new Click(back);
+		this.back = new Datum.Click(back);
 	}
 
 	return Blue;

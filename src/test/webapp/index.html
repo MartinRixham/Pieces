@@ -4,17 +4,22 @@
     <meta charset="utf-8">
     <title>Tests</title>
     <link rel="stylesheet" href="../../../node_modules/qunit/qunit/qunit.css">
-    <script src="../../../src/main/webapp/node_modules/Datum/target/Datum.min.js"></script>
     <script src="../../../src/main/webapp/node_modules/requirejs/require.js"></script>
+    <script>
+	require(["Datum"], function(Datum) {
+		window.Datum = Datum;
+	});
+    </script>
     <script>
 		requirejs.config({
 
 			baseUrl: "../../../src/main/webapp",
 			paths: {
 
-                qunit: "../../../node_modules/qunit/qunit/qunit",
+				qunit: "../../../node_modules/qunit/qunit/qunit",
 				jquery: "node_modules/jquery/dist/jquery.min",
-				semantic: "node_modules/semantic-ui-css/semantic.min"
+				semantic: "node_modules/semantic-ui-css/semantic.min",
+				Datum: "node_modules/Datum/target/Datum.min"
 			},
 			shim: {
 
@@ -24,13 +29,13 @@
 
 		require([
 			"qunit",
-            "./js/NavPieceTest.js",
-            "./js/SlideNavPieceTest.js",
-            "./js/ScrollNavPieceTest.js",
-            "./js/FadeNavPieceTest.js",
-            "./js/RouterPieceTest.js",
-            "./js/NestingTest.js"
-        ], function(QUnit) {
+			"./js/NavPieceTest.js",
+			"./js/SlideNavPieceTest.js",
+			"./js/ScrollNavPieceTest.js",
+			"./js/FadeNavPieceTest.js",
+			"./js/RouterPieceTest.js",
+			"./js/NestingTest.js"
+		], function(QUnit) {
 
 			QUnit.start();
 		})

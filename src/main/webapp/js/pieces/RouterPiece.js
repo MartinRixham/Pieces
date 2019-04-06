@@ -29,7 +29,7 @@ define(["./Route"], function RouterPiece(Route) {
 		};
 
 		this.route =
-			new Update(function() {
+			new Datum.Update(function() {
 
 				route.update(routeIndex);
 			});
