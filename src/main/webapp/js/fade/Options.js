@@ -7,22 +7,22 @@ define(["jquery"], function($) {
 			$(element).load("html/fade/options.html");
 		};
 
-		this.routing = new Datum.Click(function() {
+		this.routing = new Click(function() {
 
 			showPage(1);
 		});
 
-		this.modular = new Datum.Click(function() {
+		this.modular = new Click(function() {
 
 			showPage(2);
 		});
 
-		this.animation = new Datum.Click(function() {
+		this.animation = new Click(function() {
 
 			showPage(3);
 		});
 
-		this.blue = new Datum.Click(function() {
+		this.blue = new Click(function() {
 
 			showPage(4);
 		});

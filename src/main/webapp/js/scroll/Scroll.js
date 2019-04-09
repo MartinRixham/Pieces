@@ -40,7 +40,7 @@ define([
 
 		// The init binding is called to set up an element.
 		this.menu =
-			new Datum.Init(function(element) {
+			new Init(function(element) {
 
 				// Use semantic UI to make the menu sticky.
 				$(element).sticky();

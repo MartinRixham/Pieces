@@ -7,7 +7,7 @@ define(["jquery"], function($) {
 			$(element).load("html/fade/routing.html");
 		};
 
-		this.back = new Datum.Click(back);
+		this.back = new Click(back);
 	}
 
 	return Routing;
