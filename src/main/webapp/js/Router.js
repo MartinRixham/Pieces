@@ -30,7 +30,8 @@ define([
 			new Datum.Update(function(element) {
 
 				// Display the image.
-				element.src = "images/animals/" + animal() + ".jpg";
+				element.src =
+					"images/animals/" + animal().toLowerCase() + ".jpg";
 			});
 
 		this.code = new Code("Router.js");
