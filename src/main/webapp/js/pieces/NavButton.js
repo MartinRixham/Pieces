@@ -1,8 +1,8 @@
-define([], function NavButton() {
+define(["./Library"], function NavButton(Library) {
 
 	function NavButton(index, nav) {
 
-		return new Datum.Binding({
+		return new Library.Binding({
 
 			click: function() {
 

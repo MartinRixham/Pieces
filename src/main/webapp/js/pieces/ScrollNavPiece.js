@@ -1,12 +1,12 @@
-define(["./Route"], function(Route) {
+define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 
 	var route = new Route();
 
 	function ScrollNavPiece(pages) {
 
-		var activeIndex = new Datum(0);
+		var activeIndex = new Library.Datum(0);
 
-		var currentIndex = new Datum(-1);
+		var currentIndex = new Library.Datum(-1);
 
 		var container = null;
 
@@ -195,7 +195,7 @@ define(["./Route"], function(Route) {
 		}
 
 		this.hidden =
-			new Datum.Binding({
+			new Library.Binding({
 
 				init: function() {
 

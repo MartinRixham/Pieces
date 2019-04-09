@@ -1,4 +1,11 @@
-define(["./Route", "./Placeholder"], function FadeNavPiece(Route, Placeholder) {
+define([
+	"./Library",
+	"./Route",
+	"./Placeholder"],
+function FadeNavPiece(
+	Library,
+	Route,
+	Placeholder) {
 
 	var route = new Route();
 
@@ -6,9 +13,9 @@ define(["./Route", "./Placeholder"], function FadeNavPiece(Route, Placeholder) {
 
 		var self = this;
 
-		var currentIndex = new Datum(0);
+		var currentIndex = new Library.Datum(0);
 
-		var activeIndex = new Datum(-1);
+		var activeIndex = new Library.Datum(-1);
 
 		var routeIndex = -1;
 

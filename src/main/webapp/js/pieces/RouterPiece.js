@@ -1,4 +1,4 @@
-define(["./Route"], function RouterPiece(Route) {
+define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 	var route = new Route();
 
@@ -29,7 +29,7 @@ define(["./Route"], function RouterPiece(Route) {
 		};
 
 		this.route =
-			new Datum.Update(function() {
+			new Library.Update(function() {
 
 				route.update(routeIndex);
 			});

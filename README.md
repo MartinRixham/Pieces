@@ -9,7 +9,7 @@ npm install @datumjs/pieces
 
 Clone the repository with `git clone https://github.com/MartinRixham/Pieces.git`.
 
-From the checked out directory just run `grunt` to produce the files *target/pieces.js* and *target/pieces.min.js*.
+From the checked out directory just run `npm install` then `grunt` to produce the files *target/pieces.js* and *target/pieces.min.js*.
 
 ### Run the demo
 

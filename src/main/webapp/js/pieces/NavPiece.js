@@ -1,4 +1,4 @@
-define(["./Route"], function NavPiece(Route) {
+define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
 	var route = new Route();
 
@@ -6,9 +6,9 @@ define(["./Route"], function NavPiece(Route) {
 
 		var self = this;
 
-		var currentIndex = new Datum(0);
+		var currentIndex = new Library.Datum(0);
 
-		var activeIndex = new Datum(-1);
+		var activeIndex = new Library.Datum(-1);
 
 		var routeIndex = -1;
 

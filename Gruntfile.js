@@ -53,6 +53,7 @@ module.exports = function(grunt) {
 
 			options: {
 
+				externalDependencies: ["Datum"],
 				sourceRootDirectory: "src/main/webapp/js/pieces",
 				outputFile: "target/pieces.js"
 			}
