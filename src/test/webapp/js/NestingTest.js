@@ -1,10 +1,12 @@
 define([
+	"Datum",
 	"qunit",
 	"js/pieces/RouterPiece",
 	"js/pieces/NavPiece",
 	"js/pieces/SlideNavPiece",
 	"js/pieces/Route"
 ], function(
+	Datum,
 	QUnit,
 	RouterPiece,
 	NavPiece,

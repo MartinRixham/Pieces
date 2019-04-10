@@ -1,8 +1,10 @@
 define([
+	"Datum",
 	"qunit",
 	"js/pieces/RouterPiece",
 	"js/pieces/Route"
 ], function(
+	Datum,
 	QUnit,
 	RouterPiece,
 	Route) {

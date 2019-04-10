@@ -4,7 +4,8 @@ requirejs.config({
 
 		jquery: "node_modules/jquery/dist/jquery.min",
 		semantic: "node_modules/semantic-ui-offline/semantic.min",
-		hljs: "node_modules/highlight.js-postbuild/index"
+		hljs: "node_modules/highlight.js-postbuild/index",
+		Datum: "node_modules/Datum/target/Datum.min"
 	},
 	shim: {
 

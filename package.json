@@ -12,7 +12,7 @@
   "devDependencies": {
     "almond": "0.3.3",
     "grunt": "^1.0.4",
-    "grunt-concat-define": "0.8.2",
+    "grunt-concat-define": "0.9.0",
     "grunt-contrib-jshint": "1.0.0",
     "grunt-contrib-qunit": "2.0.0",
     "grunt-contrib-requirejs": "1.0.0",
