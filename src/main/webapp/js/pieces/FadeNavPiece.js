@@ -1,7 +1,8 @@
 define([
 	"./Library",
 	"./Route",
-	"./Placeholder"],
+	"./Placeholder"
+],
 function FadeNavPiece(
 	Library,
 	Route,
@@ -134,7 +135,7 @@ function FadeNavPiece(
 			var children = element.children;
 			var oldPage = new Array(children.length);
 
-			for(var i = children.length - 1; i >= 0; i--) {
+			for (var i = children.length - 1; i >= 0; i--) {
 
 				oldPage[i] = children[i];
 				element.removeChild(children[i]);

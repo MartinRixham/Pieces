@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 
-	grunt.loadNpmTasks("grunt-contrib-jshint");
-	grunt.loadNpmTasks("grunt-jscs");
+	grunt.loadNpmTasks("grunt-eslint");
 	grunt.loadNpmTasks("grunt-contrib-qunit");
 	grunt.loadNpmTasks("grunt-contrib-requirejs");
 	grunt.loadNpmTasks("grunt-mkdir");
@@ -11,18 +10,8 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 
 		pkg: grunt.file.readJSON("package.json"),
-		jshint: {
-
-			src: "src/main/webapp/js/**/*.js"
-		},
-		jscs: {
-
-			src: "src/main/webapp/js/**/*.js",
-			options: {
-
-				config: ".jscsrc",
-				fix: false
-			}
+		eslint: {
+			target: ["src/main/webapp/js/**", "test/main/webapp/js/**"]
 		},
 		qunit: {
 
@@ -73,5 +62,5 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask("default", ["jshint", "jscs", "qunit", "requirejs", "mkdir", "concat-define", "uglify"]);
+	grunt.registerTask("default", ["eslint", "qunit", "requirejs", "mkdir", "concat-define", "uglify"]);
 };

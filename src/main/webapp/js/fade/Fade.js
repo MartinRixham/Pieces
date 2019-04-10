@@ -6,7 +6,8 @@ define([
 	"js/fade/Modular",
 	"js/fade/Animation",
 	"js/fade/Blue",
-	"js/Code"],
+	"js/Code"
+],
 function(
 	$,
 	FadeNavPiece,

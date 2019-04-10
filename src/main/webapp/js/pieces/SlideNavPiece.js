@@ -1,7 +1,8 @@
 define([
 	"./Library",
 	"./Placeholder",
-	"./Route"],
+	"./Route"
+],
 function SlideNavPiece(
 	Library,
 	Placeholder,
@@ -199,7 +200,7 @@ function SlideNavPiece(
 			var children = container.children[index].children;
 			var oldPage = new Array(children.length);
 
-			for(var i = children.length - 1; i >= 0; i--) {
+			for (var i = children.length - 1; i >= 0; i--) {
 
 				oldPage[i] = children[i];
 				container.children[index].removeChild(children[i]);

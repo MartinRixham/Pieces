@@ -7,7 +7,8 @@ define([
 	"js/scroll/Three",
 	"js/scroll/Four",
 	"js/Code"
-], function(
+],
+function(
 	$,
 	ScrollNavPiece,
 	NavButton,
@@ -30,7 +31,8 @@ define([
 				{ route: "one", page: new One() },
 				{ route: "two", page: new Two() },
 				{ route: "three", page: new Three() },
-				{ route: "four", page: new Four() }]);
+				{ route: "four", page: new Four() }
+			]);
 
 		// Menu buttons.
 		this.one = new NavButton(0, this.container);
