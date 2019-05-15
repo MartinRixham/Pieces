@@ -1,3 +1,3 @@
-self.importScripts('node_modules/sw-toolbox/sw-toolbox.js');
+importScripts('node_modules/workbox-sw/build/workbox-sw.js');
 
-toolbox.router.default = toolbox.networkFirst;
+workbox.routing.setDefaultHandler(new workbox.strategies.NetworkFirst());
