@@ -2,11 +2,13 @@ define([
 	"Datum",
 	"qunit",
 	"js/pieces/RouterPiece",
+	"js/pieces/NavPiece",
 	"js/pieces/Route"
 ], function(
 	Datum,
 	QUnit,
 	RouterPiece,
+	NavPiece,
 	Route) {
 
 	QUnit.module("Router Piece");
@@ -149,5 +151,46 @@ define([
 		router.route().update();
 
 		assert.strictEqual(page.route(), "goat/");
+	});
+
+	QUnit.test("Set route after navigation", function(assert) {
+
+		var done = assert.async();
+
+		new Route().reset();
+
+		var page = { route: new Datum("") };
+		var router = new RouterPiece(page);
+
+		var nav = new NavPiece([
+			{ route: "route", page: router },
+			{ route: "notherroute", page: {} }
+		]);
+
+		nav.onBind(document.createElement("DIV"));
+		router.onBind(document.createElement("DIV"));
+		router.route().update();
+
+		assert.strictEqual(page.route(), "");
+		assert.strictEqual(location.hash, "");
+
+		page.route("thingy");
+		router.route().update();
+
+		assert.strictEqual(location.hash, "#/thingy");
+
+		nav.showPage(1);
+
+		assert.strictEqual(location.hash, "#notherroute");
+
+		location.hash = "";
+		page.route("sumpt");
+		router.route().update();
+
+		setTimeout(function() {
+			assert.strictEqual(location.hash, "#/sumpt");
+
+			done();
+		});
 	});
 });
