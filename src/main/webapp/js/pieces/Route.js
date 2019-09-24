@@ -23,10 +23,12 @@ define([], function() {
 
 			if (words[i] != newWords[i]) {
 
-				routes.splice(i + 1);
-
 				updating++;
-				routes[i].set(newWords[i] || "", i);
+
+				if (routes[i].set(newWords[i], i)) {
+
+					routes.splice(i + 1);
+				}
 
 				words = newWords;
 

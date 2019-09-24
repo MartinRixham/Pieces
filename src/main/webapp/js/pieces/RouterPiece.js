@@ -42,10 +42,11 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 				word = {
 
-					set: function(word, routeIndex) {
+					set: function(word) {
 
 						page.route(word && decodeURIComponent(word));
-						route.update(routeIndex);
+
+						return true;
 					},
 					get: function() {
 
@@ -57,10 +58,11 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 				word = {
 
-					set: function(word, routeIndex) {
+					set: function(word) {
 
 						page.route = word && decodeURIComponent(word);
-						route.update(routeIndex);
+
+						return true;
 					},
 					get: function() {
 

@@ -66,8 +66,10 @@ function SlideNavPiece(
 
 					set: function(word, routeIndex) {
 
-						routePage(word);
+						var changed = routePage(word);
 						route.update(routeIndex);
+
+						return changed;
 					},
 					get: function() {
 
@@ -82,18 +84,23 @@ function SlideNavPiece(
 
 				if (pages[i].route == hash) {
 
-					showPage(i);
 					activeIndex(i);
 
-					return;
+					return showPage(i);
 				}
 			}
 
-			showPage(0);
 			activeIndex(-1);
+
+			return showPage(0);
 		}
 
 		function showPage(index) {
+
+			if (self.firstPage == pages[index].page) {
+
+				return false;
+			}
 
 			right = true;
 
@@ -106,6 +113,8 @@ function SlideNavPiece(
 				container.style.removeProperty("transition");
 				container.style.left = "0";
 			}
+
+			return true;
 		}
 
 		this.showPage = function(index) {

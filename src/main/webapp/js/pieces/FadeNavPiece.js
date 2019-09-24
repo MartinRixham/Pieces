@@ -52,8 +52,10 @@ function FadeNavPiece(
 
 					set: function(word, routeIndex) {
 
-						routePage(word);
+						var changed = routePage(word);
 						route.update(routeIndex);
+
+						return changed;
 					},
 					get: function() {
 
@@ -68,17 +70,28 @@ function FadeNavPiece(
 
 				if (pages[i].route == hash) {
 
-					self.currentPage = pages[i].page;
-					currentIndex(i);
 					activeIndex(i);
 
-					return;
+					return setPage(i);
 				}
 			}
 
-			self.currentPage = pages[0].page;
-			currentIndex(0);
 			activeIndex(-1);
+
+			return setPage(0);
+		}
+
+		function setPage(index) {
+
+			if (self.currentPage == pages[index].page) {
+
+				return false;
+			}
+
+			self.currentPage = pages[index].page;
+			currentIndex(index);
+
+			return true;
 		}
 
 		this.showPage = function(index) {

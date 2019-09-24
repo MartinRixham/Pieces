@@ -43,7 +43,7 @@ define([
 			assert.strictEqual(page.route(), "giraffe");
 
 			done();
-		});
+		}, 10);
 	});
 
 	QUnit.test("Route page from hash", function(assert) {
@@ -103,7 +103,7 @@ define([
 			assert.strictEqual(page.route, "giraffe");
 
 			done();
-		});
+		}, 10);
 	});
 
 	QUnit.test("Nested routers", function(assert) {
@@ -174,23 +174,20 @@ define([
 		assert.strictEqual(page.route(), "");
 		assert.strictEqual(location.hash, "");
 
-		page.route("thingy");
-		router.route().update();
+		nav.showPage(0);
 
-		assert.strictEqual(location.hash, "#/thingy");
-
-		nav.showPage(1);
-
-		assert.strictEqual(location.hash, "#notherroute");
+		assert.strictEqual(location.hash, "#route");
 
 		location.hash = "";
-		page.route("sumpt");
-		router.route().update();
 
 		setTimeout(function() {
-			assert.strictEqual(location.hash, "#/sumpt");
+
+			page.route("thingy");
+			router.route().update();
+
+			assert.strictEqual(location.hash, "#/thingy");
 
 			done();
-		});
+		}, 10);
 	});
 });
