@@ -20,7 +20,7 @@
     "grunt-mkdir": "^1.0.0",
     "http-server": "0.11.1",
     "node": "9.4.0",
-    "npm": "^6.4.1",
+    "npm": "^6.13.4",
     "qunit": "^2.8.0"
   },
   "repository": {
