@@ -92,7 +92,7 @@ function SlideNavPiece(
 
 			activeIndex(-1);
 
-			return showPage(0, callback);
+			showPage(0, callback);
 		}
 
 		function showPage(index, callback) {

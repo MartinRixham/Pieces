@@ -190,4 +190,39 @@ define([
 			done();
 		}, 10);
 	});
+
+	QUnit.test("Set nested route from address bar", function(assert) {
+
+		var done = assert.async();
+
+		new Route().reset();
+
+		var page = { route: new Datum("") };
+		var router = new RouterPiece(page);
+
+		var nav = new NavPiece([
+			{ route: "route", page: router },
+			{ route: "notherroute", page: {} }
+		]);
+
+		nav.onBind(document.createElement("DIV"));
+		router.onBind(document.createElement("DIV"));
+		router.route().update();
+
+		assert.strictEqual(page.route(), "");
+		assert.strictEqual(location.hash, "");
+
+		nav.showPage(0);
+
+		assert.strictEqual(location.hash, "#route");
+
+		location.hash = "/thingy";
+
+		setTimeout(function() {
+
+			assert.strictEqual(page.route(), "thingy");
+
+			done();
+		}, 100);
+	});
 });
