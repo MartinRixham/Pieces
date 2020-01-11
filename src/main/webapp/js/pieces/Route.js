@@ -19,7 +19,7 @@ define([], function() {
 
 		words = location.hash.substring(1).split("/");
 
-		for (var i = 0; i < words.length; i++) {
+		for (var i = 0; i < routes.length; i++) {
 
 			updating++;
 

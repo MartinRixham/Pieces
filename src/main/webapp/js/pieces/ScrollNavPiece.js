@@ -92,14 +92,17 @@ define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 			element.appendChild(container);
 			element.appendChild(hidden);
 
+			loaded = false;
+
 			routeIndex =
 				route.addRoute({
 
-					set: function(word, routeIndex) {
+					set: function(word, routeIndex, callback) {
 
 						if (loaded) {
 
 							routePage(word);
+							callback();
 							route.update(routeIndex);
 						}
 						else {
@@ -178,6 +181,8 @@ define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 
 					activeIndex(i);
 					currentIndex(i);
+
+					return;
 				}
 			}
 
