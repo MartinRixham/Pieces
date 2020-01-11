@@ -64,12 +64,10 @@ function SlideNavPiece(
 			routeIndex =
 				route.addRoute({
 
-					set: function(word, routeIndex) {
+					set: function(word, routeIndex, callback) {
 
-						var changed = routePage(word);
+						routePage(word, callback);
 						route.update(routeIndex);
-
-						return changed;
 					},
 					get: function() {
 
@@ -78,7 +76,7 @@ function SlideNavPiece(
 				});
 		};
 
-		function routePage(hash) {
+		function routePage(hash, callback) {
 
 			for (var i = 0; i < pages.length; i++) {
 
@@ -86,21 +84,25 @@ function SlideNavPiece(
 
 					activeIndex(i);
 
-					return showPage(i);
+					showPage(i, callback);
+
+					return;
 				}
 			}
 
 			activeIndex(-1);
 
-			return showPage(0);
+			return showPage(0, callback);
 		}
 
-		function showPage(index) {
+		function showPage(index, callback) {
 
 			if (self.firstPage == pages[index].page) {
 
-				return false;
+				return;
 			}
+
+			callback();
 
 			right = true;
 
@@ -113,8 +115,6 @@ function SlideNavPiece(
 				container.style.removeProperty("transition");
 				container.style.left = "0";
 			}
-
-			return true;
 		}
 
 		this.showPage = function(index) {

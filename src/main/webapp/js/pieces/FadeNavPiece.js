@@ -50,12 +50,10 @@ function FadeNavPiece(
 			routeIndex =
 				route.addRoute({
 
-					set: function(word, routeIndex) {
+					set: function(word, routeIndex, callback) {
 
-						var changed = routePage(word);
+						routePage(word, callback);
 						route.update(routeIndex);
-
-						return changed;
 					},
 					get: function() {
 
@@ -64,7 +62,7 @@ function FadeNavPiece(
 				});
 		};
 
-		function routePage(hash) {
+		function routePage(hash, callback) {
 
 			for (var i = 0; i < pages.length; i++) {
 
@@ -72,26 +70,27 @@ function FadeNavPiece(
 
 					activeIndex(i);
 
-					return setPage(i);
+					setPage(i, callback);
+
+					return;
 				}
 			}
 
 			activeIndex(-1);
 
-			return setPage(0);
+			setPage(0, callback);
 		}
 
-		function setPage(index) {
+		function setPage(index, callback) {
 
 			if (self.currentPage == pages[index].page) {
 
-				return false;
+				return;
 			}
 
+			callback();
 			self.currentPage = pages[index].page;
 			currentIndex(index);
-
-			return true;
 		}
 
 		this.showPage = function(index) {

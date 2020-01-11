@@ -25,10 +25,10 @@ define([], function() {
 
 				updating++;
 
-				if (routes[i].set(newWords[i], i)) {
+				routes[i].set(newWords[i], i, function() {
 
 					routes.splice(i + 1);
-				}
+				});
 
 				words = newWords;
 
@@ -47,7 +47,7 @@ define([], function() {
 
 			updating++;
 
-			word.set(words[index], index);
+			word.set(words[index], index, function() {});
 
 			return index;
 		};

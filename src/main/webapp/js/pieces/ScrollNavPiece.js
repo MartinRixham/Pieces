@@ -99,10 +99,8 @@ define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 
 						if (loaded) {
 
-							var changed = routePage(word);
+							routePage(word);
 							route.update(routeIndex);
-
-							return changed;
 						}
 						else {
 
@@ -180,8 +178,6 @@ define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 
 					activeIndex(i);
 					currentIndex(i);
-
-					return false;
 				}
 			}
 
@@ -194,8 +190,6 @@ define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 
 			activeIndex(0);
 			currentIndex(-1);
-
-			return false;
 		}
 
 		this.hidden =
