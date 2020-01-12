@@ -19,7 +19,12 @@ define([], function() {
 
 		words = location.hash.substring(1).split("/");
 
-		for (var i = 0; i < routes.length; i++) {
+		for (var i = 0; i < words.length; i++) {
+
+			if (!routes[i]) {
+
+				return;
+			}
 
 			updating++;
 
@@ -31,6 +36,11 @@ define([], function() {
 	});
 
 	function Route() {
+
+		this.setUpdating = function() {
+
+			updating++;
+		};
 
 		this.addRoute = function(word) {
 

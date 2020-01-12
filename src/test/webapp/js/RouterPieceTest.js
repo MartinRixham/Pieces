@@ -191,6 +191,80 @@ define([
 		}, 10);
 	});
 
+	QUnit.test("Navigate to shorter route", function(assert) {
+
+		var done = assert.async();
+
+		new Route().reset();
+
+		var page = { route: new Datum("") };
+		var router = new RouterPiece(page);
+
+		var nav = new NavPiece([
+			{ route: "route", page: router },
+			{ route: "notherroute", page: {} }
+		]);
+
+		nav.onBind(document.createElement("DIV"));
+		router.onBind(document.createElement("DIV"));
+		router.route().update();
+
+		assert.strictEqual(page.route(), "");
+		assert.strictEqual(location.hash, "");
+
+		location.hash = "route/thingy";
+
+		setTimeout(function() {
+
+			location.hash = "notherroute";
+
+			setTimeout(function() {
+
+				nav.showPage(0);
+
+				assert.strictEqual(location.hash, "#route");
+
+				done();
+			}, 10);
+		}, 10);
+	});
+
+	QUnit.test("Navigate to longer route", function(assert) {
+
+		var done = assert.async();
+
+		new Route().reset();
+
+		var page = { route: new Datum("") };
+		var router = new RouterPiece(page);
+
+		var nav = new NavPiece([
+			{ route: "route", page: router },
+			{ route: "notherroute", page: {} }
+		]);
+
+		nav.onBind(document.createElement("DIV"));
+		router.onBind(document.createElement("DIV"));
+		router.route().update();
+
+		assert.strictEqual(page.route(), "");
+		assert.strictEqual(location.hash, "");
+
+		location.hash = "notherroute";
+
+		setTimeout(function() {
+
+			location.hash = "route/thingy";
+
+			setTimeout(function() {
+
+				assert.strictEqual(location.hash, "#route/thingy");
+
+				done();
+			}, 10);
+		}, 10);
+	});
+
 	QUnit.test("Set nested route from address bar", function(assert) {
 
 		var done = assert.async();

@@ -29,9 +29,16 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 		};
 
 		this.route =
-			new Library.Update(function() {
+			new Library.Binding({
 
-				route.update(routeIndex);
+				init: function() {
+
+					route.setUpdating();
+				},
+				update: function() {
+
+					route.update(routeIndex);
+				}
 			});
 
 		function registerRoute() {
@@ -46,6 +53,7 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 						callback();
 						page.route(word && decodeURIComponent(word));
+						route.update(routeIndex);
 					},
 					get: function() {
 
@@ -57,11 +65,11 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 				word = {
 
-					set: function(word) {
+					set: function(word, routeIndex, callback) {
 
+						callback();
 						page.route = word && decodeURIComponent(word);
-
-						return true;
+						route.update(routeIndex);
 					},
 					get: function() {
 
