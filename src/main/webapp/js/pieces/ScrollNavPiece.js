@@ -101,8 +101,7 @@ define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 
 						if (loaded) {
 
-							routePage(word);
-							callback();
+							routePage(word, callback);
 							route.update(routeIndex);
 						}
 						else {
@@ -164,7 +163,7 @@ define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 			}
 		}
 
-		function routePage(hash) {
+		function routePage(hash, callback) {
 
 			for (var i = 0; i < pages.length; i++) {
 
@@ -177,6 +176,11 @@ define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 						moved = true;
 
 						child.scrollIntoView();
+					}
+
+					if (i != currentIndex()) {
+
+						callback();
 					}
 
 					activeIndex(i);

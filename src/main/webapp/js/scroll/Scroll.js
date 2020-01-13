@@ -2,7 +2,7 @@ define([
 	"jquery",
 	"js/pieces/ScrollNavPiece",
 	"js/pieces/NavButton",
-	"js/scroll/One",
+	"js/cities/Cities",
 	"js/scroll/Two",
 	"js/scroll/Three",
 	"js/scroll/Four",
@@ -12,7 +12,7 @@ function(
 	$,
 	ScrollNavPiece,
 	NavButton,
-	One,
+	Cities,
 	Two,
 	Three,
 	Four,
@@ -28,7 +28,7 @@ function(
 		// Create scroll navigation container.
 		this.container =
 			new ScrollNavPiece([
-				{ route: "one", page: new One() },
+				{ route: "cities", page: new Cities() },
 				{ route: "two", page: new Two() },
 				{ route: "three", page: new Three() },
 				{ route: "four", page: new Four() }
