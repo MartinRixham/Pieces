@@ -8,7 +8,7 @@ function FadeNavPiece(
 	Route,
 	Placeholder) {
 
-	var route = new Route();
+	var route;
 
 	function FadeNavPiece(pages) {
 
@@ -29,6 +29,8 @@ function FadeNavPiece(
 		this.oldPage = null;
 
 		this.onBind = function(element) {
+
+			route = Route.get();
 
 			while (element.firstChild) {
 

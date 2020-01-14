@@ -28,8 +28,9 @@ function(
 		// Create scroll navigation container.
 		this.container =
 			new ScrollNavPiece([
+
 				{ route: "cities", page: new Cities() },
-				{ route: "two", page: new Two() },
+				{ route: "two", page: new Cities() },
 				{ route: "three", page: new Three() },
 				{ route: "four", page: new Four() }
 			]);

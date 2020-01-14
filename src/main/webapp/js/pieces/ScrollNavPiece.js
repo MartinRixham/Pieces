@@ -1,6 +1,6 @@
-define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
+define(["./Library", "./Route", "./Page"], function ScrollNavPiece(Library, Route, Page) {
 
-	var route = new Route();
+	var route;
 
 	function ScrollNavPiece(pages) {
 
@@ -16,11 +16,19 @@ define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 
 		var loaded = false;
 
+		var subRoute = {
+
+			setUpdating: function() { route.setUpdating(); },
+			addRoute: function(word) {},
+			update: function(index) {},
+			changePage: function(index) {}
+		};
+
 		this.pages = new Array(pages.length);
 
 		for (var i = 0; i < pages.length; i++) {
 
-			this.pages[i] = pages[i].page;
+			this.pages[i] = new Page(i, pages[i].page, this);
 		}
 
 		function scroll() {
@@ -72,6 +80,9 @@ define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 
 		this.onBind = function(element) {
 
+			route = Route.get();
+			Route.set(subRoute);
+
 			while (element.firstChild) {
 
 				element.removeChild(element.firstChild);
@@ -121,6 +132,8 @@ define(["./Library", "./Route"], function ScrollNavPiece(Library, Route) {
 						}
 					}
 				});
+
+			Route.set(this);
 		};
 
 		function setUpPage(word, routeIndex) {

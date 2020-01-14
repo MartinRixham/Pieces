@@ -8,6 +8,8 @@ define([], function() {
 
 	var updating = 0;
 
+	var route = new Route();
+
 	window.addEventListener("hashchange", function() {
 
 		if (changedHash) {
@@ -93,15 +95,19 @@ define([], function() {
 
 			routes.splice(index + 1);
 		};
+	}
 
-		this.reset = function() {
+	return {
+
+		get: function() { return route; },
+		set: function(newRoute) { route = newRoute; },
+		reset: function() {
 
 			routes = [];
 			words = location.hash.substring(1).split("/");
 			changedHash = false;
 			updating = 0;
-		};
-	}
-
-	return Route;
+			route = new Route();
+		}
+	};
 });

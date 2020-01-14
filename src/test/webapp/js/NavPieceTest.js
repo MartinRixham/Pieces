@@ -14,7 +14,7 @@ define([
 	QUnit.testStart(function() {
 
 		location.hash = "";
-		new Route().reset();
+		Route.reset();
 	});
 
 	QUnit.test("Nav with one page", function(assert) {
@@ -122,7 +122,7 @@ define([
 		var pageTwo = {};
 
 		location.hash = "go";
-		new Route().reset();
+		Route.reset();
 
 		var nav =
 			new NavPiece(

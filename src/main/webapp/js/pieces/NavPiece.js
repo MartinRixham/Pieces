@@ -1,6 +1,6 @@
 define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
-	var route = new Route();
+	var route;
 
 	function NavPiece(pages) {
 
@@ -15,6 +15,8 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 		this.currentPage = pages[0].page;
 
 		this.onBind = function(element) {
+
+			route = Route.get();
 
 			while (element.firstChild) {
 

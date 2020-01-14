@@ -14,7 +14,7 @@ define([
 	QUnit.testStart(function() {
 
 		location.hash = "";
-		new Route().reset();
+		Route.reset();
 	});
 
 	QUnit.test("Nav with one page", function(assert) {
@@ -122,7 +122,7 @@ define([
 		var pageTwo = {};
 
 		location.hash = "go";
-		new Route().reset();
+		Route.reset();
 
 		var nav =
 			new FadeNavPiece(
@@ -167,10 +167,7 @@ define([
 		container.appendChild(child);
 
 		var nav =
-			new FadeNavPiece(
-				[
-					{ route: "clear", page: pageOne }
-				]);
+			new FadeNavPiece([{ route: "clear", page: pageOne }]);
 
 		nav.onBind(container);
 
@@ -204,4 +201,3 @@ define([
 		}, 100);
 	});
 });
-

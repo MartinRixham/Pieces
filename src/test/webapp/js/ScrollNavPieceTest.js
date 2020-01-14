@@ -14,7 +14,7 @@ define([
 	QUnit.testStart(function() {
 
 		location.hash = "";
-		new Route().reset();
+		Route.reset();
 	});
 
 	QUnit.test("Nav with two pages", function(assert) {
@@ -50,7 +50,6 @@ define([
 		assert.strictEqual(nav.pages[0], page);
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 0);
-		/* assert.strictEqual(location.hash, "#route"); */
 	});
 
 	QUnit.test("Click on second button", function(assert) {
@@ -72,9 +71,5 @@ define([
 		button.click();
 
 		assert.strictEqual(nav.pages[1], secondPage);
-		/* assert.ok(button.classes.active());
-		assert.strictEqual(nav.getCurrentIndex(), 1);
-		assert.strictEqual(location.hash, "#go"); */
 	});
 });
-

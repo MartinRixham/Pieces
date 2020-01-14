@@ -16,7 +16,7 @@ define([
 	QUnit.testStart(function() {
 
 		location.hash = "";
-		new Route().reset();
+		Route.reset();
 	});
 
 	QUnit.test("Show router page", function(assert) {
@@ -49,7 +49,7 @@ define([
 	QUnit.test("Route page from hash", function(assert) {
 
 		location.hash = "goat";
-		new Route().reset();
+		Route.reset();
 
 		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
@@ -80,7 +80,7 @@ define([
 		var done = assert.async();
 
 		location.hash = "goat";
-		new Route().reset();
+		Route.reset();
 
 		var page = { route: "" };
 		var router = new RouterPiece(page);
@@ -109,7 +109,7 @@ define([
 	QUnit.test("Nested routers", function(assert) {
 
 		location.hash = "start/end";
-		new Route().reset();
+		Route.reset();
 
 		var parent = { route: new Datum() };
 		var parentRouter = new RouterPiece(parent);
@@ -142,7 +142,7 @@ define([
 	QUnit.test("URL decode", function(assert) {
 
 		location.hash = "goat%2F";
-		new Route().reset();
+		Route.reset();
 
 		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
@@ -157,7 +157,7 @@ define([
 
 		var done = assert.async();
 
-		new Route().reset();
+		Route.reset();
 
 		var page = { route: new Datum("") };
 		var router = new RouterPiece(page);
@@ -195,7 +195,7 @@ define([
 
 		var done = assert.async();
 
-		new Route().reset();
+		Route.reset();
 
 		var page = { route: new Datum("") };
 		var router = new RouterPiece(page);
@@ -233,7 +233,7 @@ define([
 
 		var done = assert.async();
 
-		new Route().reset();
+		Route.reset();
 
 		var page = { route: new Datum("") };
 		var router = new RouterPiece(page);
@@ -269,7 +269,7 @@ define([
 
 		var done = assert.async();
 
-		new Route().reset();
+		Route.reset();
 
 		var page = { route: new Datum("") };
 		var router = new RouterPiece(page);

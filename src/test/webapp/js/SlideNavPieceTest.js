@@ -14,7 +14,7 @@ define([
 	QUnit.testStart(function() {
 
 		location.hash = "";
-		new Route().reset();
+		Route.reset();
 	});
 
 	QUnit.test("Horizontal nav with one page", function(assert) {
@@ -134,7 +134,7 @@ define([
 		var container = document.createElement("DIV");
 
 		location.hash = "go";
-		new Route().reset();
+		Route.reset();
 
 		var nav =
 			new SlideNavPiece(
@@ -158,7 +158,7 @@ define([
 		var container = document.createElement("DIV");
 
 		location.hash = "gone";
-		new Route().reset();
+		Route.reset();
 
 		var nav =
 			new SlideNavPiece(

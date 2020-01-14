@@ -8,7 +8,7 @@ function SlideNavPiece(
 	Placeholder,
 	Route) {
 
-	var route = new Route();
+	var route;
 
 	function SlideNavPiece(pages) {
 
@@ -31,6 +31,8 @@ function SlideNavPiece(
 		this.secondPage = null;
 
 		this.onBind = function(element) {
+
+			route = Route.get();
 
 			while (element.firstChild) {
 

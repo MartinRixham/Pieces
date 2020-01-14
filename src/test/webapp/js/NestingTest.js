@@ -18,13 +18,13 @@ define([
 	QUnit.testStart(function() {
 
 		location.hash = "";
-		new Route().reset();
+		Route.reset();
 	});
 
 	QUnit.test("Router piece in slide nav piece", function(assert) {
 
 		location.hash = "start/end";
-		new Route().reset();
+		Route.reset();
 
 		var parent = {};
 
@@ -47,7 +47,7 @@ define([
 	QUnit.test("Slide nav piece in router piece", function(assert) {
 
 		location.hash = "start/end";
-		new Route().reset();
+		Route.reset();
 
 		var parent = { route: new Datum() };
 		var parentRouter = new RouterPiece(parent);
@@ -69,7 +69,7 @@ define([
 	QUnit.test("Router piece in nav piece", function(assert) {
 
 		location.hash = "start/end";
-		new Route().reset();
+		Route.reset();
 
 		var parent = {};
 
@@ -92,7 +92,7 @@ define([
 	QUnit.test("Slide nav piece in router piece", function(assert) {
 
 		location.hash = "start/end";
-		new Route().reset();
+		Route.reset();
 
 		var parent = { route: new Datum() };
 		var parentRouter = new RouterPiece(parent);

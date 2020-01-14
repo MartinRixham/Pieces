@@ -1,6 +1,6 @@
 define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
-	var route = new Route();
+	var route = Route.get();
 
 	function RouterPiece(page) {
 
