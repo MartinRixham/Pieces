@@ -10,6 +10,10 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 		this.onBind = function(element) {
 
+			var event = document.createEvent("Event");
+			event.initEvent("__PIECES_BIND__", true, true);
+			element.dispatchEvent(event);
+
 			while (element.firstChild) {
 
 				element.removeChild(element.firstChild);

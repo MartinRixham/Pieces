@@ -30,6 +30,10 @@ function FadeNavPiece(
 
 		this.onBind = function(element) {
 
+			var event = document.createEvent("Event");
+			event.initEvent("__PIECES_BIND__", true, true);
+			element.dispatchEvent(event);
+
 			route = Route.get();
 
 			while (element.firstChild) {

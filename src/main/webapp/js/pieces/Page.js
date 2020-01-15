@@ -1,4 +1,4 @@
-define(["./Library"], function NavButton() {
+define(["./Library"], function NavButton(Library) {
 
 	function Page(index, page, parent) {
 
@@ -14,10 +14,25 @@ define(["./Library"], function NavButton() {
 			var page = document.createElement("DIV");
 			page.dataset.bind = "page";
 
-			element.appendChild(page);
+			var update = document.createElement("DIV");
+			update.dataset.bind = "update";
 
-			parent.callHome();
+			update.appendChild(page);
+			element.appendChild(update);
 		};
+
+		this.update = new Library.Binding({
+
+			events: {
+
+				__PIECES_BIND__: function() {
+
+					// event.stopPropagation();
+
+					parent.callHome(index);
+				}
+			}
+		});
 	}
 
 	return Page;

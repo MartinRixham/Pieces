@@ -1,4 +1,13 @@
-define(["./Library", "./Route", "./Page"], function ScrollNavPiece(Library, Route, Page) {
+define([
+	"./Library",
+	"./Route",
+	"./Subroute",
+	"./Page"
+], function ScrollNavPiece(
+	Library,
+	Route,
+	Subroute,
+	Page) {
 
 	var route;
 
@@ -16,20 +25,9 @@ define(["./Library", "./Route", "./Page"], function ScrollNavPiece(Library, Rout
 
 		var loaded = false;
 
-		var subRoute = {
+		var subroute = null;
 
-			setUpdating: function() { route.setUpdating(); },
-			addRoute: function(word) {},
-			update: function(index) {},
-			changePage: function(index) {}
-		};
-
-		this.pages = new Array(pages.length);
-
-		for (var i = 0; i < pages.length; i++) {
-
-			this.pages[i] = new Page(i, pages[i].page, this);
-		}
+		this.pages = [];
 
 		function scroll() {
 
@@ -64,10 +62,12 @@ define(["./Library", "./Route", "./Page"], function ScrollNavPiece(Library, Rout
 			if (found) {
 
 				currentIndex(index);
+				subroute.setIndex(index);
 			}
 			else {
 
 				currentIndex(-1);
+				subroute.setIndex(-1);
 			}
 
 			activeIndex(index);
@@ -80,8 +80,20 @@ define(["./Library", "./Route", "./Page"], function ScrollNavPiece(Library, Rout
 
 		this.onBind = function(element) {
 
+			var event = document.createEvent("Event");
+			event.initEvent("__PIECES_BIND__", true, true);
+			element.dispatchEvent(event);
+
 			route = Route.get();
-			Route.set(subRoute);
+			subroute = new Subroute(route);
+			Route.set(subroute);
+
+			this.pages = [];
+
+			for (var i = 0; i < pages.length; i++) {
+
+				this.pages.push(new Page(i, pages[i].page, subroute));
+			}
 
 			while (element.firstChild) {
 
@@ -132,8 +144,6 @@ define(["./Library", "./Route", "./Page"], function ScrollNavPiece(Library, Rout
 						}
 					}
 				});
-
-			Route.set(this);
 		};
 
 		function setUpPage(word, routeIndex) {
@@ -143,6 +153,7 @@ define(["./Library", "./Route", "./Page"], function ScrollNavPiece(Library, Rout
 				if (pages[i].route == word) {
 
 					currentIndex(i);
+					subroute.setIndex(i);
 					route.update(routeIndex);
 					deferredLoad(i, 1);
 
@@ -152,6 +163,7 @@ define(["./Library", "./Route", "./Page"], function ScrollNavPiece(Library, Rout
 
 			loaded = true;
 			currentIndex(0);
+			subroute.setIndex(0);
 			route.update(routeIndex);
 		}
 
@@ -198,6 +210,7 @@ define(["./Library", "./Route", "./Page"], function ScrollNavPiece(Library, Rout
 
 					activeIndex(i);
 					currentIndex(i);
+					subroute.setIndex(i);
 
 					return;
 				}
@@ -212,6 +225,7 @@ define(["./Library", "./Route", "./Page"], function ScrollNavPiece(Library, Rout
 
 			activeIndex(0);
 			currentIndex(-1);
+			subroute.setIndex(0);
 		}
 
 		this.hidden =
@@ -223,6 +237,7 @@ define(["./Library", "./Route", "./Page"], function ScrollNavPiece(Library, Rout
 				},
 				destroy: function() {
 
+					Route.set(route);
 					window.removeEventListener("scroll", scroll);
 				}
 			});

@@ -25,10 +25,11 @@ define([
 		var nav =
 			new ScrollNavPiece([
 				{ route: "path", page: pageOne },
-				{ route: "route", page: pageTwo }]);
+				{ route: "route", page: pageTwo }
+			]);
 
-		assert.strictEqual(nav.pages[0], pageOne);
-		assert.strictEqual(nav.pages[1], pageTwo);
+		assert.strictEqual(nav.pages[0].page, pageOne);
+		assert.strictEqual(nav.pages[1].page, pageTwo);
 
 		assert.strictEqual(nav.getCurrentIndex(), 0);
 		assert.strictEqual(location.hash, "");
@@ -47,7 +48,7 @@ define([
 
 		button.click();
 
-		assert.strictEqual(nav.pages[0], page);
+		assert.strictEqual(nav.pages[0].page, page);
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 0);
 	});
@@ -60,7 +61,8 @@ define([
 		var nav =
 			new ScrollNavPiece([
 				{ route: "come", page: {} },
-				{ route: "go", page: secondPage }]);
+				{ route: "go", page: secondPage }
+			]);
 
 		var button = new NavButton(1, nav)();
 
@@ -70,6 +72,6 @@ define([
 
 		button.click();
 
-		assert.strictEqual(nav.pages[1], secondPage);
+		assert.strictEqual(nav.pages[1].page, secondPage);
 	});
 });
