@@ -23,8 +23,6 @@ define([
 
 		var moved = false;
 
-		var loaded = false;
-
 		var subroute = null;
 
 		this.pages = [];
@@ -115,22 +113,13 @@ define([
 			element.appendChild(container);
 			element.appendChild(hidden);
 
-			loaded = false;
-
 			routeIndex =
 				route.addRoute({
 
 					set: function(word, routeIndex) {
 
-						if (loaded) {
-
-							routePage(word);
-							route.update(routeIndex);
-						}
-						else {
-
-							setUpPage(word, routeIndex);
-						}
+						routePage(word);
+						route.update(routeIndex);
 					},
 					get: function() {
 
@@ -145,48 +134,6 @@ define([
 					}
 				});
 		};
-
-		function setUpPage(word, routeIndex) {
-
-			for (var i = 0; i < pages.length; i++) {
-
-				if (pages[i].route == word) {
-
-					currentIndex(i);
-					subroute.setIndex(i);
-					route.update(routeIndex);
-					deferredLoad(i, 1);
-
-					return;
-				}
-			}
-
-			loaded = true;
-			currentIndex(0);
-			subroute.setIndex(0);
-			route.update(routeIndex);
-		}
-
-		function deferredLoad(index, wait) {
-
-			var child = container.children[index];
-
-			if (child && child.firstChild) {
-
-				child.scrollIntoView();
-				activeIndex(index);
-
-				loaded = true;
-				moved = true;
-			}
-			else {
-
-				setTimeout(function() {
-
-					deferredLoad(index, wait * 2);
-				}, wait);
-			}
-		}
 
 		function routePage(hash) {
 

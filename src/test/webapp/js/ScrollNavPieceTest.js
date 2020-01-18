@@ -120,4 +120,36 @@ define([
 			done();
 		});
 	});
+
+	QUnit.test("Navigate from route with sub-navigation", function(assert) {
+
+		location.hash = "route/two";
+		Route.reset();
+
+		var firstPage = {};
+		var secondPage = {};
+
+		var pageOne = {};
+
+		var pageTwo =
+			new NavPiece([
+				{ route: "one", page: firstPage },
+				{ route: "two", page: secondPage }
+			]);
+
+		var nav =
+			new ScrollNavPiece([
+				{ route: "path", page: pageOne },
+				{ route: "route", page: pageTwo }
+			]);
+
+		nav.onBind(document.createElement("DIV"));
+
+		nav.pages[1].update().events.__PIECES_BIND__(new Event("__PIECES_BIND__"));
+
+		pageTwo.onBind(document.createElement("DIV"));
+
+		assert.strictEqual(nav.getCurrentIndex(), 1);
+		assert.strictEqual(pageTwo.currentPage, secondPage);
+	});
 });
