@@ -1,10 +1,10 @@
 define(["./Library"], function() {
 
-	function CompoundWord() {
+	function CompoundWord(i) {
 
-		var words = [];
+		var words = new Array(i);
 
-		var index;
+		var index = i;
 
 		this.get = function() {
 
@@ -19,6 +19,11 @@ define(["./Library"], function() {
 		this.push = function(word) {
 
 			words.push(word);
+		};
+
+		this.hasIndex = function(index) {
+
+			return words[index];
 		};
 
 		this.setIndex = function(i) {

@@ -1,11 +1,13 @@
 define([
 	"qunit",
 	"js/pieces/ScrollNavPiece",
+	"js/pieces/NavPiece",
 	"js/pieces/NavButton",
 	"js/pieces/Route"
 ], function(
 	QUnit,
 	ScrollNavPiece,
+	NavPiece,
 	NavButton,
 	Route) {
 
@@ -76,5 +78,46 @@ define([
 		button.click();
 
 		assert.strictEqual(nav.pages[1].page, secondPage);
+	});
+
+	QUnit.test("Nav with sub-navigation", function(assert) {
+
+		var done = assert.async();
+
+		var firstPage = {};
+		var secondPage = {};
+
+		var pageOne = {};
+
+		var pageTwo =
+			new NavPiece([
+				{ route: "one", page: firstPage },
+				{ route: "two", page: secondPage }
+			]);
+
+		var nav =
+			new ScrollNavPiece([
+				{ route: "path", page: pageOne },
+				{ route: "route", page: pageTwo }
+			]);
+
+		nav.onBind(document.createElement("DIV"));
+
+		nav.pages[1].update().events.__PIECES_BIND__(new Event("__PIECES_BIND__"));
+
+		pageTwo.onBind(document.createElement("DIV"));
+
+		assert.strictEqual(nav.getCurrentIndex(), 0);
+		assert.strictEqual(pageTwo.currentPage, firstPage);
+
+		location.hash = "route/two";
+
+		setTimeout(function() {
+
+			assert.strictEqual(nav.getCurrentIndex(), 1);
+			assert.strictEqual(pageTwo.currentPage, secondPage);
+
+			done();
+		});
 	});
 });

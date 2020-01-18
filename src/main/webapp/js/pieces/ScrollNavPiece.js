@@ -120,11 +120,11 @@ define([
 			routeIndex =
 				route.addRoute({
 
-					set: function(word, routeIndex, callback) {
+					set: function(word, routeIndex) {
 
 						if (loaded) {
 
-							routePage(word, callback);
+							routePage(word);
 							route.update(routeIndex);
 						}
 						else {
@@ -188,7 +188,7 @@ define([
 			}
 		}
 
-		function routePage(hash, callback) {
+		function routePage(hash) {
 
 			for (var i = 0; i < pages.length; i++) {
 
@@ -201,11 +201,6 @@ define([
 						moved = true;
 
 						child.scrollIntoView();
-					}
-
-					if (i != currentIndex()) {
-
-						callback();
 					}
 
 					activeIndex(i);

@@ -13,13 +13,22 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 		this.addRoute = function(word) {
 
-			if (!words[index]) {
+			for (var i = 0; i < words.length; i++) {
 
-				words[index] = new CompoundWord();
+				if (!words[i].hasIndex(index)) {
+
+					words[i].push(word);
+
+					return;
+				}
 			}
 
-			words[index].push(word);
-			route.addRoute(word);
+			var newIndex = words.length;
+			var newWord = new CompoundWord(index);
+
+			words[newIndex] = newWord;
+			words[newIndex].push(word);
+			route.addRoute(newWord);
 		};
 
 		this.update = function(index) {
