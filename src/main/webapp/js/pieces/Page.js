@@ -25,10 +25,9 @@ define(["./Library"], function NavButton(Library) {
 
 			events: {
 
-				__PIECES_BIND__: function() {
+				__PIECES_BIND__: function(event) {
 
-					// event.stopPropagation();
-
+					event.stopPropagation();
 					parent.callHome(index);
 				}
 			}

@@ -21,12 +21,15 @@ define([
 
 		var pageOne = {};
 		var pageTwo = {};
+		var container = document.createElement("DIV");
 
 		var nav =
 			new ScrollNavPiece([
 				{ route: "path", page: pageOne },
 				{ route: "route", page: pageTwo }
 			]);
+
+		nav.onBind(container);
 
 		assert.strictEqual(nav.pages[0].page, pageOne);
 		assert.strictEqual(nav.pages[1].page, pageTwo);
