@@ -15,7 +15,7 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 			for (var i = 0; i < words.length; i++) {
 
-				if (!words[i].hasIndex(index)) {
+				if (!words[i].get(index)) {
 
 					words[i].push(word);
 
@@ -28,7 +28,8 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 			words[newIndex] = newWord;
 			words[newIndex].push(word);
-			route.addRoute(newWord);
+
+			return route.addRoute(newWord);
 		};
 
 		this.update = function(index) {
@@ -36,7 +37,10 @@ define(["./CompoundWord"], function(CompoundWord) {
 			route.update(index);
 		};
 
-		this.changePage = function() {};
+		this.changePage = function(index) {
+
+			route.changePage(index);
+		};
 
 		this.callHome = function(i) {
 

@@ -21,11 +21,6 @@ define(["./Library"], function() {
 			words.push(word);
 		};
 
-		this.hasIndex = function(index) {
-
-			return words[index];
-		};
-
 		this.setIndex = function(i) {
 
 			index = i;
