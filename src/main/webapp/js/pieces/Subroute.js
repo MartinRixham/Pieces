@@ -15,7 +15,7 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 			for (var i = 0; i < words.length; i++) {
 
-				if (!words[i].get(index)) {
+				if (!words[i].hasIndex(index)) {
 
 					words[i].push(word);
 
