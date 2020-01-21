@@ -32,6 +32,44 @@ define([
 				}
 			]);
 
+		this.left = new Binding({
+
+			click: function() {
+
+				var index = this.cities.getCurrentIndex();
+
+				if (index > 0) {
+
+					this.cities.showPage(--index);
+				}
+			},
+			visible: function() {
+
+				var index = this.cities.getCurrentIndex();
+
+				return index > 0;
+			}
+		});
+
+		this.right = new Binding({
+
+			click: function() {
+
+				var index = this.cities.getCurrentIndex();
+
+				if (index < 2) {
+
+					this.cities.showPage(++index);
+				}
+			},
+			visible: function() {
+
+				var index = this.cities.getCurrentIndex();
+
+				return index < 2;
+			}
+		});
+
 		this.code = new Code("cities/Cities.js");
 	}
 

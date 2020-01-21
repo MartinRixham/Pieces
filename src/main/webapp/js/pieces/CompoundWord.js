@@ -10,7 +10,7 @@ define(["./Library"], function() {
 
 		this.get = function() {
 
-			return words[index];
+			return words[index].get();
 		};
 
 		this.set = function(word, routeIndex, callback) {

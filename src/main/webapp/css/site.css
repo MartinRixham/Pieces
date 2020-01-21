@@ -166,6 +166,29 @@ pre {
     padding-top: 2rem;
 }
 
+.scroll .cities
+{
+    position: relative;
+}
+
+.scroll .cities .left, .scroll .cities .right
+{
+    position: absolute;
+    top: 50%;
+    font-size: xx-large;
+    cursor: pointer;
+}
+
+.scroll .cities .left
+{
+    left: 2%;
+}
+
+.scroll .cities .right
+{
+    right: 2%;
+}
+
 .fade .options
 {
     width: 384px;
