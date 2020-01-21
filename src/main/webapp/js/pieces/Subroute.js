@@ -21,17 +21,19 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 					words[i].add(index, word);
 
-					return;
+					return words[i].getRouteIndex();
 				}
 			}
 
-			var newIndex = words.length;
 			var newWord = new CompoundWord(currentIndex);
+			var routeIndex = route.addRoute(newWord);
+			var newIndex = words.length;
 
 			words[newIndex] = newWord;
+			words[newIndex].setRouteIndex(routeIndex);
 			words[newIndex].add(index, word);
 
-			return route.addRoute(newWord);
+			return routeIndex;
 		};
 
 		this.update = function(index) {

@@ -8,6 +8,8 @@ define(["./Library"], function() {
 
 		var deferredSet = [];
 
+		var routeIndex;
+
 		this.get = function() {
 
 			return words[index].get();
@@ -45,6 +47,16 @@ define(["./Library"], function() {
 		this.setIndex = function(i) {
 
 			index = i;
+		};
+
+		this.setRouteIndex = function(index) {
+
+			routeIndex = index;
+		};
+
+		this.getRouteIndex = function() {
+
+			return routeIndex;
 		};
 	}
 
