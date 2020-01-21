@@ -2,9 +2,11 @@ define(["./Library"], function() {
 
 	function CompoundWord(i) {
 
-		var words = new Array(i);
+		var words = [];
 
 		var index = i;
+
+		var deferredSet = [];
 
 		this.get = function() {
 
@@ -13,12 +15,26 @@ define(["./Library"], function() {
 
 		this.set = function(word, routeIndex, callback) {
 
-			words[index].set(word, routeIndex, callback);
+			if (words[index]) {
+
+				words[index].set(word, routeIndex, callback);
+			}
+			else {
+
+				deferredSet[index] = arguments;
+			}
 		};
 
-		this.push = function(word) {
+		this.add = function(index, word) {
 
-			words.push(word);
+			words[index] = word;
+
+			if (deferredSet[index]) {
+
+				word.set.apply(word, deferredSet[index]);
+
+				deferredSet.splice(index, 1);
+			}
 		};
 
 		this.hasIndex = function(i) {
