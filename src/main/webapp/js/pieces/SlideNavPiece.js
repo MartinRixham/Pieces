@@ -153,13 +153,9 @@ function SlideNavPiece(
 				container.style.removeProperty("transition");
 				container.style.left = "0";
 
-				if (!right) {
+				oldPage = getOldPage(right ? 0 : 1);
 
-					oldPage = getOldPage(1);
-
-					this.firstPage = new Placeholder(oldPage);
-				}
-
+				this.firstPage = new Placeholder(oldPage);
 				this.secondPage = pages[index].page;
 
 				right = false;
@@ -183,13 +179,9 @@ function SlideNavPiece(
 				container.style.removeProperty("transition");
 				container.style.left = "-100%";
 
-				if (right) {
+				oldPage = getOldPage(right ? 0 : 1);
 
-					oldPage = getOldPage(0);
-
-					this.secondPage = new Placeholder(oldPage);
-				}
-
+				this.secondPage = new Placeholder(oldPage);
 				this.firstPage = pages[index].page;
 
 				right = true;

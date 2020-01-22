@@ -174,7 +174,7 @@ pre {
 .scroll .cities .left, .scroll .cities .right
 {
     position: absolute;
-    top: 50%;
+    top: 44%;
     font-size: xx-large;
     cursor: pointer;
 }

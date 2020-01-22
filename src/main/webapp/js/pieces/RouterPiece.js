@@ -55,12 +55,9 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 					set: function(word, routeIndex, callback) {
 
-						if (word) {
-
-							callback();
-							page.route(decodeURIComponent(word));
-							route.update(routeIndex);
-						}
+						callback();
+						page.route(word && decodeURIComponent(word));
+						route.update(routeIndex);
 					},
 					get: function() {
 
