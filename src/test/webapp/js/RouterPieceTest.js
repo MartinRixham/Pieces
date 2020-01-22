@@ -185,7 +185,7 @@ define([
 			page.route("thingy");
 			router.route().update();
 
-			assert.strictEqual(location.hash, "#/thingy");
+			assert.strictEqual(location.hash, "#route/thingy");
 
 			done();
 		}, 10);

@@ -59,7 +59,13 @@ define([], function() {
 
 		this.update = function(index) {
 
-			var route = routes[index].get();
+			var words = [];
+			var maxIndex = Math.min(routes.length, index + 1);
+
+			for (var i = 0; i < maxIndex; i++) {
+
+				words[i] = routes[i].get();
+			}
 
 			if (updating > 0) {
 
@@ -67,15 +73,6 @@ define([], function() {
 
 				return;
 			}
-
-			words.splice(index);
-
-			for (var i = words.length; i < index; i++) {
-
-				words[i] = "";
-			}
-
-			words[index] = route;
 
 			var oldHash = location.hash;
 			var hash = words.join("/");

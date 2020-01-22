@@ -45,9 +45,7 @@ define([
 			},
 			visible: function() {
 
-				var index = this.cities.getCurrentIndex();
-
-				return index > 0;
+				return this.cities.getCurrentIndex() > 0;
 			}
 		});
 
@@ -59,14 +57,12 @@ define([
 
 				if (index < 2) {
 
-					this.cities.showPage(++index);
+					this.cities.showPage(++index || 1);
 				}
 			},
 			visible: function() {
 
-				var index = this.cities.getCurrentIndex();
-
-				return index < 2;
+				return this.cities.getCurrentIndex() < 2;
 			}
 		});
 

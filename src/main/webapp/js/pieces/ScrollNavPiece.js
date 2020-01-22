@@ -17,13 +17,13 @@ define([
 
 		var currentIndex = new Library.Datum(-1);
 
-		var container = null;
+		var container;
 
 		var routeIndex = -1;
 
 		var moved = false;
 
-		var subroute = null;
+		var subroute;
 
 		this.pages = [];
 
@@ -65,7 +65,7 @@ define([
 			else {
 
 				currentIndex(-1);
-				subroute.setIndex(-1);
+				subroute.setIndex(0);
 			}
 
 			activeIndex(index);
