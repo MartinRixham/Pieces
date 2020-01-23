@@ -15,7 +15,7 @@ define([
 
 		var activeIndex = new Library.Datum(0);
 
-		var currentIndex = new Library.Datum(-1);
+		var currentIndex = -1;
 
 		var container;
 
@@ -55,22 +55,22 @@ define([
 				}
 			}
 
-			var oldIndex = currentIndex();
+			var oldIndex = currentIndex;
 
 			if (found) {
 
-				currentIndex(index);
+				currentIndex = index;
 				subroute.setIndex(index);
 			}
 			else {
 
-				currentIndex(-1);
+				currentIndex = -1;
 				subroute.setIndex(0);
 			}
 
 			activeIndex(index);
 
-			if (oldIndex != currentIndex()) {
+			if (oldIndex != currentIndex) {
 
 				route.update(routeIndex);
 			}
@@ -123,9 +123,9 @@ define([
 					},
 					get: function() {
 
-						if (currentIndex() >= 0) {
+						if (currentIndex >= 0) {
 
-							return pages[currentIndex()].route;
+							return pages[currentIndex].route;
 						}
 						else {
 
@@ -151,7 +151,7 @@ define([
 					}
 
 					activeIndex(i);
-					currentIndex(i);
+					currentIndex = i;
 					subroute.setIndex(i);
 
 					return;
@@ -166,7 +166,7 @@ define([
 			}
 
 			activeIndex(0);
-			currentIndex(-1);
+			currentIndex = -1;
 			subroute.setIndex(0);
 		}
 

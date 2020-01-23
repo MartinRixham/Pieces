@@ -14,7 +14,7 @@ function SlideNavPiece(
 
 		var self = this;
 
-		var currentIndex = new Library.Datum(0);
+		var currentIndex = 0;
 
 		var activeIndex = new Library.Datum(-1);
 
@@ -77,7 +77,7 @@ function SlideNavPiece(
 					},
 					get: function() {
 
-						return pages[currentIndex()].route;
+						return pages[currentIndex].route;
 					}
 				});
 		};
@@ -114,7 +114,7 @@ function SlideNavPiece(
 
 			self.firstPage = pages[index].page;
 			self.secondPage = null;
-			currentIndex(index);
+			currentIndex = index;
 
 			if (container) {
 
@@ -132,14 +132,14 @@ function SlideNavPiece(
 
 			activeIndex(index);
 
-			var oldIndex = currentIndex();
+			var oldIndex = currentIndex;
 
 			if (oldIndex != index) {
 
 				route.changePage(routeIndex);
 			}
 
-			currentIndex(index);
+			currentIndex = index;
 
 			route.update(routeIndex);
 

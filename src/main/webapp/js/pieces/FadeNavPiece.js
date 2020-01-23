@@ -14,7 +14,7 @@ function FadeNavPiece(
 
 		var self = this;
 
-		var currentIndex = new Library.Datum(0);
+		var currentIndex = 0;
 
 		var activeIndex = new Library.Datum(-1);
 
@@ -63,7 +63,7 @@ function FadeNavPiece(
 					},
 					get: function() {
 
-						return pages[currentIndex()].route;
+						return pages[currentIndex].route;
 					}
 				});
 		};
@@ -96,7 +96,7 @@ function FadeNavPiece(
 
 			callback();
 			self.currentPage = pages[index].page;
-			currentIndex(index);
+			currentIndex = index;
 		}
 
 		this.showPage = function(index) {
@@ -108,14 +108,14 @@ function FadeNavPiece(
 
 			activeIndex(index);
 
-			var oldIndex = currentIndex();
+			var oldIndex = currentIndex;
 
 			if (oldIndex != index) {
 
 				route.changePage(routeIndex);
 			}
 
-			currentIndex(index);
+			currentIndex = index;
 
 			route.update(routeIndex);
 
