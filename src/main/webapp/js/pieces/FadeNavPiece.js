@@ -18,7 +18,7 @@ function FadeNavPiece(
 
 		var activeIndex = new Library.Datum(-1);
 
-		var routeIndex = -1;
+		var routeIndex;
 
 		var currentElement = null;
 

@@ -6,10 +6,13 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 		this.page = page;
 
-		var routeIndex = -1;
+		var routeIndex;
+
+		var initialised;
 
 		this.onBind = function(element) {
 
+			initialised = false;
 			var event = document.createEvent("Event");
 			event.initEvent("__PIECES_BIND__", true, true);
 			element.dispatchEvent(event);
@@ -42,6 +45,7 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 				update: function() {
 
 					route.update(routeIndex);
+					initialised = true;
 				}
 			});
 
@@ -57,7 +61,11 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 						callback();
 						page.route(word && decodeURIComponent(word));
-						route.update(routeIndex);
+
+						if (!initialised) {
+
+							route.update(routeIndex);
+						}
 					},
 					get: function() {
 
@@ -73,7 +81,11 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 						callback();
 						page.route = word && decodeURIComponent(word);
-						route.update(routeIndex);
+
+						if (!initialised) {
+
+							route.update(routeIndex);
+						}
 					},
 					get: function() {
 

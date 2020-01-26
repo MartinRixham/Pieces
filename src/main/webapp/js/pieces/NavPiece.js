@@ -10,7 +10,7 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
 		var activeIndex = new Library.Datum(-1);
 
-		var routeIndex = -1;
+		var routeIndex;
 
 		this.currentPage = pages[0].page;
 

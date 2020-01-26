@@ -55,7 +55,6 @@ define([
 		var router = new RouterPiece(page);
 
 		router.onBind(document.createElement("DIV"));
-		router.route().update();
 
 		assert.strictEqual(page.route(), "goat");
 	});
@@ -66,7 +65,6 @@ define([
 		var router = new RouterPiece(page);
 
 		router.onBind(document.createElement("DIV"));
-		router.route().update();
 
 		page.route("tiger");
 
@@ -86,7 +84,6 @@ define([
 		var router = new RouterPiece(page);
 
 		router.onBind(document.createElement("DIV"));
-		router.route().update();
 
 		assert.strictEqual(page.route, "goat");
 
@@ -130,10 +127,8 @@ define([
 		var router = new RouterPiece(page);
 
 		router.onBind(document.createElement("DIV"));
-		router.route().update();
 
 		page.route("tiger/");
-
 		router.route().update();
 
 		assert.strictEqual(location.hash, "#tiger%2F");
@@ -148,7 +143,6 @@ define([
 		var router = new RouterPiece(page);
 
 		router.onBind(document.createElement("DIV"));
-		router.route().update();
 
 		assert.strictEqual(page.route(), "goat/");
 	});
@@ -169,7 +163,6 @@ define([
 
 		nav.onBind(document.createElement("DIV"));
 		router.onBind(document.createElement("DIV"));
-		router.route().update();
 
 		assert.strictEqual(page.route(), "");
 		assert.strictEqual(location.hash, "");
@@ -207,7 +200,6 @@ define([
 
 		nav.onBind(document.createElement("DIV"));
 		router.onBind(document.createElement("DIV"));
-		router.route().update();
 
 		assert.strictEqual(page.route(), "");
 		assert.strictEqual(location.hash, "");
@@ -245,7 +237,6 @@ define([
 
 		nav.onBind(document.createElement("DIV"));
 		router.onBind(document.createElement("DIV"));
-		router.route().update();
 
 		assert.strictEqual(page.route(), "");
 		assert.strictEqual(location.hash, "");
@@ -281,7 +272,6 @@ define([
 
 		nav.onBind(document.createElement("DIV"));
 		router.onBind(document.createElement("DIV"));
-		router.route().update();
 
 		assert.strictEqual(page.route(), "");
 		assert.strictEqual(location.hash, "");

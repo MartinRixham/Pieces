@@ -24,7 +24,7 @@ function SlideNavPiece(
 
 		var slideRef = {};
 
-		var routeIndex = -1;
+		var routeIndex;
 
 		this.firstPage = pages[0].page;
 

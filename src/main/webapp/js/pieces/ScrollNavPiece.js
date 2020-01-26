@@ -19,7 +19,7 @@ define([
 
 		var container;
 
-		var routeIndex = -1;
+		var routeIndex;
 
 		var moved = false;
 
