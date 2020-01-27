@@ -1,12 +1,12 @@
 define([
 	"jquery",
 	"js/pieces/SlideNavPiece",
-	"js/cities/City",
+	"js/Picture",
 	"js/Code"
 ], function(
 	$,
 	SlideNavPiece,
-	City,
+	Picture,
 	Code) {
 
 	function Cities() {
@@ -20,15 +20,15 @@ define([
 			new SlideNavPiece([
 				{
 					route: "london",
-					page: new City("photo-1505761671935-60b3a7427bad")
+					page: new Picture("photo-1505761671935-60b3a7427bad")
 				},
 				{
 					route: "berlin",
-					page: new City("photo-1559564484-e48b3e040ff4")
+					page: new Picture("photo-1559564484-e48b3e040ff4")
 				},
 				{
 					route: "delhi",
-					page: new City("photo-1513014576558-921f00d80b77")
+					page: new Picture("photo-1513014576558-921f00d80b77")
 				}
 			]);
 

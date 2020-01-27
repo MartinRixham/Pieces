@@ -2,8 +2,8 @@ define([
 	"jquery",
 	"js/pieces/ScrollNavPiece",
 	"js/pieces/NavButton",
-	"js/cities/Cities",
-	"js/scroll/Two",
+	"js/Cities",
+	"js/Vegetables",
 	"js/scroll/Three",
 	"js/scroll/Four",
 	"js/Code"
@@ -13,7 +13,7 @@ function(
 	ScrollNavPiece,
 	NavButton,
 	Cities,
-	Two,
+	Vegetables,
 	Three,
 	Four,
 	Code) {
@@ -30,7 +30,7 @@ function(
 			new ScrollNavPiece([
 
 				{ route: "cities", page: new Cities() },
-				{ route: "two", page: new Cities() },
+				{ route: "vegetables", page: new Vegetables() },
 				{ route: "three", page: new Cities() },
 				{ route: "four", page: new Cities() }
 			]);
