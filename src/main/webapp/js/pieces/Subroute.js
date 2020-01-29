@@ -68,13 +68,7 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 						showPage(index);
 
-						setTimeout(function() {
-
-							if (getCurrentIndex() == index) {
-
-								router.update();
-							}
-						}, 500);
+						eventuallyUpdate(router, index, 1000);
 					}
 				},
 				getIndex: function() {
@@ -82,6 +76,21 @@ define(["./CompoundWord"], function(CompoundWord) {
 					return router.getIndex();
 				}
 			};
+		}
+
+		function eventuallyUpdate(router, index, retry) {
+
+			if (getCurrentIndex() == index) {
+
+				router.update();
+			}
+			else if (retry) {
+
+				setTimeout(function() {
+
+					eventuallyUpdate(router, index, --retry);
+				}, 1);
+			}
 		}
 
 		this.update = function(index) {
