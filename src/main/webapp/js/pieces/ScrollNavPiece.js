@@ -9,9 +9,9 @@ define([
 	Subroute,
 	Page) {
 
-	var route;
-
 	function ScrollNavPiece(pages) {
+
+		var route;
 
 		var activeIndex = new Library.Datum(0);
 
@@ -19,9 +19,9 @@ define([
 
 		var container;
 
-		var routeIndex;
-
 		var moved = false;
+
+		var router;
 
 		var subroute;
 
@@ -72,18 +72,26 @@ define([
 
 			if (oldIndex != currentIndex) {
 
-				route.update(routeIndex);
+				router.update();
 			}
 		}
 
 		this.onBind = function(element) {
+
+			var self = this;
 
 			var event = document.createEvent("Event");
 			event.initEvent("__PIECES_BIND__", true, true);
 			element.dispatchEvent(event);
 
 			route = Route.get();
-			subroute = new Subroute(route);
+
+			subroute =
+				new Subroute(
+					route,
+					function() { return currentIndex; },
+					function(index) { self.showPage(index); });
+
 			Route.set(subroute);
 
 			this.pages = [];
@@ -113,7 +121,7 @@ define([
 			element.appendChild(container);
 			element.appendChild(hidden);
 
-			routeIndex =
+			router =
 				route.addRoute({
 
 					set: function(word, routeIndex) {

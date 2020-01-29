@@ -39,6 +39,8 @@ define([], function() {
 
 	function Route() {
 
+		var self = this;
+
 		this.setUpdating = function() {
 
 			updating++;
@@ -54,7 +56,25 @@ define([], function() {
 
 			word.set(words[index], index, function() {});
 
-			return index;
+			return {
+
+				setUpdating: function() {
+
+					self.setUpdating(index);
+				},
+				changePage: function() {
+
+					self.changePage(index);
+				},
+				update: function() {
+
+					self.update(index);
+				},
+				getIndex: function() {
+
+					return index;
+				}
+			};
 		};
 
 		this.update = function(index) {
@@ -75,12 +95,8 @@ define([], function() {
 			}
 
 			var oldHash = location.hash;
-			var hash = words.join("/");
 
-			// remove trailing slashes.
-			hash = hash.replace(/\/+$/, "");
-
-			location.hash = hash;
+			location.hash = words.join("/");
 
 			if (oldHash != location.hash) {
 

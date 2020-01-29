@@ -1,6 +1,6 @@
 define(["./CompoundWord"], function(CompoundWord) {
 
-	function Subroute(route) {
+	function Subroute(route, getCurrentIndex, showPage) {
 
 		var words = [];
 
@@ -15,26 +15,74 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 		this.addRoute = function(word) {
 
+			var self = this;
+
 			for (var i = 0; i < words.length; i++) {
 
 				if (!words[i].hasIndex(index)) {
 
 					words[i].add(index, word);
 
-					return words[i].getRouteIndex();
+					return getRouter(words[i].getRouter(), index, function(index) {
+
+						self.setIndex(index);
+						showPage(index);
+					});
 				}
 			}
 
 			var newWord = new CompoundWord(currentIndex);
-			var routeIndex = route.addRoute(newWord);
+			var router = route.addRoute(newWord);
 			var newIndex = words.length;
 
 			words[newIndex] = newWord;
-			words[newIndex].setRouteIndex(routeIndex);
+			words[newIndex].setRouter(router);
 			words[newIndex].add(index, word);
 
-			return routeIndex;
+			return getRouter(router, index, function(index) {
+
+				self.setIndex(index);
+				showPage(index);
+			});
 		};
+
+		function getRouter(router, index, showPage) {
+
+			return {
+
+				setUpdating: function() {
+
+					router.setUpdating();
+				},
+				changePage: function() {
+
+					router.changePage();
+				},
+				update: function() {
+
+					if (getCurrentIndex() == index) {
+
+						router.update();
+					}
+					else {
+
+						showPage(index);
+
+						setTimeout(function() {
+
+							if (getCurrentIndex() == index) {
+
+								router.update();
+							}
+						}, 450);
+					}
+				},
+				getIndex: function() {
+
+					return router.getIndex();
+				}
+			};
+		}
 
 		this.update = function(index) {
 

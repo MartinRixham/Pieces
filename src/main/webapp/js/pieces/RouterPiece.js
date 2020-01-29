@@ -1,21 +1,22 @@
 define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
-	var route = Route.get();
-
 	function RouterPiece(page) {
 
 		this.page = page;
 
-		var routeIndex;
+		var router;
 
 		var initialised;
 
 		this.onBind = function(element) {
 
 			initialised = false;
+
 			var event = document.createEvent("Event");
 			event.initEvent("__PIECES_BIND__", true, true);
 			element.dispatchEvent(event);
+
+			var route = Route.get();
 
 			while (element.firstChild) {
 
@@ -32,7 +33,7 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 			element.appendChild(hidden);
 			element.appendChild(container);
 
-			routeIndex = registerRoute();
+			router = registerRoute(route);
 		};
 
 		this.route =
@@ -40,16 +41,16 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 				init: function() {
 
-					route.setUpdating();
+					router.setUpdating();
 				},
 				update: function() {
 
-					route.update(routeIndex);
+					router.update();
 					initialised = true;
 				}
 			});
 
-		function registerRoute() {
+		function registerRoute(route) {
 
 			var word;
 

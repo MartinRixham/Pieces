@@ -8,8 +8,6 @@ function SlideNavPiece(
 	Placeholder,
 	Route) {
 
-	var route;
-
 	function SlideNavPiece(pages) {
 
 		var self = this;
@@ -24,7 +22,7 @@ function SlideNavPiece(
 
 		var slideRef = {};
 
-		var routeIndex;
+		var router;
 
 		this.firstPage = pages[0].page;
 
@@ -36,7 +34,7 @@ function SlideNavPiece(
 			event.initEvent("__PIECES_BIND__", true, true);
 			element.dispatchEvent(event);
 
-			route = Route.get();
+			var route = Route.get();
 
 			while (element.firstChild) {
 
@@ -67,7 +65,7 @@ function SlideNavPiece(
 
 			element.appendChild(container);
 
-			routeIndex =
+			router =
 				route.addRoute({
 
 					set: function(word, routeIndex, callback) {
@@ -136,12 +134,12 @@ function SlideNavPiece(
 
 			if (oldIndex != index) {
 
-				route.changePage(routeIndex);
+				router.changePage();
 			}
 
 			currentIndex = index;
 
-			route.update(routeIndex);
+			router.update();
 
 			var ref = {};
 			slideRef = ref;

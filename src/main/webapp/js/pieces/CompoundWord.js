@@ -8,7 +8,7 @@ define(["./Library"], function() {
 
 		var deferredSet = [];
 
-		var routeIndex;
+		var router;
 
 		this.get = function() {
 
@@ -49,14 +49,14 @@ define(["./Library"], function() {
 			index = i;
 		};
 
-		this.setRouteIndex = function(index) {
+		this.setRouter = function(r) {
 
-			routeIndex = index;
+			router = r;
 		};
 
-		this.getRouteIndex = function() {
+		this.getRouter = function() {
 
-			return routeIndex;
+			return router;
 		};
 	}
 

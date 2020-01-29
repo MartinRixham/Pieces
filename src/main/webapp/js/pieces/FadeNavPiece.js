@@ -8,8 +8,6 @@ function FadeNavPiece(
 	Route,
 	Placeholder) {
 
-	var route;
-
 	function FadeNavPiece(pages) {
 
 		var self = this;
@@ -18,7 +16,7 @@ function FadeNavPiece(
 
 		var activeIndex = new Library.Datum(-1);
 
-		var routeIndex;
+		var router;
 
 		var currentElement = null;
 
@@ -34,7 +32,7 @@ function FadeNavPiece(
 			event.initEvent("__PIECES_BIND__", true, true);
 			element.dispatchEvent(event);
 
-			route = Route.get();
+			var route = Route.get();
 
 			while (element.firstChild) {
 
@@ -53,7 +51,7 @@ function FadeNavPiece(
 			element.style.position = "relative";
 			element.style.paddingTop = "1px";
 
-			routeIndex =
+			router =
 				route.addRoute({
 
 					set: function(word, routeIndex, callback) {
@@ -112,12 +110,12 @@ function FadeNavPiece(
 
 			if (oldIndex != index) {
 
-				route.changePage(routeIndex);
+				router.changePage();
 			}
 
 			currentIndex = index;
 
-			route.update(routeIndex);
+			router.update();
 
 			oldElement.style.opacity = "1";
 			oldElement.style.removeProperty("transition");
