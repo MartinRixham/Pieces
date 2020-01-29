@@ -66,7 +66,7 @@ define([
 			}
 		});
 
-		this.code = new Code("cities/Cities.js");
+		this.code = new Code("Cities.js");
 	}
 
 	return Cities;

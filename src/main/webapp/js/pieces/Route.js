@@ -91,6 +91,7 @@ define([], function() {
 		this.changePage = function(index) {
 
 			routes.splice(index + 1);
+			words.splice(index + 1);
 		};
 	}
 
