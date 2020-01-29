@@ -4,7 +4,7 @@ define([
 	"js/pieces/NavButton",
 	"js/Cities",
 	"js/Vegetables",
-	"js/scroll/Three",
+	"js/Space",
 	"js/scroll/Four",
 	"js/Code"
 ],
@@ -14,7 +14,7 @@ function(
 	NavButton,
 	Cities,
 	Vegetables,
-	Three,
+	Space,
 	Four,
 	Code) {
 
@@ -31,7 +31,7 @@ function(
 
 				{ route: "cities", page: new Cities() },
 				{ route: "vegetables", page: new Vegetables() },
-				{ route: "three", page: new Cities() },
+				{ route: "space", page: new Space() },
 				{ route: "four", page: new Cities() }
 			]);
 
