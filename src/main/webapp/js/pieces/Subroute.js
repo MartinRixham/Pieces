@@ -74,7 +74,7 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 								router.update();
 							}
-						}, 450);
+						}, 500);
 					}
 				},
 				getIndex: function() {

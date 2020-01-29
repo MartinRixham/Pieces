@@ -5,7 +5,6 @@ define([
 	"js/Cities",
 	"js/Vegetables",
 	"js/Space",
-	"js/scroll/Four",
 	"js/Code"
 ],
 function(
@@ -15,14 +14,13 @@ function(
 	Cities,
 	Vegetables,
 	Space,
-	Four,
 	Code) {
 
 	function Scroll() {
 
 		this.onBind = function(element) {
 
-			$(element).load("html/scroll/scroll.html");
+			$(element).load("html/scroll.html");
 		};
 
 		// Create scroll navigation container.
@@ -49,7 +47,7 @@ function(
 				$(element).sticky();
 			});
 
-		this.code = new Code("scroll/Scroll.js");
+		this.code = new Code("Scroll.js");
 	}
 
 	return Scroll;

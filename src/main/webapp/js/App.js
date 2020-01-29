@@ -4,7 +4,7 @@ define([
 	"js/Router",
 	"js/Links",
 	"js/fade/Fade",
-	"js/scroll/Scroll",
+	"js/Scroll",
 	"js/Code"
 ], function(
 	SlideNavPiece,

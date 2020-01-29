@@ -13,7 +13,7 @@ define([
 
 		this.onBind = function(element) {
 
-			$(element).load("html/cities/cities.html");
+			$(element).load("html/cities.html");
 		};
 
 		this.cities =
