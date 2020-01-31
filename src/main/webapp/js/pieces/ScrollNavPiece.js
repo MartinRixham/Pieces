@@ -19,8 +19,6 @@ define([
 
 		var container;
 
-		var moved = false;
-
 		var router;
 
 		var subroute;
@@ -104,8 +102,6 @@ define([
 
 					if (child) {
 
-						moved = true;
-
 						child.scrollIntoView();
 					}
 
@@ -116,8 +112,6 @@ define([
 					return;
 				}
 			}
-
-			moved = true;
 
 			if (container.getBoundingClientRect().top < 50) {
 
@@ -144,13 +138,6 @@ define([
 			});
 
 		function scroll() {
-
-			if (moved) {
-
-				moved = false;
-
-				return;
-			}
 
 			var children = container.children;
 
