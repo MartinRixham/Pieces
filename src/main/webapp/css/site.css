@@ -166,27 +166,55 @@ pre {
     padding-top: 2rem;
 }
 
-.scroll .cities
+.cities
 {
     position: relative;
 }
 
-.scroll .cities .left, .scroll .cities .right
+.cities .back, .cities .forward
 {
     position: absolute;
-    top: 44%;
+    top: 0;
+    bottom: 0;
+    width: 50%;
     font-size: xx-large;
     cursor: pointer;
 }
 
-.scroll .cities .left
+.cities .back
+{
+    left: 0;
+}
+
+.cities .forward
+{
+    right: 0;
+}
+
+.cities .chevron
+{
+    position: absolute;
+    top: 44%;
+}
+
+.cities .back .chevron
 {
     left: 2%;
 }
 
-.scroll .cities .right
+.cities .forward .chevron
 {
     right: 2%;
+}
+
+.vegetables
+{
+    cursor: pointer;
+}
+
+.picture img
+{
+    width: 100%;
 }
 
 .fade .options
@@ -248,9 +276,4 @@ pre {
 .links .icons a
 {
     color: rgba(0,0,0,.87);
-}
-
-.picture img
-{
-    width: 100%;
 }
