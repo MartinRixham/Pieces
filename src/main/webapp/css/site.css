@@ -207,6 +207,41 @@ pre {
     right: 2%;
 }
 
+.rainbow .stripe
+{
+    height: 70px;
+}
+
+.rainbow .red
+{
+    background: red;
+}
+
+.rainbow .orange
+{
+    background: orange;
+}
+
+.rainbow .yellow
+{
+    background: yellow;
+}
+
+.rainbow .green
+{
+    background: green;
+}
+
+.rainbow .blue
+{
+    background: blue;
+}
+
+.rainbow .purple
+{
+    background: purple;
+}
+
 .vegetables
 {
     cursor: pointer;

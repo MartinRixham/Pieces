@@ -3,8 +3,9 @@ define([
 	"js/pieces/ScrollNavPiece",
 	"js/pieces/NavButton",
 	"js/Cities",
-	"js/Vegetables",
+	"js/Rainbow",
 	"js/Space",
+	"js/Vegetables",
 	"js/Code"
 ],
 function(
@@ -12,8 +13,9 @@ function(
 	ScrollNavPiece,
 	NavButton,
 	Cities,
-	Vegetables,
+	Rainbow,
 	Space,
+	Vegetables,
 	Code) {
 
 	function Scroll() {
@@ -28,9 +30,9 @@ function(
 			new ScrollNavPiece([
 
 				{ route: "cities", page: new Cities() },
-				{ route: "vegetables", page: new Vegetables() },
+				{ route: "rainbow", page: new Rainbow() },
 				{ route: "space", page: new Space() },
-				{ route: "four", page: new Cities() }
+				{ route: "vegetables", page: new Vegetables() }
 			]);
 
 		// Menu buttons.
