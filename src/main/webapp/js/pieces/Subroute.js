@@ -82,7 +82,10 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 			if (getCurrentIndex() == index) {
 
-				router.update();
+				setTimeout(function() {
+
+					router.update();
+				}, 50);
 			}
 			else if (retry) {
 

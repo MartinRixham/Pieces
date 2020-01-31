@@ -10,7 +10,7 @@ define([], function() {
 
 	var route = new Route();
 
-	window.addEventListener("hashchange", function() {
+	addEventListener("hashchange", function() {
 
 		if (changedHash) {
 

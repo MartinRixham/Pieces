@@ -27,55 +27,6 @@ define([
 
 		this.pages = [];
 
-		function scroll() {
-
-			if (moved) {
-
-				moved = false;
-
-				return;
-			}
-
-			var children = container.children;
-
-			var index = 0;
-			var bestTop = Number.MIN_SAFE_INTEGER;
-			var found = false;
-
-			for (var i = 0; i < children.length; i++) {
-
-				var child = children[i];
-				var top = child.getBoundingClientRect().top - 50;
-
-				if (top <= 0 && top >= bestTop) {
-
-					bestTop = top;
-					index = i;
-					found = true;
-				}
-			}
-
-			var oldIndex = currentIndex;
-
-			if (found) {
-
-				currentIndex = index;
-				subroute.setIndex(index);
-			}
-			else {
-
-				currentIndex = -1;
-				subroute.setIndex(0);
-			}
-
-			activeIndex(index);
-
-			if (oldIndex != currentIndex) {
-
-				router.update();
-			}
-		}
-
 		this.onBind = function(element) {
 
 			var self = this;
@@ -170,7 +121,7 @@ define([
 
 			if (container.getBoundingClientRect().top < 50) {
 
-				window.scrollTo(0, 0);
+				scrollTo(0, 0);
 			}
 
 			activeIndex(0);
@@ -183,14 +134,63 @@ define([
 
 				init: function() {
 
-					window.addEventListener("scroll", scroll);
+					addEventListener("scroll", scroll);
 				},
 				destroy: function() {
 
 					Route.set(route);
-					window.removeEventListener("scroll", scroll);
+					removeEventListener("scroll", scroll);
 				}
 			});
+
+		function scroll() {
+
+			if (moved) {
+
+				moved = false;
+
+				return;
+			}
+
+			var children = container.children;
+
+			var index = 0;
+			var bestTop = Number.MIN_SAFE_INTEGER;
+			var found = false;
+
+			for (var i = 0; i < children.length; i++) {
+
+				var child = children[i];
+				var top = child.getBoundingClientRect().top - 50;
+
+				if (top <= 0 && top >= bestTop) {
+
+					bestTop = top;
+					index = i;
+					found = true;
+				}
+			}
+
+			var oldIndex = currentIndex;
+
+			if (found) {
+
+				currentIndex = index;
+				subroute.setIndex(index);
+			}
+			else {
+
+				currentIndex = -1;
+				subroute.setIndex(0);
+			}
+
+			activeIndex(index);
+
+			if (oldIndex != currentIndex) {
+
+				router.update();
+			}
+		}
 
 		this.showPage = function(index) {
 

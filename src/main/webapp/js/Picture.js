@@ -1,6 +1,6 @@
 define(["jquery"], function($) {
 
-	var width = new Datum(window.innerWidth);
+	var width = new Datum(innerWidth);
 
 	var url = "https://images.unsplash.com/";
 
@@ -22,7 +22,7 @@ define(["jquery"], function($) {
 
 	addEventListener("resize", function() {
 
-		width(window.innerWidth);
+		width(innerWidth);
 	});
 
 	return Picture;
