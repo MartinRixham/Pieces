@@ -47,7 +47,7 @@ function SlideNavPiece(
 			container = document.createElement("DIV");
 			container.style.width = "200%";
 			container.style.position = "relative";
-			container.style.left = "0";
+			container.style.left = this.secondPage ? "-100%" : "0";
 
 			var firstElement = document.createElement("DIV");
 			firstElement.dataset.bind = "firstPage";
