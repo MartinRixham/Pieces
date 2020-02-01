@@ -159,6 +159,11 @@ pre {
     min-height: 1500px;
 }
 
+.scroll .pages
+{
+    min-height: 2500px;
+}
+
 .scroll .number
 {
     min-height: 500px;
@@ -167,6 +172,11 @@ pre {
 
 @media only screen and (max-width: 767px)
 {
+    .scroll .pages
+    {
+        min-height: 2000px;
+    }
+
     .scroll .number
     {
         min-height: 400px;
@@ -175,6 +185,11 @@ pre {
 
 @media only screen and (max-width: 414px)
 {
+    .scroll .pages
+    {
+            min-height: 1500px;
+    }
+
     .scroll .number
     {
         min-height: 300px;

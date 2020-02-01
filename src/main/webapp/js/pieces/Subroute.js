@@ -4,7 +4,7 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 		var words = [];
 
-		var index = 0;
+		var scrollIndex = -1;
 
 		var currentIndex = 0;
 
@@ -16,6 +16,15 @@ define(["./CompoundWord"], function(CompoundWord) {
 		this.addRoute = function(word) {
 
 			var self = this;
+
+			if (scrollIndex == -1) {
+
+				return route.addRoute(word);
+			}
+
+			var index = scrollIndex;
+
+			scrollIndex = -1;
 
 			for (var i = 0; i < words.length; i++) {
 
@@ -106,9 +115,9 @@ define(["./CompoundWord"], function(CompoundWord) {
 			route.changePage(index);
 		};
 
-		this.callHome = function(i) {
+		this.callHome = function(index) {
 
-			index = i;
+			scrollIndex = index;
 		};
 
 		this.setIndex = function(index) {

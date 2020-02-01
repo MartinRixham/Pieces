@@ -31,8 +31,8 @@ function(
 
 				{ route: "cities", page: new Cities() },
 				{ route: "rainbow", page: new Rainbow() },
-				{ route: "space", page: new Space() },
-				{ route: "vegetables", page: new Vegetables() }
+				{ route: "vegetables", page: new Vegetables() },
+				{ route: "space", page: new Space() }
 			]);
 
 		// Menu buttons.

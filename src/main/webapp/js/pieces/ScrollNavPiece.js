@@ -35,7 +35,7 @@ define([
 
 			route = Route.get();
 
-			subroute =
+			subroute = subroute ||
 				new Subroute(
 					route,
 					function() { return currentIndex; },
@@ -133,6 +133,7 @@ define([
 				destroy: function() {
 
 					Route.set(route);
+
 					removeEventListener("scroll", scroll);
 				}
 			});
