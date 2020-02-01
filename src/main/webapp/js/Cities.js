@@ -32,6 +32,7 @@ define([
 				}
 			]);
 
+		// Click on the left to go back.
 		this.left = new Binding({
 
 			click: function() {
@@ -45,10 +46,12 @@ define([
 			},
 			visible: function() {
 
+				// Hide the back button when at the beginning.
 				return this.cities.getCurrentIndex() > 0;
 			}
 		});
 
+		// Click on the right to go forward.
 		this.right = new Binding({
 
 			click: function() {
@@ -62,6 +65,7 @@ define([
 			},
 			visible: function() {
 
+				// Hide the forward button when at the end.
 				return this.cities.getCurrentIndex() < 2;
 			}
 		});

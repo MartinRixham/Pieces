@@ -41,7 +41,7 @@ function(
 		this.three = new NavButton(2, this.container);
 		this.four = new NavButton(3, this.container);
 
-		// The init binding is called to set up an element.
+		// The init callback is called to set up an element.
 		this.menu =
 			new Init(function(element) {
 

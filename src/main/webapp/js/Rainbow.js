@@ -15,7 +15,7 @@ function(
 			$(element).load("html/rainbow.html");
 		};
 
-		// Create scroll navigation container.
+		// A rainbow has six colours right?
 		this.container =
 			new ScrollNavPiece([
 
@@ -30,6 +30,8 @@ function(
 		this.code = new Code("Rainbow.js");
 	}
 
+	// Make a stripe by setting CSS classes
+	// on the element to which it binds.
 	function stripe(colour) {
 
 		var classes = {

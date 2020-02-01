@@ -34,6 +34,7 @@ define([
 				}
 			]);
 
+		// Click to cycle between pictures.
 		this.change = new Click(function() {
 
 			this.vegetables.showPage(++index % 3);
