@@ -170,7 +170,7 @@ function SlideNavPiece(
 							self.firstPage = null;
 						}
 					}, 500);
-				});
+				}, 10);
 			}
 			else if (index < oldIndex) {
 
@@ -196,7 +196,7 @@ function SlideNavPiece(
 							self.secondPage = null;
 						}
 					}, 500);
-				});
+				}, 10);
 			}
 		};
 

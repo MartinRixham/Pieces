@@ -14,7 +14,8 @@
     "Datum": "readonly",
     "Value": "readonly",
     "Binding": "readonly",
-    "Update": "readonly"
+    "Update": "readonly",
+    "Classes": "readonly"
   },
   "extends": "eslint:recommended",
   "rules": {

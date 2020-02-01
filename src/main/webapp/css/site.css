@@ -39,7 +39,6 @@
     margin-bottom: 0.5%;
 }
 
-
 @media only screen and (max-width: 767px)
 {
     .masthead.segment h2
@@ -166,6 +165,22 @@ pre {
     padding-top: 2rem;
 }
 
+@media only screen and (max-width: 767px)
+{
+    .scroll .number
+    {
+        min-height: 400px;
+    }
+}
+
+@media only screen and (max-width: 414px)
+{
+    .scroll .number
+    {
+        min-height: 300px;
+    }
+}
+
 .cities
 {
     position: relative;
@@ -209,7 +224,8 @@ pre {
 
 .rainbow .stripe
 {
-    height: 70px;
+    height: 10vw;
+    max-height: 70px;
 }
 
 .rainbow .red
@@ -268,6 +284,14 @@ pre {
 {
     margin: 1% 20%;
     font-size: x-large;
+}
+
+@media only screen and (max-width: 767px)
+{
+    .fade .text
+    {
+        margin: 2% 10%
+    }
 }
 
 @media only screen and (max-width: 414px)
