@@ -5,8 +5,7 @@ define(["jquery"], function($) {
 
 	var url = "https://images.unsplash.com/";
 
-	var params =
-		"?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&q=80&w=";
+	var params = "?auto=format&fit=crop&q=80&w=";
 
 	function Picture(id) {
 

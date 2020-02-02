@@ -143,7 +143,7 @@ function FadeNavPiece(
 
 					self.oldPage = null;
 				}, 500);
-			});
+			}, 10);
 		};
 
 		function getOldPage(element) {

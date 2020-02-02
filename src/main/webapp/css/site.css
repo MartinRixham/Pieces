@@ -241,6 +241,7 @@ pre {
 {
     height: 10vw;
     max-height: 70px;
+    cursor: pointer;
 }
 
 .rainbow .red
