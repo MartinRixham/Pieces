@@ -9,6 +9,27 @@ define([
 	Subroute,
 	Page) {
 
+	var moved = false;
+
+	var scrolls = [];
+
+	function scroll() {
+
+		if (moved) {
+
+			moved = false;
+
+			return;
+		}
+
+		for (var i = 0; i < scrolls.length; i++) {
+
+			scrolls[i]();
+		}
+	}
+
+	addEventListener("scroll", scroll);
+
 	function ScrollNavPiece(pages) {
 
 		var route;
@@ -89,7 +110,7 @@ define([
 							return "";
 						}
 					}
-				});
+				}, true);
 		};
 
 		function routePage(hash) {
@@ -101,6 +122,8 @@ define([
 					var child = container.children[i];
 
 					if (child) {
+
+						moved = true;
 
 						child.scrollIntoView();
 					}
@@ -115,6 +138,8 @@ define([
 
 			if (container.getBoundingClientRect().top < 50) {
 
+				moved = true;
+
 				scrollTo(0, 0);
 			}
 
@@ -128,13 +153,13 @@ define([
 
 				init: function() {
 
-					addEventListener("scroll", scroll);
+					scrolls.push(scroll);
 				},
 				destroy: function() {
 
-					Route.set(route);
+					scrolls.splice(scrolls.indexOf(scroll), 1);
 
-					removeEventListener("scroll", scroll);
+					Route.set(route);
 				}
 			});
 
@@ -185,6 +210,8 @@ define([
 			var child = container.children[index];
 
 			if (child) {
+
+				moved = true;
 
 				child.scrollIntoView({ behavior: "smooth", block: "start" });
 			}
