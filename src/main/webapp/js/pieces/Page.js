@@ -1,4 +1,4 @@
-define(["./Library"], function NavButton(Library) {
+define(["./Library"], function Page(Library) {
 
 	function Page(index, page, parent) {
 

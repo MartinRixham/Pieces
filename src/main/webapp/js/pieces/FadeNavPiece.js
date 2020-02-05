@@ -126,6 +126,8 @@ function FadeNavPiece(
 			currentElement.style.opacity = "0";
 			currentElement.style.removeProperty("transition");
 
+			this.currentPage = {};
+
 			var oldPage = getOldPage(currentElement);
 
 			this.oldPage = new Placeholder(oldPage);
