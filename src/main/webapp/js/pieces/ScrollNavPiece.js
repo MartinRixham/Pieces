@@ -119,14 +119,17 @@ define([
 
 				if (pages[i].route == hash) {
 
-					var child = container.children[i];
+					setTimeout(function() {
 
-					if (child) {
+						var child = container.children[i];
 
-						moved = true;
+						if (child) {
 
-						child.scrollIntoView();
-					}
+							moved = true;
+
+							child.scrollIntoView();
+						}
+					});
 
 					activeIndex(i);
 					currentIndex = i;

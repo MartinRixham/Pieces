@@ -22,7 +22,7 @@ function FadeNavPiece(
 
 		var oldElement = null;
 
-		this.currentPage = pages[0].page;
+		this.currentPage = null;
 
 		this.oldPage = null;
 

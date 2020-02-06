@@ -24,7 +24,7 @@ function SlideNavPiece(
 
 		var router;
 
-		this.firstPage = pages[0].page;
+		this.firstPage = null;
 
 		this.secondPage = null;
 

@@ -10,7 +10,7 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
 		var router;
 
-		this.currentPage = pages[0].page;
+		this.currentPage = null;
 
 		this.onBind = function(element) {
 

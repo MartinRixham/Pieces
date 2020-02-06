@@ -98,17 +98,12 @@ define([
 		var nav =
 			new ScrollNavPiece([
 				{ route: "path", page: pageOne },
-				{ route: "wot", page: pageTwo },
 				{ route: "route", page: pageTwo }
 			]);
 
 		nav.onBind(document.createElement("DIV"));
 
 		nav.pages[1].update().events.__PIECES_BIND__(new Event("__PIECES_BIND__"));
-
-		pageTwo.onBind(document.createElement("DIV"));
-
-		nav.pages[2].update().events.__PIECES_BIND__(new Event("__PIECES_BIND__"));
 
 		pageTwo.onBind(document.createElement("DIV"));
 
@@ -119,7 +114,7 @@ define([
 
 		setTimeout(function() {
 
-			assert.strictEqual(nav.getCurrentIndex(), 2);
+			assert.strictEqual(nav.getCurrentIndex(), 1);
 			assert.strictEqual(pageTwo.currentPage, secondPage);
 
 			done();
