@@ -4,7 +4,7 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
 		var self = this;
 
-		var currentIndex = 0;
+		var currentIndex = -1;
 
 		var activeIndex = new Library.Datum(-1);
 
@@ -42,7 +42,14 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 					},
 					get: function() {
 
-						return pages[currentIndex].route;
+						if (pages[currentIndex]) {
+
+							return pages[currentIndex].route;
+						}
+						else {
+
+							return "";
+						}
 					}
 				});
 		};
@@ -53,6 +60,7 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
 				if (pages[i].route == hash) {
 
+					currentIndex = i;
 					activeIndex(i);
 
 					setPage(i, callback);
@@ -61,6 +69,7 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 				}
 			}
 
+			currentIndex = -1;
 			activeIndex(-1);
 
 			setPage(0, callback);
@@ -75,7 +84,6 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
 			callback();
 			self.currentPage = pages[index].page;
-			currentIndex = index;
 		}
 
 		this.showPage = function(index) {
@@ -85,16 +93,15 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 				return;
 			}
 
-			activeIndex(index);
-
 			var oldIndex = currentIndex;
+
+			currentIndex = index;
+			activeIndex(index);
 
 			if (oldIndex != index) {
 
 				router.changePage();
 			}
-
-			currentIndex = index;
 
 			router.update();
 

@@ -34,9 +34,9 @@ define([
 
 		var route;
 
-		var activeIndex = new Library.Datum(0);
-
 		var currentIndex = -1;
+
+		var activeIndex = new Library.Datum(-1);
 
 		var container;
 
@@ -96,12 +96,12 @@ define([
 
 					set: function(word, routeIndex) {
 
-						routePage(word, routeIndex);
+						routePage(word);
 						route.update(routeIndex);
 					},
 					get: function() {
 
-						if (currentIndex >= 0) {
+						if (pages[currentIndex]) {
 
 							return pages[currentIndex].route;
 						}
@@ -113,15 +113,17 @@ define([
 				}, true);
 		};
 
-		function routePage(hash, routeIndex) {
+		function routePage(hash) {
 
 			for (var i = 0; i < pages.length; i++) {
 
 				if (pages[i].route == hash) {
 
-					eventuallyScroll(i, Math.pow(16, routeIndex));
+					eventuallyScroll(i, 1);
 
 					currentIndex = i;
+					activeIndex(i);
+
 					subroute.setIndex(i);
 
 					return;
@@ -135,8 +137,9 @@ define([
 				scrollTo(0, 0);
 			}
 
-			activeIndex(0);
 			currentIndex = -1;
+			activeIndex(-1);
+
 			subroute.setIndex(0);
 		}
 
@@ -148,7 +151,9 @@ define([
 
 				moved = true;
 
+				currentIndex = index;
 				activeIndex(index);
+
 				child.scrollIntoView();
 			}
 			else if (wait < 1000) {
@@ -162,11 +167,14 @@ define([
 
 				moved = true;
 
+				currentIndex = index;
 				activeIndex(index);
+
 				child.scrollIntoView();
 			}
 			else {
 
+				currentIndex = index;
 				activeIndex(index);
 			}
 		}
@@ -212,15 +220,17 @@ define([
 			if (found) {
 
 				currentIndex = index;
+				activeIndex(index);
+
 				subroute.setIndex(index);
 			}
 			else {
 
 				currentIndex = -1;
+				activeIndex(-1);
+
 				subroute.setIndex(0);
 			}
-
-			activeIndex(index);
 
 			if (oldIndex != currentIndex) {
 
