@@ -119,7 +119,7 @@ define([
 
 				if (pages[i].route == hash) {
 
-					eventuallyScroll(i, Math.pow(2, routeIndex * 4));
+					eventuallyScroll(i, Math.pow(16, routeIndex));
 
 					currentIndex = i;
 					subroute.setIndex(i);
@@ -151,12 +151,23 @@ define([
 				activeIndex(index);
 				child.scrollIntoView();
 			}
-			else {
+			else if (wait < 1000) {
 
 				setTimeout(function() {
 
 					eventuallyScroll(index, wait * 2);
 				}, wait);
+			}
+			else if (child) {
+
+				moved = true;
+
+				activeIndex(index);
+				child.scrollIntoView();
+			}
+			else {
+
+				activeIndex(index);
 			}
 		}
 

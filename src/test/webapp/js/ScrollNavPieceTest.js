@@ -107,9 +107,6 @@ define([
 
 		pageTwo.onBind(document.createElement("DIV"));
 
-		assert.strictEqual(nav.getCurrentIndex(), 0);
-		assert.strictEqual(pageTwo.currentPage, firstPage);
-
 		location.hash = "route/two";
 
 		setTimeout(function() {
@@ -118,10 +115,12 @@ define([
 			assert.strictEqual(pageTwo.currentPage, secondPage);
 
 			done();
-		});
+		}, 1050);
 	});
 
 	QUnit.test("Navigate from route with sub-navigation", function(assert) {
+
+		var done = assert.async();
 
 		location.hash = "route/two";
 		Route.reset();
@@ -149,7 +148,12 @@ define([
 
 		pageTwo.onBind(document.createElement("DIV"));
 
-		assert.strictEqual(nav.getCurrentIndex(), 1);
-		assert.strictEqual(pageTwo.currentPage, secondPage);
+		setTimeout(function() {
+
+			assert.strictEqual(nav.getCurrentIndex(), 1);
+			assert.strictEqual(pageTwo.currentPage, secondPage);
+
+			done();
+		}, 1050);
 	});
 });
