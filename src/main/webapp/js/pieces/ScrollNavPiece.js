@@ -96,7 +96,7 @@ define([
 
 					set: function(word, routeIndex) {
 
-						routePage(word);
+						routePage(word, routeIndex);
 						route.update(routeIndex);
 					},
 					get: function() {
@@ -113,15 +113,14 @@ define([
 				}, true);
 		};
 
-		function routePage(hash) {
+		function routePage(hash, routeIndex) {
 
 			for (var i = 0; i < pages.length; i++) {
 
 				if (pages[i].route == hash) {
 
-					scrollTo(i);
+					eventuallyScroll(i, Math.pow(2, routeIndex * 4));
 
-					activeIndex(i);
 					currentIndex = i;
 					subroute.setIndex(i);
 
@@ -141,19 +140,24 @@ define([
 			subroute.setIndex(0);
 		}
 
-		function scrollTo(index) {
+		function eventuallyScroll(index, wait) {
 
-			setTimeout(function() {
+			var child = container.children[index];
 
-				var child = container.children[index];
+			if (child && child.getBoundingClientRect().height) {
 
-				if (child) {
+				moved = true;
 
-					moved = true;
+				activeIndex(index);
+				child.scrollIntoView();
+			}
+			else {
 
-					child.scrollIntoView();
-				}
-			});
+				setTimeout(function() {
+
+					eventuallyScroll(index, wait * 2);
+				}, wait);
+			}
 		}
 
 		this.hidden =
