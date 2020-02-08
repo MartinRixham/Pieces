@@ -241,6 +241,7 @@ pre {
 {
     height: 10vw;
     max-height: 70px;
+    min-height: 51px;
     cursor: pointer;
 }
 

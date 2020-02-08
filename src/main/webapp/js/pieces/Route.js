@@ -73,6 +73,10 @@ define([], function() {
 				getIndex: function() {
 
 					return index;
+				},
+				getWord: function() {
+
+					return words[index];
 				}
 			};
 		};
@@ -112,6 +116,11 @@ define([], function() {
 
 			routes.splice(index + 1);
 			words.splice(index + 1);
+		};
+
+		this.getWord = function(index) {
+
+			return words[index];
 		};
 	}
 
