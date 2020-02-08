@@ -153,7 +153,7 @@ define([
 
 					child.scrollIntoView();
 				}
-			}, 500);
+			});
 		}
 
 		this.hidden =

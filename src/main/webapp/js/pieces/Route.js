@@ -102,7 +102,7 @@ define([], function() {
 			var hash = words.join("/");
 
 			// remove trailing slashes.
-			hash = hash.replace(/\/+$/, "");
+			hash = "#" + hash.replace(/\/+$/, "");
 
 			if (oldHash != hash) {
 

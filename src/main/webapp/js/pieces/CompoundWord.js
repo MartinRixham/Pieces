@@ -6,13 +6,18 @@ define(["./Library"], function() {
 
 		var index = i;
 
-		var deferredSet = [];
-
 		var router;
 
 		this.get = function() {
 
-			return words[index].get();
+			if (words[index]) {
+
+				return words[index].get();
+			}
+			else {
+
+				return "";
+			}
 		};
 
 		this.set = function(word, routeIndex, callback) {
@@ -21,22 +26,13 @@ define(["./Library"], function() {
 
 				words[index].set(word, routeIndex, callback);
 			}
-			else {
-
-				deferredSet[index] = arguments;
-			}
 		};
 
 		this.add = function(index, word) {
 
 			words[index] = word;
 
-			if (deferredSet[index]) {
-
-				word.set.apply(word, deferredSet[index]);
-
-				deferredSet.splice(index, 1);
-			}
+			word.set(router.getWord(), router.getIndex(), function() {});
 		};
 
 		this.hasIndex = function(i) {
