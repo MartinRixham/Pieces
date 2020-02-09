@@ -8,11 +8,11 @@ define(["./Library"], function() {
 
 		var router;
 
-		this.get = function() {
+		this.get = function(nonBlank) {
 
 			if (words[index]) {
 
-				return words[index].get();
+				return words[index].get(nonBlank);
 			}
 			else {
 

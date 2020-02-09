@@ -85,10 +85,13 @@ define([], function() {
 
 			var wordList = [];
 			var maxIndex = Math.min(routes.length, index + 1);
+			var nonBlank = false;
 
-			for (var i = 0; i < maxIndex; i++) {
+			for (var i = maxIndex - 1; i >= 0; i--) {
 
-				wordList[i] = routes[i].get();
+				wordList[i] = routes[i].get(nonBlank);
+
+				nonBlank = nonBlank || !!wordList[i];
 			}
 
 			if (updating > 0) {

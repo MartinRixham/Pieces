@@ -99,9 +99,13 @@ define([
 						routePage(word);
 						route.update(routeIndex);
 					},
-					get: function() {
+					get: function(nonBlank) {
 
-						if (pages[currentIndex]) {
+						if (nonBlank && currentIndex < 0) {
+
+							return pages[0].route;
+						}
+						else if (pages[currentIndex]) {
 
 							return pages[currentIndex].route;
 						}
@@ -215,7 +219,7 @@ define([
 				}
 			}
 
-			var oldIndex = Math.max(currentIndex, 0);
+			var oldIndex = currentIndex;
 
 			if (found) {
 
