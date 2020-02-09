@@ -119,8 +119,6 @@ define([
 
 		button.click();
 
-		nav.showPage(-1);
-
 		assert.strictEqual(nav.firstPage, pageOne);
 		assert.strictEqual(nav.secondPage, null);
 		assert.strictEqual(container.lastChild.style.left, "0px");
@@ -184,11 +182,7 @@ define([
 
 		container.appendChild(child);
 
-		var nav =
-			new SlideNavPiece(
-				[
-					{ route: "clear", page: pageOne }
-				]);
+		var nav = new SlideNavPiece([{ route: "clear", page: pageOne }]);
 
 		nav.onBind(container);
 

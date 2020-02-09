@@ -112,7 +112,7 @@ function FadeNavPiece(
 				return;
 			}
 
-			var oldIndex = currentIndex;
+			var oldIndex = Math.max(currentIndex, 0);
 
 			currentIndex = index;
 			activeIndex(index);

@@ -83,12 +83,12 @@ define([], function() {
 
 		this.update = function(index) {
 
-			var words = [];
+			var wordList = [];
 			var maxIndex = Math.min(routes.length, index + 1);
 
 			for (var i = 0; i < maxIndex; i++) {
 
-				words[i] = routes[i].get();
+				wordList[i] = routes[i].get();
 			}
 
 			if (updating > 0) {
@@ -98,8 +98,13 @@ define([], function() {
 				return;
 			}
 
+			if (words[index] == wordList[index]) {
+
+				return;
+			}
+
 			var oldHash = location.hash;
-			var hash = words.join("/");
+			var hash = wordList.join("/");
 
 			// remove trailing slashes.
 			hash = "#" + hash.replace(/\/+$/, "");
@@ -109,6 +114,7 @@ define([], function() {
 				changedHash++;
 			}
 
+			words = wordList;
 			location.hash = hash;
 		};
 

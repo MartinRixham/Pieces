@@ -93,7 +93,7 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 				return;
 			}
 
-			var oldIndex = currentIndex;
+			var oldIndex = Math.max(currentIndex, 0);
 
 			currentIndex = index;
 			activeIndex(index);

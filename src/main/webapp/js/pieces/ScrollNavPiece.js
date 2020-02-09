@@ -215,7 +215,7 @@ define([
 				}
 			}
 
-			var oldIndex = currentIndex;
+			var oldIndex = Math.max(currentIndex, 0);
 
 			if (found) {
 
@@ -243,8 +243,6 @@ define([
 			var child = container.children[index];
 
 			if (child) {
-
-				moved = true;
 
 				child.scrollIntoView({ behavior: "smooth", block: "start" });
 			}
