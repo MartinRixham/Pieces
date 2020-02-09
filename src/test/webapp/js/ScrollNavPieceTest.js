@@ -33,36 +33,11 @@ define([
 
 		nav.onBind(container);
 
-		assert.strictEqual(nav.pages[0].page, pageOne);
-		assert.strictEqual(nav.pages[1].page, pageTwo);
+		assert.strictEqual(nav.pages[0].content, pageOne);
+		assert.strictEqual(nav.pages[1].content, pageTwo);
 
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 		assert.strictEqual(location.hash, "");
-	});
-
-	QUnit.test("Click on first button", function(assert) {
-
-		var page = {};
-		var container = document.createElement("DIV");
-		var nav = new ScrollNavPiece([{ route: "route", page: page }]);
-		var button = new NavButton(0, nav)();
-
-		nav.onBind(container);
-
-		nav.hidden().init();
-
-		assert.ok(!button.classes.active());
-
-		button.click();
-
-		var event = document.createEvent("Event");
-		event.initEvent("scroll", true, true);
-		dispatchEvent(event);
-		dispatchEvent(event);
-
-		assert.strictEqual(nav.pages[0].page, page);
-		assert.ok(button.classes.active());
-		assert.strictEqual(nav.getCurrentIndex(), 0);
 	});
 
 	QUnit.test("Nav with sub-navigation", function(assert) {

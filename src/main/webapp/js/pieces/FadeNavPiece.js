@@ -22,7 +22,7 @@ function FadeNavPiece(
 
 		var oldElement = null;
 
-		this.currentPage = null;
+		this.newPage = null;
 
 		this.oldPage = null;
 
@@ -40,7 +40,7 @@ function FadeNavPiece(
 			}
 
 			currentElement = document.createElement("DIV");
-			currentElement.dataset.bind = "currentPage";
+			currentElement.dataset.bind = "newPage";
 
 			oldElement = document.createElement("DIV");
 			oldElement.dataset.bind = "oldPage";
@@ -100,13 +100,13 @@ function FadeNavPiece(
 
 		function setPage(index, callback) {
 
-			if (self.currentPage == pages[index].page) {
+			if (self.newPage == pages[index].page) {
 
 				return;
 			}
 
 			callback();
-			self.currentPage = pages[index].page;
+			self.newPage = pages[index].page;
 		}
 
 		this.showPage = function(index) {
@@ -137,12 +137,12 @@ function FadeNavPiece(
 			currentElement.style.opacity = "0";
 			currentElement.style.removeProperty("transition");
 
-			this.currentPage = {};
+			this.newPage = {};
 
 			var oldPage = getOldPage(currentElement);
 
 			this.oldPage = new Placeholder(oldPage);
-			this.currentPage = pages[index].page;
+			this.newPage = pages[index].page;
 
 			setTimeout(function() {
 

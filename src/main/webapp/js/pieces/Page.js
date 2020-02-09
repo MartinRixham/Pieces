@@ -2,8 +2,6 @@ define(["./Library"], function Page(Library) {
 
 	function Page(index, page, parent) {
 
-		this.page = page;
-
 		this.onBind = function(element) {
 
 			while (element.firstChild) {
@@ -12,7 +10,7 @@ define(["./Library"], function Page(Library) {
 			}
 
 			var page = document.createElement("DIV");
-			page.dataset.bind = "page";
+			page.dataset.bind = "content";
 
 			var update = document.createElement("DIV");
 			update.dataset.bind = "update";
@@ -32,6 +30,8 @@ define(["./Library"], function Page(Library) {
 				}
 			}
 		});
+
+		this.content = page;
 	}
 
 	return Page;

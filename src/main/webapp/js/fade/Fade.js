@@ -29,15 +29,15 @@ function(
 
 		function showPage(index) {
 
-			self.content.showPage(index);
+			self.fade.showPage(index);
 		}
 
 		function back() {
 
-			self.content.showPage(0);
+			self.fade.showPage(0);
 		}
 
-		this.content =
+		this.fade =
 			new FadeNavPiece([
 
 				{ route: "", page: new Options(showPage) },

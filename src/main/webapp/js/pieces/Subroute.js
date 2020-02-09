@@ -64,7 +64,7 @@ define(["./CompoundWord"], function(CompoundWord) {
 				},
 				update: function() {
 
-					if (getCurrentIndex() == index) {
+					if (Math.max(getCurrentIndex(), 0) == index) {
 
 						router.update();
 					}
