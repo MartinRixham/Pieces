@@ -28,11 +28,14 @@ define(["./Library"], function() {
 			}
 		};
 
-		this.add = function(index, word) {
+		this.add = function(i, word) {
 
-			words[index] = word;
+			words[i] = word;
 
-			word.set(router.getWord(), router.getIndex(), function() {});
+			word.set(
+				index == i ? router.getWord() : "",
+				router.getIndex(),
+				function() {});
 		};
 
 		this.hasIndex = function(i) {
