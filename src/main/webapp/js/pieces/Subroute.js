@@ -64,15 +64,17 @@ define(["./CompoundWord"], function(CompoundWord) {
 				},
 				update: function() {
 
-					router.update();
-
 					if (getCurrentIndex() != index) {
+
+						router.setUpdating();
 
 						setIndex(index);
 						showPage(index);
 
 						eventuallyUpdate(router, index, 100);
 					}
+
+					router.update();
 				},
 				getIndex: function() {
 
