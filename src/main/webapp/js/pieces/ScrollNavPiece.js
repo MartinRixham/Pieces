@@ -128,8 +128,6 @@ define([
 					currentIndex = i;
 					activeIndex(i);
 
-					subroute.setIndex(i);
-
 					return;
 				}
 			}
@@ -143,8 +141,6 @@ define([
 
 			currentIndex = -1;
 			activeIndex(-1);
-
-			subroute.setIndex(0);
 		}
 
 		function eventuallyScroll(index, wait) {
@@ -225,15 +221,11 @@ define([
 
 				currentIndex = index;
 				activeIndex(index);
-
-				subroute.setIndex(index);
 			}
 			else {
 
 				currentIndex = -1;
 				activeIndex(-1);
-
-				subroute.setIndex(0);
 			}
 
 			if (oldIndex != currentIndex) {

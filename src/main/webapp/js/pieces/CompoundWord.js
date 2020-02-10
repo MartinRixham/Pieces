@@ -1,18 +1,16 @@
 define(["./Library"], function() {
 
-	function CompoundWord(i) {
+	function CompoundWord(getCurrentIndex) {
 
 		var words = [];
-
-		var index = i;
 
 		var router;
 
 		this.get = function(nonBlank) {
 
-			if (words[index]) {
+			if (words[getCurrentIndex()]) {
 
-				return words[index].get(nonBlank);
+				return words[getCurrentIndex()].get(nonBlank);
 			}
 			else {
 
@@ -22,9 +20,9 @@ define(["./Library"], function() {
 
 		this.set = function(word, routeIndex, callback) {
 
-			if (words[index]) {
+			if (words[getCurrentIndex()]) {
 
-				words[index].set(word, routeIndex, callback);
+				words[getCurrentIndex()].set(word, routeIndex, callback);
 			}
 		};
 
@@ -32,20 +30,12 @@ define(["./Library"], function() {
 
 			words[i] = word;
 
-			word.set(
-				index == i ? router.getWord() : "",
-				router.getIndex(),
-				function() {});
+			word.set(router.getWord(), router.getIndex(), function() {});
 		};
 
 		this.hasIndex = function(i) {
 
 			return !!words[i];
-		};
-
-		this.setIndex = function(i) {
-
-			index = i;
 		};
 
 		this.setRouter = function(r) {

@@ -6,8 +6,6 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 		var scrollIndex = -1;
 
-		var currentIndex = 0;
-
 		this.setUpdating = function() {
 
 			route.setUpdating();
@@ -30,11 +28,11 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 					words[i].add(index, word);
 
-					return getRouter(words[i].getRouter(), index, this.setIndex, simple);
+					return getRouter(words[i].getRouter(), index, simple);
 				}
 			}
 
-			var newWord = new CompoundWord(currentIndex);
+			var newWord = new CompoundWord(getCurrentIndex);
 			var newIndex = words.length;
 			var router = route.addRoute(newWord);
 
@@ -42,10 +40,10 @@ define(["./CompoundWord"], function(CompoundWord) {
 			words[newIndex].setRouter(router);
 			words[newIndex].add(index, word);
 
-			return getRouter(router, index, this.setIndex, simple);
+			return getRouter(router, index, simple);
 		};
 
-		function getRouter(router, index, setIndex, simple) {
+		function getRouter(router, index, simple) {
 
 			if (simple) {
 
@@ -68,7 +66,6 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 						router.setUpdating();
 
-						setIndex(index);
 						showPage(index);
 
 						eventuallyUpdate(router, index, 100);
@@ -118,16 +115,6 @@ define(["./CompoundWord"], function(CompoundWord) {
 		this.callHome = function(index) {
 
 			scrollIndex = index;
-		};
-
-		this.setIndex = function(index) {
-
-			currentIndex = index;
-
-			for (var i = 0; i < words.length; i++) {
-
-				words[i].setIndex(index);
-			}
 		};
 	}
 
