@@ -9,11 +9,18 @@ define([
 	Subroute,
 	Page) {
 
+	var initialised = false;
+
 	var moved = false;
 
 	var scrolls = [];
 
 	function scroll() {
+
+		if (!initialised) {
+
+			return;
+		}
 
 		if (moved) {
 
@@ -139,6 +146,7 @@ define([
 				scrollTo(0, 0);
 			}
 
+			initialised = true;
 			currentIndex = -1;
 			activeIndex(-1);
 		}
@@ -150,6 +158,7 @@ define([
 			if (child && child.getBoundingClientRect().height) {
 
 				moved = true;
+				initialised = true;
 
 				currentIndex = index;
 				activeIndex(index);
@@ -166,6 +175,7 @@ define([
 			else if (child) {
 
 				moved = true;
+				initialised = true;
 
 				currentIndex = index;
 				activeIndex(index);
@@ -173,6 +183,8 @@ define([
 				child.scrollIntoView();
 			}
 			else {
+
+				initialised = true;
 
 				currentIndex = index;
 				activeIndex(index);
@@ -239,6 +251,8 @@ define([
 			var child = container.children[index];
 
 			if (child) {
+
+				initialised = true;
 
 				child.scrollIntoView({ behavior: "smooth", block: "start" });
 			}
