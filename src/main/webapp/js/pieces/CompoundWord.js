@@ -8,14 +8,22 @@ define(["./Library"], function() {
 
 		this.get = function(nonBlank) {
 
-			if (words[getCurrentIndex()]) {
+			var word = "";
 
-				return words[getCurrentIndex()].get(nonBlank);
-			}
-			else {
+			for (var i = 0; i < words.length; i++) {
 
-				return "";
+				if (words[i]) {
+
+					var got = words[i].get(nonBlank);
+
+					if (getCurrentIndex() == i) {
+
+						word = got;
+					}
+				}
 			}
+
+			return word;
 		};
 
 		this.set = function(word, routeIndex, callback) {
