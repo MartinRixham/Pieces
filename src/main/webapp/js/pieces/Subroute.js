@@ -26,6 +26,7 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 				if (!words[i].hasIndex(index)) {
 
+					words[i].getRouter().setUpdating();
 					words[i].add(index, word);
 
 					return getRouter(words[i].getRouter(), index, simple);
