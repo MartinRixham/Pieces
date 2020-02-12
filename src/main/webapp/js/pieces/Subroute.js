@@ -61,7 +61,7 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 					router.changePage();
 				},
-				update: function() {
+				update: function(reference) {
 
 					if (getCurrentIndex() != index) {
 
@@ -69,10 +69,10 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 						showPage(index);
 
-						eventuallyUpdate(router, index, 100);
+						eventuallyUpdate(router, index, 100, reference);
 					}
 
-					router.update();
+					router.update(reference);
 				},
 				getIndex: function() {
 
@@ -85,13 +85,13 @@ define(["./CompoundWord"], function(CompoundWord) {
 			};
 		}
 
-		function eventuallyUpdate(router, index, retry) {
+		function eventuallyUpdate(router, index, retry, reference) {
 
 			if (getCurrentIndex() == index) {
 
 				setTimeout(function() {
 
-					router.update();
+					router.update(reference);
 				}, 50);
 			}
 			else if (retry) {

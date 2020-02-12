@@ -66,9 +66,9 @@ define([], function() {
 
 					self.changePage(index);
 				},
-				update: function() {
+				update: function(reference) {
 
-					self.update(index);
+					self.update(index, reference);
 				},
 				getIndex: function() {
 
@@ -81,7 +81,7 @@ define([], function() {
 			};
 		};
 
-		this.update = function(index) {
+		this.update = function(index, reference) {
 
 			var wordList = [];
 			var maxIndex = Math.min(routes.length, index + 1);
@@ -89,7 +89,7 @@ define([], function() {
 
 			for (var i = maxIndex - 1; i >= 0; i--) {
 
-				wordList[i] = routes[i].get(nonBlank);
+				wordList[i] = routes[i].get(nonBlank, reference);
 
 				nonBlank = nonBlank || !!wordList[i];
 			}

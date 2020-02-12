@@ -6,7 +6,7 @@ define(["./Library"], function() {
 
 		var router;
 
-		this.get = function(nonBlank) {
+		this.get = function(nonBlank, reference) {
 
 			var word = "";
 
@@ -14,7 +14,7 @@ define(["./Library"], function() {
 
 				if (words[i]) {
 
-					var got = words[i].get(nonBlank);
+					var got = words[i].get(nonBlank, reference);
 
 					if (getCurrentIndex() == i) {
 

@@ -2,6 +2,8 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 	function RouterPiece(page) {
 
+		var self = this;
+
 		this.page = page;
 
 		var router;
@@ -45,7 +47,7 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 				},
 				update: function() {
 
-					router.update();
+					router.update(this);
 					initialised = true;
 				}
 			});
@@ -56,46 +58,44 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 			if (typeof page.route == "function") {
 
-				word = {
-
-					set: function(word, routeIndex, callback) {
-
-						callback();
-						page.route(word && decodeURIComponent(word));
-
-						if (!initialised) {
-
-							route.update(routeIndex);
-						}
-					},
-					get: function() {
-
-						return encodeURIComponent(page.route());
-					}
-				};
+				word = getWord(
+					function() { return page.route(); },
+					function(value) { page.route(value); },
+					route);
 			}
 			else {
 
-				word = {
-
-					set: function(word, routeIndex, callback) {
-
-						callback();
-						page.route = word && decodeURIComponent(word);
-
-						if (!initialised) {
-
-							route.update(routeIndex);
-						}
-					},
-					get: function() {
-
-						return encodeURIComponent(page.route);
-					}
-				};
+				word = getWord(
+					function() { return page.route; },
+					function(value) { page.route = value; },
+					route);
 			}
 
 			return route.addRoute(word);
+		}
+
+		function getWord(get, set, route) {
+
+			return {
+
+				set: function(word, routeIndex, callback) {
+
+					callback();
+					set(word && decodeURIComponent(word));
+
+					if (!initialised) {
+
+						route.update(routeIndex);
+					}
+				},
+				get: function(nonBlank, reference) {
+
+					if (reference == self) {
+
+						return encodeURIComponent(get());
+					}
+				}
+			};
 		}
 	}
 
