@@ -98,7 +98,7 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 				setTimeout(function() {
 
-					eventuallyUpdate(router, index, --retry);
+					eventuallyUpdate(router, index, --retry, reference);
 				}, 10);
 			}
 		}
