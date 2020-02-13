@@ -110,7 +110,10 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 		this.changePage = function(index) {
 
-			route.changePage(index);
+			for (var i = index + 1; i < words.length; i++) {
+
+				words[i].remove(getCurrentIndex());
+			}
 		};
 
 		this.callHome = function(index) {

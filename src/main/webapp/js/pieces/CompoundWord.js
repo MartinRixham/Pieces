@@ -41,6 +41,11 @@ define(["./Library"], function() {
 			word.set(router.getWord(), router.getIndex(), function() {});
 		};
 
+		this.remove = function(i) {
+
+			words.splice(i, 1);
+		};
+
 		this.hasIndex = function(i) {
 
 			return !!words[i];
