@@ -8,7 +8,7 @@ requirejs.config({
 	},
 	shim: {
 
-		"semantic": { "deps": ["jquery"] }
+		semantic: { deps: ["jquery"] }
 	}
 });
 

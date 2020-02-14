@@ -35,9 +35,16 @@ define([
 			]);
 
 		// Click to cycle between pictures.
-		this.change = new Click(function() {
+		this.change = new Binding({
 
-			this.vegetables.showPage(++index % 3);
+			init: function() {
+
+				index = Math.max(this.vegetables.getCurrentIndex(), 0);
+			},
+			click: function() {
+
+				this.vegetables.showPage(++index % 3);
+			}
 		});
 
 		this.code = new Code("Vegetables.js");
