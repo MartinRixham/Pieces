@@ -29,19 +29,19 @@ define(["./CompoundWord"], function(CompoundWord) {
 					words[i].getRouter().setUpdating();
 					words[i].add(index, word);
 
-					return getRouter(words[i].getRouter(), index, simple);
+					return getRouter(words[i].getRouter().get(), index, simple);
 				}
 			}
 
 			var newWord = new CompoundWord(getCurrentIndex);
 			var newIndex = words.length;
-			var router = route.addRoute(newWord);
+			var router = getRouter(route.addRoute(newWord), index, simple);
 
 			words[newIndex] = newWord;
 			words[newIndex].setRouter(router);
 			words[newIndex].add(index, word);
 
-			return getRouter(router, index, simple);
+			return router;
 		};
 
 		function getRouter(router, index, simple) {
@@ -81,6 +81,10 @@ define(["./CompoundWord"], function(CompoundWord) {
 				getWord: function() {
 
 					return router.getWord();
+				},
+				get: function() {
+
+					return router;
 				}
 			};
 		}
