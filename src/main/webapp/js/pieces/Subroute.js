@@ -59,7 +59,10 @@ define(["./CompoundWord"], function(CompoundWord) {
 				},
 				changePage: function() {
 
-					router.changePage();
+					for (var i = index + 1; i < words.length; i++) {
+
+						words[i].remove(getCurrentIndex());
+					}
 				},
 				update: function(reference) {
 
@@ -80,7 +83,14 @@ define(["./CompoundWord"], function(CompoundWord) {
 				},
 				getWord: function() {
 
-					return router.getWord();
+					if (getCurrentIndex() == index) {
+
+						return router.getWord();
+					}
+					else {
+
+						return "";
+					}
 				},
 				get: function() {
 
@@ -110,14 +120,6 @@ define(["./CompoundWord"], function(CompoundWord) {
 		this.update = function(index) {
 
 			route.update(index);
-		};
-
-		this.changePage = function(index) {
-
-			for (var i = index + 1; i < words.length; i++) {
-
-				words[i].remove(getCurrentIndex());
-			}
 		};
 
 		this.callHome = function(index) {
