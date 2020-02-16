@@ -41,10 +41,6 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 		this.route =
 			new Library.Binding({
 
-				init: function() {
-
-					router.setUpdating();
-				},
 				update: function() {
 
 					router.update(this);
