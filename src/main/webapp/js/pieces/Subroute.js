@@ -26,7 +26,7 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 				if (!words[i].hasIndex(index)) {
 
-					var parent = words[i].getRouter();
+					var parent = words[i].getRouter().get();
 
 					parent.setUpdating();
 					words[i].add(index, word);
@@ -38,14 +38,14 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 			var newWord = new CompoundWord(getCurrentIndex);
 			var newIndex = words.length;
-			var router = route.addRoute(newWord);
+			var router = getRouter(route.addRoute(newWord), index, simple);
 
 			words[newIndex] = newWord;
 			words[newIndex].setRouter(router);
 			words[newIndex].add(index, word);
 			word.set(router.getWord(), router.getIndex(), function() {});
 
-			return getRouter(router, index, simple);
+			return router;
 		};
 
 		function getRouter(router, index, simple) {
@@ -63,7 +63,10 @@ define(["./CompoundWord"], function(CompoundWord) {
 				},
 				changePage: function() {
 
-					router.changePage();
+					for (var i = index + 1; i < words.length; i++) {
+
+						words[i].remove(getCurrentIndex());
+					}
 				},
 				update: function(reference) {
 
@@ -85,6 +88,10 @@ define(["./CompoundWord"], function(CompoundWord) {
 				getWord: function() {
 
 					return router.getWord();
+				},
+				get: function() {
+
+					return router;
 				}
 			};
 		}
@@ -110,14 +117,6 @@ define(["./CompoundWord"], function(CompoundWord) {
 		this.update = function(index) {
 
 			route.update(index);
-		};
-
-		this.changePage = function(index) {
-
-			for (var i = index + 1; i < words.length; i++) {
-
-				words[i].remove(getCurrentIndex());
-			}
 		};
 
 		this.callHome = function(index) {

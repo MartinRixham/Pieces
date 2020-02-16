@@ -77,6 +77,10 @@ define([], function() {
 				getWord: function() {
 
 					return words[index];
+				},
+				get: function() {
+
+					return this;
 				}
 			};
 		};
