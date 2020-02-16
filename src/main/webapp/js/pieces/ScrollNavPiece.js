@@ -129,7 +129,7 @@ define([
 
 					highestIndex = Math.max(highestIndex, routeIndex);
 
-					eventuallyScroll(i, 1, routeIndex);
+					eventuallyScroll(i, routeIndex, 100);
 
 					currentIndex = i;
 					activeIndex(i);
@@ -150,53 +150,53 @@ define([
 			activeIndex(-1);
 		}
 
-		function eventuallyScroll(index, wait, routeIndex) {
+		function eventuallyScroll(index, routeIndex, retry) {
 
 			var child = container.children[index];
 
 			if (highestIndex > routeIndex) {
 
-				initialised = true;
-
-				currentIndex = index;
-				activeIndex(index);
+				initialise(index);
 			}
 			else if (child && child.getBoundingClientRect().height) {
 
-				moved = true;
-				initialised = true;
+				initialise(index);
 
-				currentIndex = index;
-				activeIndex(index);
+				highestIndex = -1;
+				moved = true;
 
 				child.scrollIntoView();
 			}
-			else if (wait < 1000) {
+			else if (retry) {
 
 				setTimeout(function() {
 
-					eventuallyScroll(index, wait * 2, routeIndex);
-				}, wait);
+					eventuallyScroll(index, routeIndex, --retry);
+				}, 10);
 			}
 			else if (child) {
 
-				moved = true;
-				initialised = true;
-
-				currentIndex = index;
-				activeIndex(index);
+				initialise(index);
 
 				highestIndex = -1;
+				moved = true;
 
 				child.scrollIntoView();
 			}
 			else {
 
-				initialised = true;
+				initialise(index);
 
-				currentIndex = index;
-				activeIndex(index);
+				highestIndex = -1;
 			}
+		}
+
+		function initialise(index) {
+
+			initialised = true;
+
+			currentIndex = index;
+			activeIndex(index);
 		}
 
 		this.hidden =
