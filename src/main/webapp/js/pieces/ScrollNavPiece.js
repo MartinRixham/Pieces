@@ -9,18 +9,11 @@ define([
 	Subroute,
 	Page) {
 
-	var initialised = false;
-
 	var moved = false;
 
 	var scrolls = [];
 
 	function scroll() {
-
-		if (!initialised) {
-
-			return;
-		}
 
 		if (moved) {
 
@@ -38,6 +31,8 @@ define([
 	addEventListener("scroll", scroll);
 
 	function ScrollNavPiece(pages) {
+
+		var initialised = false;
 
 		var route;
 
@@ -208,6 +203,11 @@ define([
 
 		function scroll() {
 
+			if (!initialised) {
+
+				return;
+			}
+
 			var children = container.children;
 
 			var index = 0;
@@ -248,11 +248,14 @@ define([
 
 		this.showPage = function(index) {
 
+			if (!initialised) {
+
+				return;
+			}
+
 			var child = container.children[index];
 
 			if (child) {
-
-				initialised = true;
 
 				child.scrollIntoView({ behavior: "smooth", block: "start" });
 			}
