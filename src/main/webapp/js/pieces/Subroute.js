@@ -119,6 +119,10 @@ define(["./CompoundWord"], function(CompoundWord) {
 					eventuallyUpdate(router, index, --retry, reference);
 				}, 10);
 			}
+			else {
+
+				router.update(reference);
+			}
 		}
 
 		this.update = function(index) {
