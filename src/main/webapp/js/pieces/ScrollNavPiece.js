@@ -13,6 +13,8 @@ define([
 
 	var scrolls = [];
 
+	var highestIndex = -1;
+
 	function scroll() {
 
 		if (moved) {
@@ -98,7 +100,7 @@ define([
 
 					set: function(word, routeIndex) {
 
-						routePage(word);
+						routePage(word, routeIndex);
 						route.update(routeIndex);
 					},
 					get: function(nonBlank) {
@@ -119,13 +121,15 @@ define([
 				}, true);
 		};
 
-		function routePage(hash) {
+		function routePage(hash, routeIndex) {
 
 			for (var i = 0; i < pages.length; i++) {
 
 				if (pages[i].route == hash) {
 
-					eventuallyScroll(i, 1);
+					highestIndex = Math.max(highestIndex, routeIndex);
+
+					eventuallyScroll(i, 1, routeIndex);
 
 					currentIndex = i;
 					activeIndex(i);
@@ -146,11 +150,18 @@ define([
 			activeIndex(-1);
 		}
 
-		function eventuallyScroll(index, wait) {
+		function eventuallyScroll(index, wait, routeIndex) {
 
 			var child = container.children[index];
 
-			if (child && child.getBoundingClientRect().height) {
+			if (highestIndex > routeIndex) {
+
+				initialised = true;
+
+				currentIndex = index;
+				activeIndex(index);
+			}
+			else if (child && child.getBoundingClientRect().height) {
 
 				moved = true;
 				initialised = true;
@@ -164,7 +175,7 @@ define([
 
 				setTimeout(function() {
 
-					eventuallyScroll(index, wait * 2);
+					eventuallyScroll(index, wait * 2, routeIndex);
 				}, wait);
 			}
 			else if (child) {
@@ -174,6 +185,8 @@ define([
 
 				currentIndex = index;
 				activeIndex(index);
+
+				highestIndex = -1;
 
 				child.scrollIntoView();
 			}
