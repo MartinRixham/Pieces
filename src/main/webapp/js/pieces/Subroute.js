@@ -26,10 +26,13 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 				if (!words[i].hasIndex(index)) {
 
-					words[i].getRouter().setUpdating();
-					words[i].add(index, word);
+					var parent = words[i].getRouter();
 
-					return getRouter(words[i].getRouter(), index, simple);
+					parent.setUpdating();
+					words[i].add(index, word);
+					word.set(parent.getWord(), parent.getIndex(), function() {});
+
+					return getRouter(parent, index, simple);
 				}
 			}
 
@@ -40,6 +43,7 @@ define(["./CompoundWord"], function(CompoundWord) {
 			words[newIndex] = newWord;
 			words[newIndex].setRouter(router);
 			words[newIndex].add(index, word);
+			word.set(router.getWord(), router.getIndex(), function() {});
 
 			return getRouter(router, index, simple);
 		};

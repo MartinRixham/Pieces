@@ -37,8 +37,6 @@ define(["./Library"], function() {
 		this.add = function(i, word) {
 
 			words[i] = word;
-
-			word.set(router.getWord(), router.getIndex(), function() {});
 		};
 
 		this.remove = function(i) {
