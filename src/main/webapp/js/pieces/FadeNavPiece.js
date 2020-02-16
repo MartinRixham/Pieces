@@ -92,10 +92,14 @@ function FadeNavPiece(
 				}
 			}
 
-			currentIndex = -1;
 			activeIndex(-1);
 
-			setPage(0, callback);
+			if (!self.newPage) {
+
+				currentIndex = -1;
+
+				setPage(0, callback);
+			}
 		}
 
 		function setPage(index, callback) {

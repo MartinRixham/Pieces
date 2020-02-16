@@ -138,13 +138,6 @@ define([
 				}
 			}
 
-			if (container.getBoundingClientRect().top < 50) {
-
-				moved = true;
-
-				scrollTo(0, 0);
-			}
-
 			initialised = true;
 			currentIndex = -1;
 			activeIndex(-1);

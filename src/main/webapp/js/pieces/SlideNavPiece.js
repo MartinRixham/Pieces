@@ -106,15 +106,20 @@ function SlideNavPiece(
 				}
 			}
 
-			currentIndex = -1;
 			activeIndex(-1);
 
-			showPage(0, callback);
+			if (right && !self.firstPage) {
+
+				currentIndex = -1;
+
+				showPage(0, callback);
+			}
 		}
 
 		function showPage(index, callback) {
 
-			if (self.firstPage == pages[index].page) {
+			if ((right && self.firstPage == pages[index].page) ||
+				(!right && self.secondPage == pages[index].page)) {
 
 				return;
 			}
