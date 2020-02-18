@@ -72,11 +72,10 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 					return;
 				}
 			}
+
 			activeIndex(-1);
 
 			if (!self.currentPage) {
-
-				currentIndex = -1;
 
 				setPage(0, callback);
 			}

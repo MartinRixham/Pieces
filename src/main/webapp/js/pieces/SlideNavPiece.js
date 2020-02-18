@@ -110,8 +110,6 @@ function SlideNavPiece(
 
 			if (right && !self.firstPage) {
 
-				currentIndex = -1;
-
 				showPage(0, callback);
 			}
 		}

@@ -13,6 +13,8 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 		this.addRoute = function(word, simple) {
 
+			dispose();
+
 			if (scrollIndex == -1) {
 
 				return route.addRoute(word);
@@ -47,6 +49,17 @@ define(["./CompoundWord"], function(CompoundWord) {
 
 			return router;
 		};
+
+		function dispose() {
+
+			for (var i = 0; i < words.length; i++) {
+
+				if (words[i].dispose) {
+
+					words.splice(i, 1);
+				}
+			}
+		}
 
 		function getRouter(router, index, simple) {
 

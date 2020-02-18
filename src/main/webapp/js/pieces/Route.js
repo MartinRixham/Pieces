@@ -127,6 +127,11 @@ define([], function() {
 
 		this.changePage = function(index) {
 
+			for (var i = 0; i < routes.length; i++) {
+
+				routes[i].dispose = true;
+			}
+
 			routes.splice(index + 1);
 			words.splice(index + 1);
 		};
