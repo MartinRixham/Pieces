@@ -164,9 +164,13 @@ pre {
     min-height: 2500px;
 }
 
-.scroll .number
+.scroll .pages > * > *
 {
     min-height: 500px;
+}
+
+.scroll .number
+{
     padding-top: 2rem;
 }
 
@@ -177,7 +181,7 @@ pre {
         min-height: 2000px;
     }
 
-    .scroll .number
+    .scroll .pages > * > *
     {
         min-height: 400px;
     }
@@ -190,7 +194,7 @@ pre {
             min-height: 1500px;
     }
 
-    .scroll .number
+    .scroll .pages > * > *
     {
         min-height: 300px;
     }
