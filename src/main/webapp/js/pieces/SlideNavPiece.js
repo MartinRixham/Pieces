@@ -106,8 +106,6 @@ function SlideNavPiece(
 				}
 			}
 
-			activeIndex(-1);
-
 			if (right && !self.firstPage) {
 
 				showPage(0, callback);

@@ -92,8 +92,6 @@ function FadeNavPiece(
 				}
 			}
 
-			activeIndex(-1);
-
 			if (!self.newPage) {
 
 				setPage(0, callback);
