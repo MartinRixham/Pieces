@@ -14,15 +14,16 @@ module.exports = function(grunt) {
 			target: ["src/main/webapp/js/**", "test/main/webapp/js/**"]
 		},
 		qunit: {
-
-			src: "src/test/webapp/index.html"
+			all: ["src/test/webapp/index.html"],
+			options: {
+				puppeteer: {
+					executablePath: "google-chrome"
+				}
+			}
 		},
 		requirejs: {
-
 			compile: {
-
 				options: {
-
 					baseUrl: "src/main/webapp",
 					mainConfigFile: "src/main/webapp/main.js",
 					name: "node_modules/almond/almond.js",
@@ -39,24 +40,16 @@ module.exports = function(grunt) {
 			}
 		},
 		"concat-define": {
-
 			options: {
-
 				externalDependencies: ["Datum"],
 				sourceRootDirectory: "src/main/webapp/js/pieces",
 				outputFile: "target/pieces.js"
 			}
 		},
 		uglify: {
-
 			my_target: {
-
 				files: {
-
-					"target/pieces.min.js": [
-
-						"target/pieces.js"
-					]
+					"target/pieces.min.js": ["target/pieces.js"]
 				}
 			}
 		}
