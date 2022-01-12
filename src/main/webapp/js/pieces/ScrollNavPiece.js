@@ -48,7 +48,7 @@ define([
 
 		var subroute;
 
-		this.pages = [];
+		this.datumPiecesPages = [];
 
 		this.onBind = function(element) {
 
@@ -68,11 +68,11 @@ define([
 
 			Route.set(subroute);
 
-			this.pages = [];
+			this.datumPiecesPages = [];
 
 			for (var i = 0; i < pages.length; i++) {
 
-				this.pages.push(new Page(i, pages[i].page, subroute));
+				this.datumPiecesPages.push(new Page(i, pages[i].page, subroute));
 			}
 
 			while (element.firstChild) {
@@ -85,7 +85,7 @@ define([
 			var page = document.createElement("DIV");
 
 			container = document.createElement("DIV");
-			container.dataset.bind = "pages";
+			container.dataset.bind = "datumPiecesPages";
 			container.appendChild(page);
 
 			var hidden = document.createElement("DIV");

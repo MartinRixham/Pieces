@@ -4,7 +4,7 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 
 		var self = this;
 
-		this.page = page;
+		this.datumPiecesPage = page;
 
 		var router;
 
@@ -30,7 +30,7 @@ define(["./Library", "./Route"], function RouterPiece(Library, Route) {
 			hidden.style.display = "none";
 
 			var container = document.createElement("DIV");
-			container.dataset.bind = "page";
+			container.dataset.bind = "datumPiecesPage";
 
 			element.appendChild(hidden);
 			element.appendChild(container);

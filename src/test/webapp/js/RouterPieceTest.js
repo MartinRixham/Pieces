@@ -24,7 +24,7 @@ define([
 		var page = { route: new Datum() };
 		var router = new RouterPiece(page);
 
-		assert.strictEqual(router.page, page);
+		assert.strictEqual(router.datumPiecesPage, page);
 	});
 
 	QUnit.test("Set route on hash change", function(assert) {

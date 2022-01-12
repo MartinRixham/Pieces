@@ -10,7 +10,7 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
 		var router;
 
-		this.currentPage = null;
+		this.datumPiecesCurrentPage = null;
 
 		this.onBind = function(element) {
 
@@ -28,7 +28,7 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 			element.style.paddingTop = "1px";
 
 			var page = document.createElement("DIV");
-			page.dataset.bind = "currentPage";
+			page.dataset.bind = "datumPiecesCurrentPage";
 
 			element.appendChild(page);
 
@@ -73,7 +73,7 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 				}
 			}
 
-			if (!self.currentPage) {
+			if (!self.datumPiecesCurrentPage) {
 
 				setPage(0, callback);
 			}
@@ -81,13 +81,13 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
 		function setPage(index, callback) {
 
-			if (self.currentPage == pages[index].page) {
+			if (self.datumPiecesCurrentPage == pages[index].page) {
 
 				return;
 			}
 
 			callback();
-			self.currentPage = pages[index].page;
+			self.datumPiecesCurrentPage = pages[index].page;
 		}
 
 		this.showPage = function(index) {
@@ -109,7 +109,7 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
 			router.update();
 
-			this.currentPage = pages[index].page;
+			this.datumPiecesCurrentPage = pages[index].page;
 		};
 
 		this.getCurrentIndex = function() {

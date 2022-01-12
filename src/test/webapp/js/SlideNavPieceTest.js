@@ -25,8 +25,8 @@ define([
 
 		nav.onBind(container);
 
-		assert.strictEqual(nav.firstPage, page);
-		assert.strictEqual(nav.secondPage, null);
+		assert.strictEqual(nav.datumPiecesFirstPage, page);
+		assert.strictEqual(nav.datumPiecesSecondPage, null);
 		assert.strictEqual(container.lastChild.style.left, "0px");
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 	});
@@ -44,8 +44,8 @@ define([
 
 		button.click();
 
-		assert.strictEqual(nav.firstPage, page);
-		assert.strictEqual(nav.secondPage, null);
+		assert.strictEqual(nav.datumPiecesFirstPage, page);
+		assert.strictEqual(nav.datumPiecesSecondPage, null);
 		assert.strictEqual(container.lastChild.style.left, "0px");
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 0);
@@ -72,7 +72,7 @@ define([
 
 		button.click();
 
-		assert.strictEqual(nav.secondPage, pageTwo);
+		assert.strictEqual(nav.datumPiecesSecondPage, pageTwo);
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 		assert.strictEqual(location.hash, "#go");
@@ -95,7 +95,7 @@ define([
 
 		nav.showPage(1);
 
-		assert.strictEqual(nav.secondPage, pageTwo);
+		assert.strictEqual(nav.datumPiecesSecondPage, pageTwo);
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 		assert.strictEqual(location.hash, "#go");
 	});
@@ -119,8 +119,8 @@ define([
 
 		button.click();
 
-		assert.strictEqual(nav.firstPage, pageOne);
-		assert.strictEqual(nav.secondPage, null);
+		assert.strictEqual(nav.datumPiecesFirstPage, pageOne);
+		assert.strictEqual(nav.datumPiecesSecondPage, null);
 		assert.strictEqual(container.lastChild.style.left, "0px");
 		assert.strictEqual(nav.getCurrentIndex(), 0);
 	});
@@ -143,8 +143,8 @@ define([
 
 		nav.onBind(container);
 
-		assert.strictEqual(nav.firstPage, pageTwo);
-		assert.strictEqual(nav.secondPage, null);
+		assert.strictEqual(nav.datumPiecesFirstPage, pageTwo);
+		assert.strictEqual(nav.datumPiecesSecondPage, null);
 		assert.strictEqual(container.lastChild.style.left, "0px");
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 	});
@@ -167,8 +167,8 @@ define([
 
 		nav.onBind(container);
 
-		assert.strictEqual(nav.firstPage, pageOne);
-		assert.strictEqual(nav.secondPage, null);
+		assert.strictEqual(nav.datumPiecesFirstPage, pageOne);
+		assert.strictEqual(nav.datumPiecesSecondPage, null);
 		assert.strictEqual(container.lastChild.style.left, "0px");
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 	});
@@ -210,8 +210,8 @@ define([
 
 		setTimeout(function() {
 
-			assert.strictEqual(nav.firstPage, pageTwo);
-			assert.strictEqual(nav.secondPage, null);
+			assert.strictEqual(nav.datumPiecesFirstPage, pageTwo);
+			assert.strictEqual(nav.datumPiecesSecondPage, null);
 			assert.strictEqual(container.lastChild.style.left, "0px");
 			assert.strictEqual(nav.getCurrentIndex(), 1);
 

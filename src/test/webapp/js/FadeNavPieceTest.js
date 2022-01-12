@@ -24,7 +24,7 @@ define([
 
 		nav.onBind(document.createElement("DIV"));
 
-		assert.strictEqual(nav.newPage, page);
+		assert.strictEqual(nav.datumPiecesNewPage, page);
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 	});
 
@@ -40,7 +40,7 @@ define([
 
 		button.click();
 
-		assert.strictEqual(nav.newPage, page);
+		assert.strictEqual(nav.datumPiecesNewPage, page);
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 0);
 	});
@@ -65,7 +65,7 @@ define([
 
 		button.click();
 
-		assert.strictEqual(nav.newPage, pageTwo);
+		assert.strictEqual(nav.datumPiecesNewPage, pageTwo);
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 		assert.strictEqual(location.hash, "#go");
@@ -87,7 +87,7 @@ define([
 
 		nav.showPage(1);
 
-		assert.strictEqual(nav.newPage, pageTwo);
+		assert.strictEqual(nav.datumPiecesNewPage, pageTwo);
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 		assert.strictEqual(location.hash, "#go");
 	});
@@ -112,7 +112,7 @@ define([
 
 		nav.showPage(-1);
 
-		assert.strictEqual(nav.newPage, pageOne);
+		assert.strictEqual(nav.datumPiecesNewPage, pageOne);
 		assert.strictEqual(nav.getCurrentIndex(), 0);
 	});
 
@@ -133,7 +133,7 @@ define([
 
 		nav.onBind(document.createElement("DIV"));
 
-		assert.strictEqual(nav.newPage, pageTwo);
+		assert.strictEqual(nav.datumPiecesNewPage, pageTwo);
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 	});
 
@@ -153,7 +153,7 @@ define([
 
 		nav.onBind(document.createElement("DIV"));
 
-		assert.strictEqual(nav.newPage, pageOne);
+		assert.strictEqual(nav.datumPiecesNewPage, pageOne);
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 	});
 
@@ -194,7 +194,7 @@ define([
 
 		setTimeout(function() {
 
-			assert.strictEqual(nav.newPage, pageTwo);
+			assert.strictEqual(nav.datumPiecesNewPage, pageTwo);
 			assert.strictEqual(nav.getCurrentIndex(), 1);
 
 			done();

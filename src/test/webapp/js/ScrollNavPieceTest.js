@@ -2,13 +2,11 @@ define([
 	"qunit",
 	"js/pieces/ScrollNavPiece",
 	"js/pieces/NavPiece",
-	"js/pieces/NavButton",
 	"js/pieces/Route"
 ], function(
 	QUnit,
 	ScrollNavPiece,
 	NavPiece,
-	NavButton,
 	Route) {
 
 	QUnit.module("Scroll Nav Piece");
@@ -33,8 +31,8 @@ define([
 
 		nav.onBind(container);
 
-		assert.strictEqual(nav.pages[0].content, pageOne);
-		assert.strictEqual(nav.pages[1].content, pageTwo);
+		assert.strictEqual(nav.datumPiecesPages[0].content, pageOne);
+		assert.strictEqual(nav.datumPiecesPages[1].content, pageTwo);
 
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 		assert.strictEqual(location.hash, "");
@@ -63,7 +61,7 @@ define([
 
 		nav.onBind(document.createElement("DIV"));
 
-		nav.pages[1].update().events.__PIECES_BIND__(new Event("__PIECES_BIND__"));
+		nav.datumPiecesPages[1].update().events.__PIECES_BIND__(new Event("__PIECES_BIND__"));
 
 		pageTwo.onBind(document.createElement("DIV"));
 
@@ -72,7 +70,7 @@ define([
 		setTimeout(function() {
 
 			assert.strictEqual(nav.getCurrentIndex(), 1);
-			assert.strictEqual(pageTwo.currentPage, secondPage);
+			assert.strictEqual(pageTwo.datumPiecesCurrentPage, secondPage);
 
 			done();
 		}, 1050);
@@ -104,14 +102,14 @@ define([
 
 		nav.onBind(document.createElement("DIV"));
 
-		nav.pages[1].update().events.__PIECES_BIND__(new Event("__PIECES_BIND__"));
+		nav.datumPiecesPages[1].update().events.__PIECES_BIND__(new Event("__PIECES_BIND__"));
 
 		pageTwo.onBind(document.createElement("DIV"));
 
 		setTimeout(function() {
 
 			assert.strictEqual(nav.getCurrentIndex(), 1);
-			assert.strictEqual(pageTwo.currentPage, secondPage);
+			assert.strictEqual(pageTwo.datumPiecesCurrentPage, secondPage);
 
 			done();
 		}, 1050);

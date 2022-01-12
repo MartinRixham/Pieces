@@ -40,7 +40,7 @@ define([
 		parentRouter.onBind(document.createElement("DIV"));
 		childRouter.onBind(document.createElement("DIV"));
 
-		assert.strictEqual(parentRouter.firstPage, parent);
+		assert.strictEqual(parentRouter.datumPiecesFirstPage, parent);
 		assert.strictEqual(child.route(), "end");
 	});
 
@@ -63,7 +63,7 @@ define([
 		childRouter.onBind(document.createElement("DIV"));
 
 		assert.strictEqual(parent.route(), "start");
-		assert.strictEqual(childRouter.firstPage, child);
+		assert.strictEqual(childRouter.datumPiecesFirstPage, child);
 	});
 
 	QUnit.test("Router piece in nav piece", function(assert) {
@@ -85,7 +85,7 @@ define([
 		parentRouter.onBind(document.createElement("DIV"));
 		childRouter.onBind(document.createElement("DIV"));
 
-		assert.strictEqual(parentRouter.currentPage, parent);
+		assert.strictEqual(parentRouter.datumPiecesCurrentPage, parent);
 		assert.strictEqual(child.route(), "end");
 	});
 
@@ -108,6 +108,6 @@ define([
 		childRouter.onBind(document.createElement("DIV"));
 
 		assert.strictEqual(parent.route(), "start");
-		assert.strictEqual(childRouter.currentPage, child);
+		assert.strictEqual(childRouter.datumPiecesCurrentPage, child);
 	});
 });
