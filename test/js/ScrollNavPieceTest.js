@@ -61,7 +61,8 @@ define([
 
 		nav.onBind(document.createElement("DIV"));
 
-		nav.datumPiecesPages[1].update().events.__PIECES_BIND__(new Event("__PIECES_BIND__"));
+		nav.datumPiecesPages[1].update().events.__PIECES_BIND__(
+			new Event("__PIECES_BIND__"));
 
 		pageTwo.onBind(document.createElement("DIV"));
 
@@ -102,7 +103,8 @@ define([
 
 		nav.onBind(document.createElement("DIV"));
 
-		nav.datumPiecesPages[1].update().events.__PIECES_BIND__(new Event("__PIECES_BIND__"));
+		nav.datumPiecesPages[1].update().events.__PIECES_BIND__(
+			new Event("__PIECES_BIND__"));
 
 		pageTwo.onBind(document.createElement("DIV"));
 

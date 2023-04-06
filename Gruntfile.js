@@ -11,10 +11,10 @@ module.exports = function(grunt) {
 
 		pkg: grunt.file.readJSON("package.json"),
 		eslint: {
-			target: ["src/main/webapp/js/**", "test/main/webapp/js/**"]
+			target: ["src/js/**", "test/js/**"]
 		},
 		qunit: {
-			all: ["src/test/webapp/index.html"],
+			all: ["test/index.html"],
 			options: {
 				puppeteer: {
 					executablePath: "google-chrome"
@@ -24,11 +24,11 @@ module.exports = function(grunt) {
 		requirejs: {
 			compile: {
 				options: {
-					baseUrl: "src/main/webapp",
-					mainConfigFile: "src/main/webapp/main.js",
+					baseUrl: "src",
+					mainConfigFile: "src/main.js",
 					name: "node_modules/almond/almond.js",
 					include: ["main.js"],
-					out: "src/main/webapp/main-production.js"
+					out: "src/main-production.js"
 				}
 			}
 		},
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 		"concat-define": {
 			options: {
 				externalDependencies: ["Datum"],
-				sourceRootDirectory: "src/main/webapp/js/pieces",
+				sourceRootDirectory: "src/js/pieces",
 				outputFile: "target/pieces.js"
 			}
 		},

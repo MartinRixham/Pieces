@@ -1,15 +1,15 @@
 define([
 	"qunit",
-	"js/pieces/SlideNavPiece",
+	"js/pieces/FadeNavPiece",
 	"js/pieces/NavButton",
 	"js/pieces/Route"
 ], function(
 	QUnit,
-	SlideNavPiece,
+	FadeNavPiece,
 	NavButton,
 	Route) {
 
-	QUnit.module("Slide Nav Piece");
+	QUnit.module("Fade Nav Piece");
 
 	QUnit.testStart(function() {
 
@@ -17,36 +17,30 @@ define([
 		Route.reset();
 	});
 
-	QUnit.test("Horizontal nav with one page", function(assert) {
+	QUnit.test("Nav with one page", function(assert) {
 
 		var page = {};
-		var container = document.createElement("DIV");
-		var nav = new SlideNavPiece([{ route: "route", page: page }]);
+		var nav = new FadeNavPiece([{ route: "route", page: page }]);
 
-		nav.onBind(container);
+		nav.onBind(document.createElement("DIV"));
 
-		assert.strictEqual(nav.datumPiecesFirstPage, page);
-		assert.strictEqual(nav.datumPiecesSecondPage, null);
-		assert.strictEqual(container.lastChild.style.left, "0px");
+		assert.strictEqual(nav.datumPiecesNewPage, page);
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 	});
 
 	QUnit.test("Click on first button", function(assert) {
 
 		var page = {};
-		var container = document.createElement("DIV");
-		var nav = new SlideNavPiece([{ route: "route", page: page }]);
+		var nav = new FadeNavPiece([{ route: "route", page: page }]);
 		var button = new NavButton(0, nav)();
 
-		nav.onBind(container);
+		nav.onBind(document.createElement("DIV"));
 
 		assert.ok(!button.classes.active());
 
 		button.click();
 
-		assert.strictEqual(nav.datumPiecesFirstPage, page);
-		assert.strictEqual(nav.datumPiecesSecondPage, null);
-		assert.strictEqual(container.lastChild.style.left, "0px");
+		assert.strictEqual(nav.datumPiecesNewPage, page);
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 0);
 	});
@@ -55,10 +49,9 @@ define([
 
 		var pageOne = {};
 		var pageTwo = {};
-		var container = document.createElement("DIV");
 
 		var nav =
-			new SlideNavPiece(
+			new FadeNavPiece(
 				[
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
@@ -66,13 +59,13 @@ define([
 
 		var button = new NavButton(1, nav)();
 
-		nav.onBind(container);
+		nav.onBind(document.createElement("DIV"));
 
 		assert.ok(!button.classes.active());
 
 		button.click();
 
-		assert.strictEqual(nav.datumPiecesSecondPage, pageTwo);
+		assert.strictEqual(nav.datumPiecesNewPage, pageTwo);
 		assert.ok(button.classes.active());
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 		assert.strictEqual(location.hash, "#go");
@@ -82,20 +75,19 @@ define([
 
 		var pageOne = {};
 		var pageTwo = {};
-		var container = document.createElement("DIV");
 
 		var nav =
-			new SlideNavPiece(
+			new FadeNavPiece(
 				[
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
 				]);
 
-		nav.onBind(container);
+		nav.onBind(document.createElement("DIV"));
 
 		nav.showPage(1);
 
-		assert.strictEqual(nav.datumPiecesSecondPage, pageTwo);
+		assert.strictEqual(nav.datumPiecesNewPage, pageTwo);
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 		assert.strictEqual(location.hash, "#go");
 	});
@@ -104,24 +96,23 @@ define([
 
 		var pageOne = {};
 		var pageTwo = {};
-		var container = document.createElement("DIV");
 
 		var nav =
-			new SlideNavPiece(
+			new FadeNavPiece(
 				[
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
 				]);
 
-		nav.onBind(container);
-
 		var button = new NavButton(0, nav)();
+
+		nav.onBind(document.createElement("DIV"));
 
 		button.click();
 
-		assert.strictEqual(nav.datumPiecesFirstPage, pageOne);
-		assert.strictEqual(nav.datumPiecesSecondPage, null);
-		assert.strictEqual(container.lastChild.style.left, "0px");
+		nav.showPage(-1);
+
+		assert.strictEqual(nav.datumPiecesNewPage, pageOne);
 		assert.strictEqual(nav.getCurrentIndex(), 0);
 	});
 
@@ -129,23 +120,20 @@ define([
 
 		var pageOne = {};
 		var pageTwo = {};
-		var container = document.createElement("DIV");
 
 		location.hash = "go";
 		Route.reset();
 
 		var nav =
-			new SlideNavPiece(
+			new FadeNavPiece(
 				[
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
 				]);
 
-		nav.onBind(container);
+		nav.onBind(document.createElement("DIV"));
 
-		assert.strictEqual(nav.datumPiecesFirstPage, pageTwo);
-		assert.strictEqual(nav.datumPiecesSecondPage, null);
-		assert.strictEqual(container.lastChild.style.left, "0px");
+		assert.strictEqual(nav.datumPiecesNewPage, pageTwo);
 		assert.strictEqual(nav.getCurrentIndex(), 1);
 	});
 
@@ -153,23 +141,19 @@ define([
 
 		var pageOne = {};
 		var pageTwo = {};
-		var container = document.createElement("DIV");
 
 		location.hash = "gone";
-		Route.reset();
 
 		var nav =
-			new SlideNavPiece(
+			new FadeNavPiece(
 				[
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
 				]);
 
-		nav.onBind(container);
+		nav.onBind(document.createElement("DIV"));
 
-		assert.strictEqual(nav.datumPiecesFirstPage, pageOne);
-		assert.strictEqual(nav.datumPiecesSecondPage, null);
-		assert.strictEqual(container.lastChild.style.left, "0px");
+		assert.strictEqual(nav.datumPiecesNewPage, pageOne);
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 	});
 
@@ -182,11 +166,12 @@ define([
 
 		container.appendChild(child);
 
-		var nav = new SlideNavPiece([{ route: "clear", page: pageOne }]);
+		var nav =
+			new FadeNavPiece([{ route: "clear", page: pageOne }]);
 
 		nav.onBind(container);
 
-		assert.strictEqual(container.children.length, 1);
+		assert.strictEqual(container.children.length, 2);
 	});
 
 	QUnit.test("Detect hash change", function(assert) {
@@ -195,24 +180,21 @@ define([
 
 		var pageOne = {};
 		var pageTwo = {};
-		var container = document.createElement("DIV");
 
 		var nav =
-			new SlideNavPiece(
+			new FadeNavPiece(
 				[
 					{ route: "come", page: pageOne },
 					{ route: "go", page: pageTwo }
 				]);
 
-		nav.onBind(container);
+		nav.onBind(document.createElement("DIV"));
 
 		location.hash = "go";
 
 		setTimeout(function() {
 
-			assert.strictEqual(nav.datumPiecesFirstPage, pageTwo);
-			assert.strictEqual(nav.datumPiecesSecondPage, null);
-			assert.strictEqual(container.lastChild.style.left, "0px");
+			assert.strictEqual(nav.datumPiecesNewPage, pageTwo);
 			assert.strictEqual(nav.getCurrentIndex(), 1);
 
 			done();
@@ -221,25 +203,25 @@ define([
 
 	QUnit.test("Lazy load page", function(assert) {
 
-		pageOneLoaded = false;
-		pageTwoLoaded = false;
+		var pageOneLoaded = false;
+		var pageTwoLoaded = false;
 
-		var pageOneAction = function() {
+		function pageOneAction() {
 			pageOneLoaded = true;
 
 			return {};
-		};
+		}
 
 		var pageTwo = {};
 
-		var pageTwoAction = function() {
+		function pageTwoAction() {
 			pageTwoLoaded = true;
 
 			return pageTwo;
-		};
+		}
 
 		var nav =
-			new SlideNavPiece(
+			new FadeNavPiece(
 				[
 					{ route: "come", page: pageOneAction },
 					{ route: "go", page: pageTwoAction }
@@ -254,7 +236,7 @@ define([
 
 		button.click();
 
-		assert.strictEqual(nav.datumPiecesSecondPage, pageTwo);
+		assert.strictEqual(nav.datumPiecesNewPage, pageTwo);
 		assert.ok(pageOneLoaded);
 		assert.ok(pageTwoLoaded);
 	});

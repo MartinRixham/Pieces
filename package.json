@@ -25,7 +25,8 @@
     "url": "git://github.com/martinrixham/pieces.git"
   },
   "scripts": {
-    "preinstall": "npm install --prefix src/main/webapp",
-    "start": "http-server src/main/webapp"
+    "preinstall": "npm install --prefix src",
+    "start": "http-server src",
+	"build": "grunt"
   }
 }
