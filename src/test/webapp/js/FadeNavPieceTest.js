@@ -200,4 +200,44 @@ define([
 			done();
 		}, 100);
 	});
+
+	QUnit.test("Lazy load page", function(assert) {
+
+		pageOneLoaded = false;
+		pageTwoLoaded = false;
+
+		var pageOneAction = function() {
+			pageOneLoaded = true;
+
+			return {};
+		};
+
+		var pageTwo = {};
+
+		var pageTwoAction = function() {
+			pageTwoLoaded = true;
+
+			return pageTwo;
+		};
+
+		var nav =
+			new FadeNavPiece(
+				[
+					{ route: "come", page: pageOneAction },
+					{ route: "go", page: pageTwoAction }
+				]);
+
+		var button = new NavButton(1, nav)();
+
+		nav.onBind(document.createElement("DIV"));
+
+		assert.ok(pageOneLoaded);
+		assert.ok(!pageTwoLoaded);
+
+		button.click();
+
+		assert.strictEqual(nav.datumPiecesNewPage, pageTwo);
+		assert.ok(pageOneLoaded);
+		assert.ok(pageTwoLoaded);
+	});
 });

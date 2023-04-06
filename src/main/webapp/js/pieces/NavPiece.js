@@ -81,13 +81,20 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
 		function setPage(index, callback) {
 
-			if (self.datumPiecesCurrentPage == pages[index].page) {
+			var page = pages[index].page;
+
+			if (typeof page == "function") {
+				page = page();
+				pages[index].page = page;
+			}
+
+			if (self.datumPiecesCurrentPage == page) {
 
 				return;
 			}
 
 			callback();
-			self.datumPiecesCurrentPage = pages[index].page;
+			self.datumPiecesCurrentPage = page;
 		}
 
 		this.showPage = function(index) {
@@ -95,6 +102,13 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 			if (!pages[index]) {
 
 				return;
+			}
+
+			var page = pages[index].page;
+
+			if (typeof page == "function") {
+				page = page();
+				pages[index].page = page;
 			}
 
 			var oldIndex = Math.max(currentIndex, 0);
@@ -109,7 +123,7 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 
 			router.update();
 
-			this.datumPiecesCurrentPage = pages[index].page;
+			this.datumPiecesCurrentPage = page;
 		};
 
 		this.getCurrentIndex = function() {

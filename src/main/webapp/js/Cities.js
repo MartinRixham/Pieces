@@ -20,15 +20,15 @@ define([
 			new SlideNavPiece([
 				{
 					route: "london",
-					page: new Picture("photo-1513635269975-59663e0ac1ad")
+					page: () => new Picture("photo-1513635269975-59663e0ac1ad")
 				},
 				{
 					route: "berlin",
-					page: new Picture("photo-1559564484-e48b3e040ff4")
+					page: () => new Picture("photo-1559564484-e48b3e040ff4")
 				},
 				{
 					route: "delhi",
-					page: new Picture("photo-1513014576558-921f00d80b77")
+					page: () => new Picture("photo-1513014576558-921f00d80b77")
 				}
 			]);
 

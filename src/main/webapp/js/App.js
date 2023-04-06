@@ -21,10 +21,10 @@ define([
 		this.content =
 			new SlideNavPiece([
 
-				{ route: "router", page: new Router() },
-				{ route: "fade", page: new Fade() },
-				{ route: "scroll", page: new Scroll() },
-				{ route: "code", page: new Links() }
+				{ route: "router", page: () => new Router() },
+				{ route: "fade", page: () => new Fade() },
+				{ route: "scroll", page: () => new Scroll() },
+				{ route: "code", page: () => new Links() }
 			]);
 
 		// Navigation buttons.
