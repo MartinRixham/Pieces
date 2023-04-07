@@ -28,7 +28,8 @@ module.exports = function(grunt) {
 					mainConfigFile: "src/main.js",
 					name: "node_modules/almond/almond.js",
 					include: ["main.js"],
-					out: "src/main-production.js"
+					out: "src/main-production.js",
+					optimize: "none"
 				}
 			}
 		},
