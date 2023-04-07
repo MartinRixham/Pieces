@@ -2666,7 +2666,14 @@ define('js/pieces/ScrollNavPiece',[
 
 			for (var i = 0; i < pages.length; i++) {
 
-				this.datumPiecesPages.push(new Page(i, pages[i].page, subroute));
+				var page = pages[i].page;
+
+				if (typeof page == "function") {
+
+					page = page();
+				}
+
+				this.datumPiecesPages.push(new Page(i, page, subroute));
 			}
 
 			while (element.firstChild) {
@@ -2676,11 +2683,11 @@ define('js/pieces/ScrollNavPiece',[
 
 			element.style.paddingTop = "1px";
 
-			var page = document.createElement("DIV");
+			var pageElement = document.createElement("DIV");
 
 			container = document.createElement("DIV");
 			container.dataset.bind = "datumPiecesPages";
-			container.appendChild(page);
+			container.appendChild(pageElement);
 
 			var hidden = document.createElement("DIV");
 			hidden.dataset.bind = "hidden";
