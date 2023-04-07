@@ -201,42 +201,4 @@ define([
 			done();
 		}, 100);
 	});
-
-	QUnit.test("Lazy load page", function(assert) {
-
-		var pageOneLoaded = false;
-		var pageTwoLoaded = false;
-
-		function pageOneAction() {
-			pageOneLoaded = true;
-			return {};
-		}
-
-		var pageTwo = {};
-
-		function pageTwoAction() {
-			pageTwoLoaded = true;
-			return pageTwo;
-		}
-
-		var nav =
-			new NavPiece(
-				[
-					{ route: "come", page: pageOneAction },
-					{ route: "go", page: pageTwoAction }
-				]);
-
-		var button = new NavButton(1, nav)();
-
-		nav.onBind(document.createElement("DIV"));
-
-		assert.ok(pageOneLoaded);
-		assert.ok(!pageTwoLoaded);
-
-		button.click();
-
-		assert.strictEqual(nav.datumPiecesCurrentPage, pageTwo);
-		assert.ok(pageOneLoaded);
-		assert.ok(pageTwoLoaded);
-	});
 });

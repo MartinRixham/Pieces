@@ -124,14 +124,7 @@ function SlideNavPiece(
 
 			right = true;
 
-			var page = pages[index].page;
-
-			if (typeof page == "function") {
-				page = page();
-				pages[index].page = page;
-			}
-
-			self.datumPiecesFirstPage = page;
+			self.datumPiecesFirstPage = pages[index].page;
 			self.datumPiecesSecondPage = null;
 
 			if (container) {
@@ -146,13 +139,6 @@ function SlideNavPiece(
 			if (!pages[index]) {
 
 				return;
-			}
-
-			var page = pages[index].page;
-
-			if (typeof page == "function") {
-				page = page();
-				pages[index].page = page;
 			}
 
 			var oldIndex = Math.max(currentIndex, 0);
@@ -180,7 +166,7 @@ function SlideNavPiece(
 				oldPage = getOldPage(right ? 0 : 1);
 
 				this.datumPiecesFirstPage = new Placeholder(oldPage);
-				this.datumPiecesSecondPage = page;
+				this.datumPiecesSecondPage = pages[index].page;
 
 				right = false;
 
@@ -206,7 +192,7 @@ function SlideNavPiece(
 				oldPage = getOldPage(right ? 0 : 1);
 
 				this.datumPiecesSecondPage = new Placeholder(oldPage);
-				this.datumPiecesFirstPage = page;
+				this.datumPiecesFirstPage = pages[index].page;
 
 				right = true;
 

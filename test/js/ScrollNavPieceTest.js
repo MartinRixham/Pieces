@@ -116,22 +116,4 @@ define([
 			done();
 		}, 1050);
 	});
-
-	QUnit.test("Eager load pages with lambdas", function(assert) {
-
-		var pageOne = {};
-		var pageTwo = {};
-		var container = document.createElement("DIV");
-
-		var nav =
-			new ScrollNavPiece([
-				{ route: "path", page: () => pageOne },
-				{ route: "route", page: () => pageTwo }
-			]);
-
-		nav.onBind(container);
-
-		assert.strictEqual(nav.datumPiecesPages[0].content, pageOne);
-		assert.strictEqual(nav.datumPiecesPages[1].content, pageTwo);
-	});
 });

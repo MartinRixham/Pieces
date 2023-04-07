@@ -72,14 +72,7 @@ define([
 
 			for (var i = 0; i < pages.length; i++) {
 
-				var page = pages[i].page;
-
-				if (typeof page == "function") {
-
-					page = page();
-				}
-
-				this.datumPiecesPages.push(new Page(i, page, subroute));
+				this.datumPiecesPages.push(new Page(i, pages[i].page, subroute));
 			}
 
 			while (element.firstChild) {
@@ -89,11 +82,11 @@ define([
 
 			element.style.paddingTop = "1px";
 
-			var pageElement = document.createElement("DIV");
+			var page = document.createElement("DIV");
 
 			container = document.createElement("DIV");
 			container.dataset.bind = "datumPiecesPages";
-			container.appendChild(pageElement);
+			container.appendChild(page);
 
 			var hidden = document.createElement("DIV");
 			hidden.dataset.bind = "hidden";

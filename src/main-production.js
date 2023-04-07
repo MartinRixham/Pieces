@@ -753,14 +753,7 @@ function SlideNavPiece(
 
 			right = true;
 
-			var page = pages[index].page;
-
-			if (typeof page == "function") {
-				page = page();
-				pages[index].page = page;
-			}
-
-			self.datumPiecesFirstPage = page;
+			self.datumPiecesFirstPage = pages[index].page;
 			self.datumPiecesSecondPage = null;
 
 			if (container) {
@@ -775,13 +768,6 @@ function SlideNavPiece(
 			if (!pages[index]) {
 
 				return;
-			}
-
-			var page = pages[index].page;
-
-			if (typeof page == "function") {
-				page = page();
-				pages[index].page = page;
 			}
 
 			var oldIndex = Math.max(currentIndex, 0);
@@ -809,7 +795,7 @@ function SlideNavPiece(
 				oldPage = getOldPage(right ? 0 : 1);
 
 				this.datumPiecesFirstPage = new Placeholder(oldPage);
-				this.datumPiecesSecondPage = page;
+				this.datumPiecesSecondPage = pages[index].page;
 
 				right = false;
 
@@ -835,7 +821,7 @@ function SlideNavPiece(
 				oldPage = getOldPage(right ? 0 : 1);
 
 				this.datumPiecesSecondPage = new Placeholder(oldPage);
-				this.datumPiecesFirstPage = page;
+				this.datumPiecesFirstPage = pages[index].page;
 
 				right = true;
 
@@ -2090,20 +2076,13 @@ function FadeNavPiece(
 
 		function setPage(index, callback) {
 
-			var page = pages[index].page;
-
-			if (typeof page == "function") {
-				page = page();
-				pages[index].page = page;
-			}
-
-			if (self.datumPiecesNewPage == page) {
+			if (self.datumPiecesNewPage == pages[index].page) {
 
 				return;
 			}
 
 			callback();
-			self.datumPiecesNewPage = page;
+			self.datumPiecesNewPage = pages[index].page;
 		}
 
 		this.showPage = function(index) {
@@ -2111,13 +2090,6 @@ function FadeNavPiece(
 			if (!pages[index]) {
 
 				return;
-			}
-
-			var page = pages[index].page;
-
-			if (typeof page == "function") {
-				page = page();
-				pages[index].page = page;
 			}
 
 			var oldIndex = Math.max(currentIndex, 0);
@@ -2146,7 +2118,7 @@ function FadeNavPiece(
 			var oldPage = getOldPage(currentElement);
 
 			this.datumPiecesOldPage = new Placeholder(oldPage);
-			this.datumPiecesNewPage = page;
+			this.datumPiecesNewPage = pages[index].page;
 
 			setTimeout(function() {
 
@@ -2666,14 +2638,7 @@ define('js/pieces/ScrollNavPiece',[
 
 			for (var i = 0; i < pages.length; i++) {
 
-				var page = pages[i].page;
-
-				if (typeof page == "function") {
-
-					page = page();
-				}
-
-				this.datumPiecesPages.push(new Page(i, page, subroute));
+				this.datumPiecesPages.push(new Page(i, pages[i].page, subroute));
 			}
 
 			while (element.firstChild) {
@@ -2683,11 +2648,11 @@ define('js/pieces/ScrollNavPiece',[
 
 			element.style.paddingTop = "1px";
 
-			var pageElement = document.createElement("DIV");
+			var page = document.createElement("DIV");
 
 			container = document.createElement("DIV");
 			container.dataset.bind = "datumPiecesPages";
-			container.appendChild(pageElement);
+			container.appendChild(page);
 
 			var hidden = document.createElement("DIV");
 			hidden.dataset.bind = "hidden";
@@ -2930,15 +2895,15 @@ define('js/Cities',[
 			new SlideNavPiece([
 				{
 					route: "london",
-					page: () => new Picture("photo-1513635269975-59663e0ac1ad")
+					page: new Picture("photo-1513635269975-59663e0ac1ad")
 				},
 				{
 					route: "berlin",
-					page: () => new Picture("photo-1559564484-e48b3e040ff4")
+					page: new Picture("photo-1559564484-e48b3e040ff4")
 				},
 				{
 					route: "delhi",
-					page: () => new Picture("photo-1513014576558-921f00d80b77")
+					page: new Picture("photo-1513014576558-921f00d80b77")
 				}
 			]);
 
@@ -3092,15 +3057,15 @@ define('js/Vegetables',[
 			new FadeNavPiece([
 				{
 					route: "carrot",
-					page: () => new Picture("photo-1447175008436-054170c2e979")
+					page: new Picture("photo-1447175008436-054170c2e979")
 				},
 				{
 					route: "cabbage",
-					page: () => new Picture("photo-1550177564-5cf7f9279d8b")
+					page: new Picture("photo-1550177564-5cf7f9279d8b")
 				},
 				{
 					route: "squash",
-					page: () => new Picture("photo-1507919181268-0a42063f9704")
+					page: new Picture("photo-1507919181268-0a42063f9704")
 				}
 			]);
 
@@ -3203,10 +3168,10 @@ define('js/App',[
 		this.content =
 			new SlideNavPiece([
 
-				{ route: "router", page: () => new Router() },
-				{ route: "fade", page: () => new Fade() },
-				{ route: "scroll", page: () => new Scroll() },
-				{ route: "code", page: () => new Links() }
+				{ route: "router", page: new Router() },
+				{ route: "fade", page: new Fade() },
+				{ route: "scroll", page: new Scroll() },
+				{ route: "code", page: new Links() }
 			]);
 
 		// Navigation buttons.

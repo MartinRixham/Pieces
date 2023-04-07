@@ -22,15 +22,15 @@ define([
 			new FadeNavPiece([
 				{
 					route: "carrot",
-					page: () => new Picture("photo-1447175008436-054170c2e979")
+					page: new Picture("photo-1447175008436-054170c2e979")
 				},
 				{
 					route: "cabbage",
-					page: () => new Picture("photo-1550177564-5cf7f9279d8b")
+					page: new Picture("photo-1550177564-5cf7f9279d8b")
 				},
 				{
 					route: "squash",
-					page: () => new Picture("photo-1507919181268-0a42063f9704")
+					page: new Picture("photo-1507919181268-0a42063f9704")
 				}
 			]);
 

@@ -100,20 +100,13 @@ function FadeNavPiece(
 
 		function setPage(index, callback) {
 
-			var page = pages[index].page;
-
-			if (typeof page == "function") {
-				page = page();
-				pages[index].page = page;
-			}
-
-			if (self.datumPiecesNewPage == page) {
+			if (self.datumPiecesNewPage == pages[index].page) {
 
 				return;
 			}
 
 			callback();
-			self.datumPiecesNewPage = page;
+			self.datumPiecesNewPage = pages[index].page;
 		}
 
 		this.showPage = function(index) {
@@ -121,13 +114,6 @@ function FadeNavPiece(
 			if (!pages[index]) {
 
 				return;
-			}
-
-			var page = pages[index].page;
-
-			if (typeof page == "function") {
-				page = page();
-				pages[index].page = page;
 			}
 
 			var oldIndex = Math.max(currentIndex, 0);
@@ -156,7 +142,7 @@ function FadeNavPiece(
 			var oldPage = getOldPage(currentElement);
 
 			this.datumPiecesOldPage = new Placeholder(oldPage);
-			this.datumPiecesNewPage = page;
+			this.datumPiecesNewPage = pages[index].page;
 
 			setTimeout(function() {
 
