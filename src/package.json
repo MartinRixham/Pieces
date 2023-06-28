@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "AGPL-3.0",
   "dependencies": {
-    "Datum": "0.13.2",
+    "Datum": "0.13.3",
     "almond": "0.3.3",
     "highlight.js-postbuild": "0.0.6",
     "jquery": "3.6.4",
