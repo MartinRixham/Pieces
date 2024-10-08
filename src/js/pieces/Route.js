@@ -1,23 +1,21 @@
-define([], function() {
+define([
+	"./AddEventListener",
+	"./Location",
+	"./History"
+], function(
+	addEventListener,
+	location,
+	history) {
 
 	var routes = [];
 
 	var words = location.hash.substring(1).split("/");
-
-	var changedHash = 0;
 
 	var updating = 0;
 
 	var route = new Route();
 
 	addEventListener("hashchange", function() {
-
-		if (changedHash) {
-
-			changedHash--;
-
-			return;
-		}
 
 		words = location.hash.substring(1).split("/");
 
@@ -110,19 +108,13 @@ define([], function() {
 				return;
 			}
 
-			var oldHash = location.hash;
 			var hash = wordList.join("/");
 
 			// remove trailing slashes.
 			hash = "#" + hash.replace(/\/+$/, "");
 
-			if (oldHash != hash) {
-
-				changedHash++;
-			}
-
 			words = wordList;
-			location.hash = hash;
+			history.pushState(null, "", hash);
 		};
 
 		this.changePage = function(index) {
@@ -150,7 +142,6 @@ define([], function() {
 
 			routes = [];
 			words = location.hash.substring(1).split("/");
-			changedHash = 0;
 			updating = 0;
 			route = new Route();
 		}

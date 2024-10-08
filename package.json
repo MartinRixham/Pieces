@@ -27,6 +27,9 @@
   "scripts": {
     "preinstall": "npm install --prefix src",
     "start": "http-server src",
-	"build": "grunt"
+    "build": "grunt"
+  },
+  "dependencies": {
+    "Datum": "^0.13.3"
   }
 }

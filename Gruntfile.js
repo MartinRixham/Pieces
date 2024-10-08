@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 			all: ["test/index.html"],
 			options: {
 				puppeteer: {
-					executablePath: "google-chrome"
+					executablePath: "chromium-browser"
 				}
 			}
 		},

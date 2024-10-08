@@ -1,9 +1,11 @@
 define([
+	"./AddEventListener",
 	"./Library",
 	"./Route",
 	"./Subroute",
 	"./Page"
 ], function ScrollNavPiece(
+	addEventListener,
 	Library,
 	Route,
 	Subroute,

@@ -468,26 +468,66 @@ define('js/pieces/Placeholder',[], function() {
 	return Placeholder;
 });
 
-define('js/pieces/Route',[], function() {
+define('js/pieces/AddEventListener',[], function() {
+
+	if (typeof addEventListener == "undefined") {
+
+		return function() {};
+	}
+	else {
+
+		return addEventListener;
+	}
+});
+
+define('js/pieces/Location',[], function() {
+
+	if (typeof location == "undefined") {
+
+		return {
+
+			hash: ""
+		};
+	}
+	else {
+
+		return location;
+	}
+});
+
+define('js/pieces/History',[], function() {
+
+	if (typeof history == "undefined") {
+
+		return {
+
+			pushState: function() {}
+		};
+	}
+	else {
+
+		return history;
+	}
+});
+
+define('js/pieces/Route',[
+	"./AddEventListener",
+	"./Location",
+	"./History"
+], function(
+	addEventListener,
+	location,
+	history) {
 
 	var routes = [];
 
 	var words = location.hash.substring(1).split("/");
-
-	var changedHash = 0;
 
 	var updating = 0;
 
 	var route = new Route();
 
 	addEventListener("hashchange", function() {
-
-		if (changedHash) {
-
-			changedHash--;
-
-			return;
-		}
 
 		words = location.hash.substring(1).split("/");
 
@@ -580,19 +620,13 @@ define('js/pieces/Route',[], function() {
 				return;
 			}
 
-			var oldHash = location.hash;
 			var hash = wordList.join("/");
 
 			// remove trailing slashes.
 			hash = "#" + hash.replace(/\/+$/, "");
 
-			if (oldHash != hash) {
-
-				changedHash++;
-			}
-
 			words = wordList;
-			location.hash = hash;
+			history.pushState(null, "", hash);
 		};
 
 		this.changePage = function(index) {
@@ -620,7 +654,6 @@ define('js/pieces/Route',[], function() {
 
 			routes = [];
 			words = location.hash.substring(1).split("/");
-			changedHash = 0;
 			updating = 0;
 			route = new Route();
 		}
@@ -2565,11 +2598,13 @@ define('js/pieces/Page',["./Library"], function Page(Library) {
 });
 
 define('js/pieces/ScrollNavPiece',[
+	"./AddEventListener",
 	"./Library",
 	"./Route",
 	"./Subroute",
 	"./Page"
 ], function ScrollNavPiece(
+	addEventListener,
 	Library,
 	Route,
 	Subroute,
