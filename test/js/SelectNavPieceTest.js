@@ -31,8 +31,8 @@ define([
 
 		nav.onBind(container);
 
-		assert.strictEqual(nav.datumPiecesPages[0].content, pageOne);
-		assert.strictEqual(nav.datumPiecesPages[1].content, pageTwo);
+		assert.strictEqual(nav.datumPiecesPages[0], pageOne);
+		assert.strictEqual(nav.datumPiecesPages[1], pageTwo);
 
 		assert.strictEqual(nav.getCurrentIndex(), -1);
 		assert.strictEqual(location.hash, "");
@@ -60,10 +60,6 @@ define([
 			]);
 
 		nav.onBind(document.createElement("DIV"));
-
-		nav.datumPiecesPages[1].update().events.__PIECES_BIND__(
-			new Event("__PIECES_BIND__"));
-
 		pageTwo.onBind(document.createElement("DIV"));
 
 		location.hash = "route/two";
@@ -102,10 +98,6 @@ define([
 			]);
 
 		nav.onBind(document.createElement("DIV"));
-
-		nav.datumPiecesPages[1].update().events.__PIECES_BIND__(
-			new Event("__PIECES_BIND__"));
-
 		pageTwo.onBind(document.createElement("DIV"));
 
 		setTimeout(function() {

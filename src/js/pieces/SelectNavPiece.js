@@ -1,15 +1,11 @@
 define([
 	"./Library",
 	"./Route",
-	"./Subroute",
-	"./Page"
+	"./Subroute"
 ], function SelectNavPiece(
 	Library,
 	Route,
-	Subroute,
-	Page) {
-
-	var highestIndex = -1;
+	Subroute) {
 
 	function SelectNavPiece(pages) {
 
@@ -31,10 +27,6 @@ define([
 
 			var self = this;
 
-			var event = document.createEvent("Event");
-			event.initEvent("__PIECES_BIND__", true, true);
-			element.dispatchEvent(event);
-
 			route = Route.get();
 
 			subroute = subroute ||
@@ -49,7 +41,7 @@ define([
 
 			for (var i = 0; i < pages.length; i++) {
 
-				this.datumPiecesPages.push(new Page(i, pages[i].page, subroute));
+				this.datumPiecesPages.push(pages[i].page);
 			}
 
 			while (element.firstChild) {
@@ -71,7 +63,7 @@ define([
 
 				set: function(word, routeIndex) {
 
-					routePage(word, routeIndex);
+					routePage(word);
 					route.update(routeIndex);
 				},
 				get: function(nonBlank) {
@@ -92,13 +84,11 @@ define([
 			}, true);
 		};
 
-		function routePage(hash, routeIndex) {
+		function routePage(hash) {
 
 			for (var i = 0; i < pages.length; i++) {
 
 				if (pages[i].route == hash) {
-
-					highestIndex = Math.max(highestIndex, routeIndex);
 
 					currentIndex = i;
 					activeIndex(i);
