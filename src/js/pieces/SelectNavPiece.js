@@ -1,24 +1,56 @@
-define(["./Library", "./Route"], function NavPiece(Library, Route) {
+define([
+	"./Library",
+	"./Route",
+	"./Subroute",
+	"./Page"
+], function SelectNavPiece(
+	Library,
+	Route,
+	Subroute,
+	Page) {
+
+	var highestIndex = -1;
 
 	function SelectNavPiece(pages) {
 
-		var self = this;
+		var initialised = false;
+
+		var route;
 
 		var currentIndex = -1;
 
 		var activeIndex = new Library.Datum(-1);
 
-		var router;
+		var container;
 
-		this.datumPiecesCurrentPage = null;
+		var subroute;
+
+		this.datumPiecesPages = [];
 
 		this.onBind = function(element) {
+
+			var self = this;
 
 			var event = document.createEvent("Event");
 			event.initEvent("__PIECES_BIND__", true, true);
 			element.dispatchEvent(event);
 
-			var route = Route.get();
+			route = Route.get();
+
+			subroute = subroute ||
+				new Subroute(
+					route,
+					function() { return currentIndex; },
+					function(index) { self.showPage(index); });
+
+			Route.set(subroute);
+
+			this.datumPiecesPages = [];
+
+			for (var i = 0; i < pages.length; i++) {
+
+				this.datumPiecesPages.push(new Page(i, pages[i].page, subroute));
+			}
 
 			while (element.firstChild) {
 
@@ -28,88 +60,71 @@ define(["./Library", "./Route"], function NavPiece(Library, Route) {
 			element.style.paddingTop = "1px";
 
 			var page = document.createElement("DIV");
-			page.dataset.bind = "datumPiecesCurrentPage";
 
-			element.appendChild(page);
+			container = document.createElement("DIV");
+			container.dataset.bind = "datumPiecesPages";
+			container.appendChild(page);
 
-			router =
-				route.addRoute({
+			element.appendChild(container);
 
-					set: function(word, routeIndex, callback) {
+			route.addRoute({
 
-						routePage(word, callback);
-						route.update(routeIndex);
-					},
-					get: function(nonBlank) {
+				set: function(word, routeIndex) {
 
-						if (nonBlank && currentIndex < 0) {
+					routePage(word, routeIndex);
+					route.update(routeIndex);
+				},
+				get: function(nonBlank) {
 
-							return pages[0].route;
-						}
-						else if (pages[currentIndex]) {
+					if (nonBlank && currentIndex < 0) {
 
-							return pages[currentIndex].route;
-						}
-						else {
-
-							return "";
-						}
+						return pages[0].route;
 					}
-				});
+					else if (pages[currentIndex]) {
+
+						return pages[currentIndex].route;
+					}
+					else {
+
+						return "";
+					}
+				}
+			}, true);
 		};
 
-		function routePage(hash, callback) {
+		function routePage(hash, routeIndex) {
 
 			for (var i = 0; i < pages.length; i++) {
 
 				if (pages[i].route == hash) {
 
+					highestIndex = Math.max(highestIndex, routeIndex);
+
 					currentIndex = i;
 					activeIndex(i);
-
-					setPage(i, callback);
 
 					return;
 				}
 			}
 
-			if (!self.datumPiecesCurrentPage) {
-
-				setPage(0, callback);
-			}
-		}
-
-		function setPage(index, callback) {
-
-			if (self.datumPiecesCurrentPage == pages[index].page) {
-
-				return;
-			}
-
-			callback();
-			self.datumPiecesCurrentPage = pages[index].page;
+			initialised = true;
+			currentIndex = -1;
+			activeIndex(-1);
 		}
 
 		this.showPage = function(index) {
 
-			if (!pages[index]) {
+			if (!initialised) {
 
 				return;
 			}
 
-			var oldIndex = Math.max(currentIndex, 0);
+			var child = container.children[index];
 
-			currentIndex = index;
-			activeIndex(index);
+			if (child) {
 
-			if (oldIndex != index) {
-
-				router.changePage();
+				child.scrollIntoView({ behavior: "smooth", block: "start" });
 			}
-
-			router.update();
-
-			this.datumPiecesCurrentPage = pages[index].page;
 		};
 
 		this.getCurrentIndex = function() {

@@ -43,6 +43,7 @@ function(
 		this.two = new NavButton(1, this.container);
 		this.three = new NavButton(2, this.container);
 		this.four = new NavButton(3, this.container);
+		this.five = new NavButton(4, this.container);
 
 		// The init callback is called to set up an element.
 		this.menu =

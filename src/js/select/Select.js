@@ -1,9 +1,18 @@
 define([
 	"jquery",
-	"js/pieces/SelectNavPiece"],
+	"js/pieces/SelectNavPiece",
+	"js/select/One",
+	"js/select/Two",
+	"js/select/Three",
+	"js/select/Four"
+],
 function(
 	$,
-	SelectNavPiece) {
+	SelectNavPiece,
+	One,
+	Two,
+	Three,
+	Four) {
 
 	function Select() {
 
@@ -18,7 +27,7 @@ function(
 				{ route: "one", page: new One() },
 				{ route: "two", page: new Two() },
 				{ route: "three", page: new Three() },
-				{ route: "four", page: new Four() },
+				{ route: "four", page: new Four() }
 			]);
 	}
 

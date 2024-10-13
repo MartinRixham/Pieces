@@ -1,15 +1,15 @@
 define([
 	"qunit",
 	"js/pieces/SelectNavPiece",
-	"js/pieces/NavButton",
+	"js/pieces/NavPiece",
 	"js/pieces/Route"
 ], function(
 	QUnit,
 	SelectNavPiece,
-	NavButton,
+	NavPiece,
 	Route) {
 
-	QUnit.module("Nav Piece");
+	QUnit.module("Select Nav Piece");
 
 	QUnit.testStart(function() {
 
@@ -17,188 +17,103 @@ define([
 		Route.reset();
 	});
 
-	QUnit.test("Nav with one page", function(assert) {
-
-		var page = {};
-		var nav = new SelectNavPiece([{ route: "route", page: page }]);
-
-		nav.onBind(document.createElement("DIV"));
-
-		assert.strictEqual(nav.datumPiecesCurrentPage, page);
-		assert.strictEqual(nav.getCurrentIndex(), -1);
-	});
-
-	QUnit.test("Click on first button", function(assert) {
-
-		var page = {};
-		var nav = new SelectNavPiece([{ route: "route", page: page }]);
-		var button = new NavButton(0, nav)();
-
-		nav.onBind(document.createElement("DIV"));
-
-		assert.ok(!button.classes.active());
-
-		button.click();
-
-		assert.strictEqual(nav.datumPiecesCurrentPage, page);
-		assert.ok(button.classes.active());
-		assert.strictEqual(nav.getCurrentIndex(), 0);
-	});
-
-	QUnit.test("Click on second button", function(assert) {
+	QUnit.test("Nav with two pages", function(assert) {
 
 		var pageOne = {};
 		var pageTwo = {};
-
-		var nav =
-			new SelectNavPiece(
-				[
-					{ route: "come", page: pageOne },
-					{ route: "go", page: pageTwo }
-				]);
-
-		var button = new NavButton(1, nav)();
-
-		nav.onBind(document.createElement("DIV"));
-
-		assert.ok(!button.classes.active());
-
-		button.click();
-
-		assert.strictEqual(nav.datumPiecesCurrentPage, pageTwo);
-		assert.ok(button.classes.active());
-		assert.strictEqual(nav.getCurrentIndex(), 1);
-		assert.strictEqual(location.hash, "#go");
-	});
-
-	QUnit.test("Show second page", function(assert) {
-
-		var pageOne = {};
-		var pageTwo = {};
-
-		var nav =
-			new SelectNavPiece(
-				[
-					{ route: "come", page: pageOne },
-					{ route: "go", page: pageTwo }
-				]);
-
-		nav.onBind(document.createElement("DIV"));
-
-		nav.showPage(1);
-
-		assert.strictEqual(nav.datumPiecesCurrentPage, pageTwo);
-		assert.strictEqual(nav.getCurrentIndex(), 1);
-		assert.strictEqual(location.hash, "#go");
-	});
-
-	QUnit.test("Show unknown page", function(assert) {
-
-		var pageOne = {};
-		var pageTwo = {};
-
-		var nav =
-			new SelectNavPiece(
-				[
-					{ route: "come", page: pageOne },
-					{ route: "go", page: pageTwo }
-				]);
-
-		var button = new NavButton(0, nav)();
-
-		nav.onBind(document.createElement("DIV"));
-
-		button.click();
-
-		nav.showPage(-1);
-
-		assert.strictEqual(nav.datumPiecesCurrentPage, pageOne);
-		assert.strictEqual(nav.getCurrentIndex(), 0);
-	});
-
-	QUnit.test("Route page from hash", function(assert) {
-
-		var pageOne = {};
-		var pageTwo = {};
-
-		location.hash = "go";
-		Route.reset();
-
-		var nav =
-			new SelectNavPiece(
-				[
-					{ route: "come", page: pageOne },
-					{ route: "go", page: pageTwo }
-				]);
-
-		nav.onBind(document.createElement("DIV"));
-
-		assert.strictEqual(nav.datumPiecesCurrentPage, pageTwo);
-		assert.strictEqual(nav.getCurrentIndex(), 1);
-	});
-
-	QUnit.test("Route page from unknown hash", function(assert) {
-
-		var pageOne = {};
-		var pageTwo = {};
-
-		location.hash = "gone";
-
-		var nav =
-			new SelectNavPiece(
-				[
-					{ route: "come", page: pageOne },
-					{ route: "go", page: pageTwo }
-				]);
-
-		nav.onBind(document.createElement("DIV"));
-
-		assert.strictEqual(nav.datumPiecesCurrentPage, pageOne);
-		assert.strictEqual(nav.getCurrentIndex(), -1);
-	});
-
-	QUnit.test("Remove old elements", function(assert) {
-
-		var pageOne = {};
-
 		var container = document.createElement("DIV");
-		var child = document.createElement("DIV");
-
-		container.appendChild(child);
 
 		var nav =
-			new SelectNavPiece(
-				[{ route: "clear", page: pageOne }]);
+			new SelectNavPiece([
+				{ route: "path", page: pageOne },
+				{ route: "route", page: pageTwo }
+			]);
 
 		nav.onBind(container);
 
-		assert.strictEqual(container.children.length, 1);
+		assert.strictEqual(nav.datumPiecesPages[0].content, pageOne);
+		assert.strictEqual(nav.datumPiecesPages[1].content, pageTwo);
+
+		assert.strictEqual(nav.getCurrentIndex(), -1);
+		assert.strictEqual(location.hash, "");
 	});
 
-	QUnit.test("Detect hash change", function(assert) {
+	QUnit.test("Nav with sub-navigation", function(assert) {
 
 		var done = assert.async();
 
+		var firstPage = {};
+		var secondPage = {};
+
 		var pageOne = {};
-		var pageTwo = {};
+
+		var pageTwo =
+			new NavPiece([
+				{ route: "one", page: firstPage },
+				{ route: "two", page: secondPage }
+			]);
 
 		var nav =
-			new SelectNavPiece(
-				[
-					{ route: "come", page: pageOne },
-					{ route: "go", page: pageTwo }
-				]);
+			new SelectNavPiece([
+				{ route: "path", page: pageOne },
+				{ route: "route", page: pageTwo }
+			]);
 
 		nav.onBind(document.createElement("DIV"));
 
-		location.hash = "go";
+		nav.datumPiecesPages[1].update().events.__PIECES_BIND__(
+			new Event("__PIECES_BIND__"));
+
+		pageTwo.onBind(document.createElement("DIV"));
+
+		location.hash = "route/two";
 
 		setTimeout(function() {
 
-			assert.strictEqual(nav.datumPiecesCurrentPage, pageTwo);
 			assert.strictEqual(nav.getCurrentIndex(), 1);
+			assert.strictEqual(pageTwo.datumPiecesCurrentPage, secondPage);
 
 			done();
-		}, 100);
+		}, 1050);
+	});
+
+	QUnit.test("Navigate from route with sub-navigation", function(assert) {
+
+		var done = assert.async();
+
+		location.hash = "route/two";
+		Route.reset();
+
+		var firstPage = {};
+		var secondPage = {};
+
+		var pageOne = {};
+
+		var pageTwo =
+			new NavPiece([
+				{ route: "one", page: firstPage },
+				{ route: "two", page: secondPage }
+			]);
+
+		var nav =
+			new SelectNavPiece([
+				{ route: "path", page: pageOne },
+				{ route: "route", page: pageTwo }
+			]);
+
+		nav.onBind(document.createElement("DIV"));
+
+		nav.datumPiecesPages[1].update().events.__PIECES_BIND__(
+			new Event("__PIECES_BIND__"));
+
+		pageTwo.onBind(document.createElement("DIV"));
+
+		setTimeout(function() {
+
+			assert.strictEqual(nav.getCurrentIndex(), 1);
+			assert.strictEqual(pageTwo.datumPiecesCurrentPage, secondPage);
+
+			done();
+		}, 1050);
 	});
 });
