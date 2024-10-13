@@ -6,6 +6,7 @@ define([
 	"js/Rainbow",
 	"js/Space",
 	"js/Vegetables",
+	"js/select/Select",
 	"js/Code"
 ],
 function(
@@ -16,6 +17,7 @@ function(
 	Rainbow,
 	Space,
 	Vegetables,
+	Select,
 	Code) {
 
 	function Scroll() {
@@ -32,6 +34,7 @@ function(
 				{ route: "cities", page: new Cities() },
 				{ route: "rainbow", page: new Rainbow() },
 				{ route: "vegetables", page: new Vegetables() },
+				{ route: "select", page: new Select() },
 				{ route: "space", page: new Space() }
 			]);
 

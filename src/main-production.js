@@ -3123,6 +3123,19 @@ define('js/Vegetables',[
 	return Vegetables;
 });
 
+define('js/select/Select',["jquery"], function($) {
+
+	function Select() {
+
+		this.onBind = function(element) {
+
+			$(element).load("html/select/select.html");
+		};
+	}
+
+	return Select;
+});
+
 define('js/Scroll',[
 	"jquery",
 	"js/pieces/ScrollNavPiece",
@@ -3131,6 +3144,7 @@ define('js/Scroll',[
 	"js/Rainbow",
 	"js/Space",
 	"js/Vegetables",
+	"js/select/Select",
 	"js/Code"
 ],
 function(
@@ -3141,6 +3155,7 @@ function(
 	Rainbow,
 	Space,
 	Vegetables,
+	Select,
 	Code) {
 
 	function Scroll() {
@@ -3157,6 +3172,7 @@ function(
 				{ route: "cities", page: new Cities() },
 				{ route: "rainbow", page: new Rainbow() },
 				{ route: "vegetables", page: new Vegetables() },
+				{ route: "select", page: new Select() },
 				{ route: "space", page: new Space() }
 			]);
 
