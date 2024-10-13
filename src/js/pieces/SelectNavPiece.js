@@ -7,8 +7,6 @@ define([
 
 	function SelectNavPiece(pages) {
 
-		var initialised = false;
-
 		var route;
 
 		var currentIndex = -1;
@@ -83,17 +81,11 @@ define([
 				}
 			}
 
-			initialised = true;
 			currentIndex = -1;
 			activeIndex(-1);
 		}
 
 		this.showPage = function(index) {
-
-			if (!initialised) {
-
-				return;
-			}
 
 			var child = container.children[index];
 

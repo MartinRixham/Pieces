@@ -3132,8 +3132,6 @@ define('js/pieces/SelectNavPiece',[
 
 	function SelectNavPiece(pages) {
 
-		var initialised = false;
-
 		var route;
 
 		var currentIndex = -1;
@@ -3162,11 +3160,8 @@ define('js/pieces/SelectNavPiece',[
 
 			element.style.paddingTop = "1px";
 
-			var page = document.createElement("DIV");
-
 			container = document.createElement("DIV");
 			container.dataset.bind = "datumPiecesPages";
-			container.appendChild(page);
 
 			element.appendChild(container);
 
@@ -3208,17 +3203,11 @@ define('js/pieces/SelectNavPiece',[
 				}
 			}
 
-			initialised = true;
 			currentIndex = -1;
 			activeIndex(-1);
 		}
 
 		this.showPage = function(index) {
-
-			if (!initialised) {
-
-				return;
-			}
 
 			var child = container.children[index];
 
