@@ -3125,12 +3125,10 @@ define('js/Vegetables',[
 
 define('js/pieces/SelectNavPiece',[
 	"./Library",
-	"./Route",
-	"./Subroute"
+	"./Route"
 ], function SelectNavPiece(
 	Library,
-	Route,
-	Subroute) {
+	Route) {
 
 	function SelectNavPiece(pages) {
 
@@ -3144,23 +3142,11 @@ define('js/pieces/SelectNavPiece',[
 
 		var container;
 
-		var subroute;
-
 		this.datumPiecesPages = [];
 
 		this.onBind = function(element) {
 
-			var self = this;
-
 			route = Route.get();
-
-			subroute = subroute ||
-				new Subroute(
-					route,
-					function() { return currentIndex; },
-					function(index) { self.showPage(index); });
-
-			Route.set(subroute);
 
 			this.datumPiecesPages = [];
 
